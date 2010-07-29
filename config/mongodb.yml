@@ -1,0 +1,23 @@
+
+
+# config/mongodb.yml
+base: &base
+  adapter: mongodb
+  database: coolapp
+#These are needed to authenticate with your db
+#should it run on another server
+  host: genesis.mongohq.com
+  username: your-username
+  password: your-password
+
+development:
+  <<: *base
+
+test:
+  <<: *base
+  database: coolapp-test
+
+
+production:
+  <<: *base
+

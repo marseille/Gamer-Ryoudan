@@ -1,0 +1,80 @@
+have_library: checking for deflateReset() in -lz... -------------------- yes
+
+"gcc -o conftest -I/home/mars/.rvm/rubies/ruby-1.9.2-rc2/include/ruby-1.9.1/x86_64-linux -I/home/mars/.rvm/rubies/ruby-1.9.2-rc2/include/ruby-1.9.1/ruby/backward -I/home/mars/.rvm/rubies/ruby-1.9.2-rc2/include/ruby-1.9.1 -I../.rvm/src/ruby-1.9.2-rc2/ext/zlib     -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wno-long-long  -fPIC conftest.c  -L. -L/home/mars/.rvm/rubies/ruby-1.9.2-rc2/lib -Wl,-R/home/mars/.rvm/rubies/ruby-1.9.2-rc2/lib -L.  -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/home/mars/.rvm/rubies/ruby-1.9.2-rc2/lib -L/home/mars/.rvm/rubies/ruby-1.9.2-rc2/lib -lruby-static  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main() {return 0;}
+/* end */
+
+"gcc -o conftest -I/home/mars/.rvm/rubies/ruby-1.9.2-rc2/include/ruby-1.9.1/x86_64-linux -I/home/mars/.rvm/rubies/ruby-1.9.2-rc2/include/ruby-1.9.1/ruby/backward -I/home/mars/.rvm/rubies/ruby-1.9.2-rc2/include/ruby-1.9.1 -I../.rvm/src/ruby-1.9.2-rc2/ext/zlib     -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wno-long-long  -fPIC conftest.c  -L. -L/home/mars/.rvm/rubies/ruby-1.9.2-rc2/lib -Wl,-R/home/mars/.rvm/rubies/ruby-1.9.2-rc2/lib -L.  -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/home/mars/.rvm/rubies/ruby-1.9.2-rc2/lib -L/home/mars/.rvm/rubies/ruby-1.9.2-rc2/lib -lruby-static -lz  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+conftest.c: In function ‘t’:
+conftest.c:5: error: ‘deflateReset’ undeclared (first use in this function)
+conftest.c:5: error: (Each undeclared identifier is reported only once
+conftest.c:5: error: for each function it appears in.)
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))deflateReset; return 0; }
+/* end */
+
+"gcc -o conftest -I/home/mars/.rvm/rubies/ruby-1.9.2-rc2/include/ruby-1.9.1/x86_64-linux -I/home/mars/.rvm/rubies/ruby-1.9.2-rc2/include/ruby-1.9.1/ruby/backward -I/home/mars/.rvm/rubies/ruby-1.9.2-rc2/include/ruby-1.9.1 -I../.rvm/src/ruby-1.9.2-rc2/ext/zlib     -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wno-long-long  -fPIC conftest.c  -L. -L/home/mars/.rvm/rubies/ruby-1.9.2-rc2/lib -Wl,-R/home/mars/.rvm/rubies/ruby-1.9.2-rc2/lib -L.  -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/home/mars/.rvm/rubies/ruby-1.9.2-rc2/lib -L/home/mars/.rvm/rubies/ruby-1.9.2-rc2/lib -lruby-static -lz  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { deflateReset(); return 0; }
+/* end */
+
+--------------------
+
+have_header: checking for zlib.h... -------------------- yes
+
+"gcc -E -I/home/mars/.rvm/rubies/ruby-1.9.2-rc2/include/ruby-1.9.1/x86_64-linux -I/home/mars/.rvm/rubies/ruby-1.9.2-rc2/include/ruby-1.9.1/ruby/backward -I/home/mars/.rvm/rubies/ruby-1.9.2-rc2/include/ruby-1.9.1 -I../.rvm/src/ruby-1.9.2-rc2/ext/zlib     -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wno-long-long  -fPIC  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <zlib.h>
+/* end */
+
+--------------------
+
+have_func: checking for crc32_combine() in zlib.h... -------------------- yes
+
+"gcc -o conftest -I/home/mars/.rvm/rubies/ruby-1.9.2-rc2/include/ruby-1.9.1/x86_64-linux -I/home/mars/.rvm/rubies/ruby-1.9.2-rc2/include/ruby-1.9.1/ruby/backward -I/home/mars/.rvm/rubies/ruby-1.9.2-rc2/include/ruby-1.9.1 -I../.rvm/src/ruby-1.9.2-rc2/ext/zlib     -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wno-long-long  -fPIC conftest.c  -L. -L/home/mars/.rvm/rubies/ruby-1.9.2-rc2/lib -Wl,-R/home/mars/.rvm/rubies/ruby-1.9.2-rc2/lib -L.  -rdynamic -Wl,-export-dynamic    -lz  -Wl,-R -Wl,/home/mars/.rvm/rubies/ruby-1.9.2-rc2/lib -L/home/mars/.rvm/rubies/ruby-1.9.2-rc2/lib -lruby-static -lz  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <zlib.h>
+4: 
+5: /*top*/
+6: int main() {return 0;}
+7: int t() { void ((*volatile p)()); p = (void ((*)()))crc32_combine; return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for adler32_combine() in zlib.h... -------------------- yes
+
+"gcc -o conftest -I/home/mars/.rvm/rubies/ruby-1.9.2-rc2/include/ruby-1.9.1/x86_64-linux -I/home/mars/.rvm/rubies/ruby-1.9.2-rc2/include/ruby-1.9.1/ruby/backward -I/home/mars/.rvm/rubies/ruby-1.9.2-rc2/include/ruby-1.9.1 -I../.rvm/src/ruby-1.9.2-rc2/ext/zlib     -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wno-long-long  -fPIC conftest.c  -L. -L/home/mars/.rvm/rubies/ruby-1.9.2-rc2/lib -Wl,-R/home/mars/.rvm/rubies/ruby-1.9.2-rc2/lib -L.  -rdynamic -Wl,-export-dynamic    -lz  -Wl,-R -Wl,/home/mars/.rvm/rubies/ruby-1.9.2-rc2/lib -L/home/mars/.rvm/rubies/ruby-1.9.2-rc2/lib -lruby-static -lz  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <zlib.h>
+4: 
+5: /*top*/
+6: int main() {return 0;}
+7: int t() { void ((*volatile p)()); p = (void ((*)()))adler32_combine; return 0; }
+/* end */
+
+--------------------
+
