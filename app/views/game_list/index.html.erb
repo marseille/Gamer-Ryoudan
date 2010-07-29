@@ -1,0 +1,10 @@
+<h3> Your games </h3>
+
+<%= current_user.games.collect(&:name) %>
+<br>
+<h4> Search game database </h4>
+<% form_tag(:controller => "games", :action => "find_game", :method => "get") do %>
+  <% label_tag(:search_tag, "Search for a game:") %>
+  <%= text_field_tag(:search_tag) %>
+  <%= submit_tag("DO IT!!") %>
+<% end %>

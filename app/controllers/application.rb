@@ -1,8 +1,10 @@
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
+require 'pp'
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
+  before_filter :require_user, :except => []
   protect_from_forgery # :secret => '799813561a334d795562316f3dbcd045'
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user

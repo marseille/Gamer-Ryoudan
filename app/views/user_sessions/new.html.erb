@@ -1,5 +1,4 @@
 <h1>Login</h1>
-
 <% form_for @user_session, :url => user_session_path do |f| %>
   <%= f.error_messages %>
   <%= f.label :login %><br />
@@ -12,3 +11,6 @@
   <br />
   <%= f.submit "Login" %>
 <% end %>
+
+Not registered yet? ENHANCE YOUR ABILITY!! DO IT!!
+<%= link_to "register!", :controller => "users", :action => "new" %>

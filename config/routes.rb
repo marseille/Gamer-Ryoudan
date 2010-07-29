@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.root :controller => "home", :action => "index" 
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -41,7 +42,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resource :account, :controller => "users"
   map.resource :user_session
-  map.root :controller => "user_sessions", :action => "new" # optional, this just sets the root route
 
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
