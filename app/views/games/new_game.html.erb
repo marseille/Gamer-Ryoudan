@@ -1,0 +1,16 @@
+
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+
+<h3> Add a game to the database!! </h3>
+
+<% form_tag(:controller => "games", :action => "add_game", :method => "post") do %>
+  <%= label_tag(:name, "Name:")%>
+  <%= text_field_tag(:name, @name) %> <br><br>
+  <%= label_tag(:platform, "Platform:") %>
+  <%= text_field_tag(:platform) %> <br><br>
+  <%= label_tag(:add_to_list, "Add this game to your list?") %>
+  <%= check_box_tag(:add_to_list) %> <br><br>
+  <%= submit_tag("AWESOME SAUCE GOOO!") %>
+<% end %>

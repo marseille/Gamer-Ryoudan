@@ -1,0 +1,5 @@
+Search results: <br><br>
+
+<%= "name: " + @game.name %>
+<%= link_to "add it", :controller => "users", :action => "add_game_to_list", :name => @game.name%> <br>
+<%= "platform: " + @game.platform %>
