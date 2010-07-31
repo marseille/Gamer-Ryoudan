@@ -1,6 +1,6 @@
 <h3> Your games </h3>
 <% current_user.games.each do |game|%>
-  <%= game.name %> <%= game.platform %> <br>
+  <%=label_tag(:name, game.name) %> <%= label_tag(:platform, game.platform) %> <br>
 <% end %>
 <br>
 <h4> Search game database </h4>
