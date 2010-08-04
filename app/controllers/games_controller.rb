@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
   def find_game    
+    pp params
     @game = Game.find_by_name(params["search_tag"])
     if @game
       render :file => "games/index.html", :layout => "application"
@@ -11,14 +12,18 @@ class GamesController < ApplicationController
   end
   
   def add_game
+    param = params["status"]
     game = Game.new({"platform"=>params["platform"], "name" => params["name"]})
     if game.save
       flash[:notice] = "SUHHHHHH-WEEEET!!! site haz moar " + params["name"]
     else
       flash[:notice] = "OHHHH SHEEEET"
     end
-    if params["add_to_list"].eql?("1")
-      redirect_to :controller => "users", :action => "add_game_to_list", :name => game.name
+    if params["add_to_list"]
+      redirect_to :controller => "users", 
+                       :action => "add_game_to_list", 
+                       :name => game.name, 
+                       :something => param
     else
       render :file => "game_list/index.html.erb"
     end

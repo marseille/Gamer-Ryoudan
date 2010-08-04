@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   acts_as_authentic
   has_many :game_information_maps
   has_many :games, :through => :game_information_maps
-  
+  has_many :game_informations, :through => :game_information_maps
   def find_info
   end
 end

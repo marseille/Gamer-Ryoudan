@@ -9,12 +9,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100727004650) do
+ActiveRecord::Schema.define(:version => 20100804002153) do
 
   create_table "game_information_maps", :force => true do |t|
-    t.integer  "game_id",    :null => false
-    t.integer  "user_id",    :null => false
-    t.integer  "info_id",    :null => false
+    t.integer  "game_id",             :null => false
+    t.integer  "user_id",             :null => false
+    t.integer  "game_information_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20100727004650) do
     t.string   "difficulty"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "status",              :null => false
   end
 
   create_table "games", :force => true do |t|
