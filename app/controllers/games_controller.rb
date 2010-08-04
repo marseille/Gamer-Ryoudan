@@ -1,6 +1,5 @@
 class GamesController < ApplicationController
   def find_game    
-    pp params
     @game = Game.find_by_name(params["search_tag"])
     if @game
       render :file => "games/index.html", :layout => "application"

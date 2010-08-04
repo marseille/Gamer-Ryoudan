@@ -12,7 +12,6 @@ class GameListController < ApplicationController
       info = GameInformation.find(id_set.game_information_id)
       title = game.name
       platform = game.platform
-      pp info
       case info.status 
         when "Campaigns" then currently_playing.push([title,platform,info])
         when "Centrum Contentus" then hiatus.push([title,platform,info])

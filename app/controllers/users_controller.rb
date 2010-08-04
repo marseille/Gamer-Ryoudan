@@ -1,22 +1,18 @@
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]  
+  before_filter :require_user, :only => [:show, :edit, :update]
   
   def add_game_to_list
-    pp params
     User.transaction do
       g = GameInformation.create(:status => params["something"])
-      pp g
       para = {:user_id => current_user.id, :game_id => Game.find_by_name(params["name"]).id, :game_information_id => g.id}
       h = GameInformationMap.new(para)
-      pp h
       h.save
     end    
     redirect_to :controller => "game_list"
-    #render :file => "game_list/index", :layout => "application"
   end
   
   def remove_game_from_list
-    pp params
     User.transaction do
       g = Game.find_by_name(params["name"])
       h = GameInformationMap.find_by_game_id_and_user_id(g.id, current_user.id)
@@ -25,8 +21,7 @@ class UsersController < ApplicationController
       else
         flash[:notice] = "Failed to remove #{params['name']} :("
       end
-      #redirect_to :controller => "game_list", :action => "index"
-      render :file => "game_list/index", :layout => "application"
+      redirect_to :controller => "game_list"
     end
   end
   
