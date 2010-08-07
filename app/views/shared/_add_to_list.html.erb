@@ -1,0 +1,20 @@
+<div id="add_this_game_to_list" class="add_game_partial">
+    <b> Add to your list!</b><br>
+    <% form_tag(:controller => "games", :action => "add_game", :method => "post") do %>
+      <%= label_tag(:hours_played, "Hours Played:") %><br>
+      <%= text_field_tag(:hours_played) %> <br><br>
+      
+      <%= label_tag(:percent_complete, "percent complete") %><br>
+      <%= text_field_tag(:percent_complete) %><br><br>
+      
+      <%= label_tag(:difficulty, "Difficulty:") %><br>
+      <%= text_field_tag(:difficulty) %> <br><br>
+      
+      <%= label_tag(:score, "score:") %> <br>
+      <%= text_field_tag(:score) %> <br><br>
+      <%= label_tag(:status, "status:") %>
+      <%= select_tag(:status, options_for_select(["Campaigns","Conquests", "Centrum Contentus", "Contrived Crusades"])) %>  
+      <br><br>
+      <%= submit_tag "FALCON PUUUUUUUNCH" if only_submit%>
+    <% end %>
+</div>

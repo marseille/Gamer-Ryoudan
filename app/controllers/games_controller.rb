@@ -22,7 +22,8 @@ class GamesController < ApplicationController
       redirect_to :controller => "users", 
                        :action => "add_game_to_list", 
                        :name => game.name, 
-                       :something => param
+                       :something => param,
+                       :flash => flash[:notice]
     else
       render :file => "game_list/index.html.erb"
     end

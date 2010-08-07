@@ -152,6 +152,12 @@ td {
 	display:none
 }
 
+.add_game_partial {
+	float:left;
+	display:none;
+	padding-left:70px;
+}
+
 .hide {
 	display:none;
 }

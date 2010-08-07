@@ -1,5 +1,10 @@
+<%= javascript_include_tag "games/add_game.js" %>
 Search results: <br><br>
-
-<%= "name: " + @game.name %>
-<%= link_to "add it", :controller => "users", :action => "add_game_to_list", :name => @game.name%> <br>
-<%= "platform: " + @game.platform %>
+<div style="float:left">
+  <%= "name: " + @game.name %>
+  <br>
+  <%= "platform: " + @game.platform %>
+  <br>
+  <%= link_to "add!", "#", :onclick=>"show_hide()" %>
+</div>
+<%= render :partial => "shared/add_to_list", :locals => {:only_submit => true} %>

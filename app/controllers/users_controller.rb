@@ -9,6 +9,7 @@ class UsersController < ApplicationController
       h = GameInformationMap.new(para)
       h.save
     end    
+    flash[:notice] = params["flash"]
     redirect_to :controller => "game_list"
   end
   
