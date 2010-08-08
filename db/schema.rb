@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100807174914) do
+ActiveRecord::Schema.define(:version => 20100808171849) do
 
   create_table "game_information_maps", :force => true do |t|
     t.integer  "game_id",             :null => false
@@ -20,15 +20,14 @@ ActiveRecord::Schema.define(:version => 20100807174914) do
   end
 
   create_table "game_informations", :force => true do |t|
-    t.integer  "percent_complete"
     t.string   "hours_played"
-    t.integer  "achievement_current"
-    t.integer  "acheivement_max"
     t.string   "difficulty"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "status",              :null => false
+    t.string   "status",        :null => false
     t.integer  "score"
+    t.integer  "last_level"
+    t.integer  "current_level"
   end
 
   create_table "games", :force => true do |t|

@@ -11,10 +11,23 @@
     <%= label_tag(:platform, "Platform:") %><br>
     <%= text_field_tag(:platform) %> <br><br>  
     
+    <%= label_tag(:levels, "*Number of levels: <br>(Enter N/A if non-existent)") %><br>
+     <%= text_field_tag(:levels) %> <br><br>
+    
     <%= label_tag(:add_to_list, "Add this game to your list?") %>
     <%= check_box_tag( :add_to_list, 1, false, {:onclick => "show_hide()"}) %>          
     <br><br>
     <%= submit_tag("AWESOME SAUCE GOOO!") %>
   </div>
-  <%= render :partial => "shared/add_to_list", :locals => {:only_submit => false} %>
+  <%= render :partial => "shared/add_to_list", :locals => {:only_submit => false, 
+                                                                                                :game_name => @name["name"]} %>
 <% end %>
+<div style="clear:both;">
+  <h6> 
+  <br>
+    *This can be stages, chapters, pokemon gyms, things you need to collect, etc.
+      If you think about it, <br>most games have you passing a number of sorts of significant
+      milestone in the game to denote your progress. <br>Whatever that milestone marker is,
+      accumulate the total number of said denotations and enter that number here.
+  </h6>
+</div>
