@@ -4,7 +4,8 @@
 <%= render :partial => "game_list/hold" %>
 <%= render :partial => "game_list/planned" %>
 <br><br><br>
-<%= render :partial => "shared/search" %>
+<% @load_page = true %>
+<%= render :partial => "shared/search"%>
 <% if @warning %>
-  <%= render :partial => "game_list/notifications" %>
+  <%= render :partial => "game_list/notifications", :locals => {:load_page => true} %>
 <% end %>

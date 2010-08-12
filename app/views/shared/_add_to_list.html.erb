@@ -1,17 +1,17 @@
 <div id="add_this_game_to_list" class="add_game_partial">
-    <b> Add to your list!</b><br>
+    <b> Add <%=@game["name"] if @game %> to your list!</b><br>
     <% form_tag(:controller => "games", :action => "add_game", :method => "post") do %>
       
       <%= label_tag(:hours_played, "Hours Played:") %><br>
       <%= text_field_tag(:hours_played) %> <br><br>
 
-      <% a = GameInformationMap.find_by_game_id(@game["id"]) if @game %>
-      <% b = GameInformation.find(a["game_information_id"]) if a%>
-      <% if b && b["last_level"] %>
+      <% info_id_for_game = GameInformationMap.find_by_game_id(@game["id"]) if @game %>
+      <% player_game_info = GameInformation.find(info_id_for_game["game_information_id"]) if info_id_for_game%>
+      <% if player_game_info && player_game_info["last_level"] %>
         <%= label_tag(:current_level, "current_level") %> <br>
         <%= text_field_tag(:current_level, nil, :size => 1) %>
         <%= label_tag(:slash, "/", :style => "font-size:1.6") %>
-        <%= text_field_tag(:max_level, b["last_level"], :size => 1) %> <br><br>
+        <b><%= player_game_info["last_level"] %></b> <br><br>
       <% end %>
       
       <%= label_tag(:difficulty, "Difficulty:") %><br>

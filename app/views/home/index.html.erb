@@ -1,7 +1,17 @@
-<h4> Visit your list: <h4>
-<%= link_to "my awesome", :controller => "game_list", :action => "index" %>
-<br><br><br>
-<h4> 
-  More features to come soon! As soon as I get some development time we can hope to 
-  see more than a static list of games you can add
-</h4>
+<%= javascript_include_tag "games/games.js" %>
+<div class="left">
+  <div id="games_list">
+    <h4> View your games list: <h4>
+    <%= link_to "my awesome", :controller => "game_list", :action => "index" %>  
+  <br><br><br>
+  </div>
+
+  <div class="left">
+      Add a game to your list:<br><br>
+      <%= text_field_tag(:search_tag) %>
+      <input type="button" value="Search!" onclick="find_game()">
+  </div>
+</div>
+
+<div id="search-results" class="left" >
+</div>

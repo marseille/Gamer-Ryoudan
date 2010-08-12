@@ -1,0 +1,9 @@
+<h3>Search results:</h3>
+<div class="left"=>
+  <%= "name: " + @game.name %>
+  <br>
+  <%= "platform: " + @game.platform %>
+  <br>
+  <%= link_to "add!", "#", :id => "add_game_button", :onclick=>"show_hide()" %>
+</div>
+<%= render :partial => "shared/add_to_list", :locals => {:only_submit => true} %>

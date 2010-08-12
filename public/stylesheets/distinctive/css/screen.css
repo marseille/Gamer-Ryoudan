@@ -155,7 +155,7 @@ td {
 .add_game_partial {
 	float:left;
 	display:none;
-	padding-left:70px;
+	padding-left:40px;
 }
 
 .hide {
@@ -168,19 +168,39 @@ td {
 
 .left { 
 	float: left; 
-	width: 250px; 
+	padding-right: 10px;
 }	
+
+.leftInline {
+	float:left;
+	display:inline;
+}
 
 .right {
 	float: right;
-	width: 630px;
 	margin: 0 0 20px;
+}
+
+.leftFloat {
+	float:left;
+	padding-left: 9px;	
+}
+
+.rightFloat {
+	float: right;
+	padding-left: 10px;
 }
 
 .right h3 { 
 	background: #808080;
 	font-size: .84em; 
 }
+
+.search_results {
+	float:left;
+	padding-left:30px;
+}
+	
 
 .title_bar {
 	float:right;
