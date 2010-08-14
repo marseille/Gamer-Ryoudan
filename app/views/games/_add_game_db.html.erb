@@ -1,5 +1,3 @@
-<div class="search_results">
-<h3>Add it to our DB NAOO!!</h3>
 <% form_tag(:controller => "games", :action => "add_game", :method => "post") do %>                  
     <div class="leftFloat">
       <b> New game </b><br>
@@ -17,9 +15,7 @@
       <br><br>
       <%= submit_tag("AWESOME SAUCE GOOO!") %>
     </div>
-    <div class="right">
-      <%= render :partial => "shared/add_to_list", :locals => {:only_submit => false, :game_name => @name["name"]} if  @name%>        
-      <%= render :partial => "games/note" %>
+    <div class="left">
+      <%= render :partial => "shared/add_to_list", :locals => {:only_submit => false, :game_name => @name["name"]} if  @name%>              
     </div>    
 <% end %>
-</div>

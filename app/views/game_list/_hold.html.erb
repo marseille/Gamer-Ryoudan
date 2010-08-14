@@ -4,13 +4,19 @@
   <tr>
     <th> Game </th>
     <th> Platform </th>
+    <th> Difficulty </th>
+    <th> Level </th>
+    <th> Hours Played </th>   
   </tr>
   </thead>
   <tbody>
     <% @hiatus.each do |game|%>
       <tr>
         <td> <%= game[0] %> </td>
-        <td> <%= game[1]%> </td>      
+        <td> <%= label_tag(:platform, game[1], :class => "left_align") %> </td>      
+        <td> <%= label_tag(:difficulty, game[2]["difficulty"], :class => "left_align") %> </td>
+        <td> <%= label_tag(:level, game[2]["current_level"].to_s + " / " + game[2]["last_level"].to_s, :class => "left_align") %> </td>
+        <td> <%= label_tag(:hours, game[2]["hours_played"], :class => "left_align") %> </td>
         <td> <%= link_to "(x)", :controller => "users", :action => "remove_game_from_list", :name => game[0] %></td>
       </tr>
     <% end %>

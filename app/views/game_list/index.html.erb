@@ -1,10 +1,12 @@
+<br><br><br>
 <%= render :partial => "shared/notice" %>
 <%= render :partial => "game_list/playing" %>
 <%= render :partial => "game_list/completed" %>
 <%= render :partial => "game_list/hold" %>
 <%= render :partial => "game_list/planned" %>
-<br><br><br>
+<br><br>
 <% @load_page = true %>
+<h4> Find games to add to your list searching the database! </h4>
 <%= render :partial => "shared/search"%>
 <% if @warning %>
   <%= render :partial => "game_list/notifications", :locals => {:load_page => true} %>

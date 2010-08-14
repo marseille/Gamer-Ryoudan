@@ -21,9 +21,9 @@
       <%= text_field_tag(:score) %> <br><br>
       
       <%= label_tag(:status, "status:") %>
-      <%= select_tag(:status, options_for_select(["Campaigns","Conquests", "Centrum Contentus", "Contrived Crusades"])) %>  
-      
+      <%= select_tag(:status, options_for_select(["Campaigns","Conquests", "Centrum Contentus", "Contrived Crusades"])) %>        
       <br><br>
-      <%= submit_tag "FALCON PUUUUUUUNCH" if only_submit%>
-    <% end %>
+      <%= submit_tag "FALCON PUUUUUUUNCH" if only_submit%><br>
+      <%= render :partial => "games/note" %>
+    <% end %>    
 </div>

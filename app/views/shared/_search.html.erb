@@ -1,4 +1,3 @@
-<h4> Find games to add to your list searching the database! </h4>
 <% form_tag(:load_page => @load_page, :controller => "games", :action => "find_game", :method => "get") do %>
   <% label_tag(:search_tag, "Search for a game:") %>
   <%= text_field_tag(:search_tag) %>

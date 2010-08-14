@@ -1,3 +1,11 @@
-<%= javascript_include_tag "games/add_game.js" %>
+<%= javascript_include_tag "games/games.js" %>
 <%= render :partial => "games/search_results" %>
 <%= render :partial => "shared/add_to_list", :locals => {:only_submit => true} %>
+<div class="clear">
+  <br><br>
+  Search again!
+  <br>
+  <%= render :partial => "shared/search"%>
+</div>
+<br>
+<h4><%= link_to "Back to your list", :controller => "game_list" %></h4>

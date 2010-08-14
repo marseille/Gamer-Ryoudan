@@ -1,0 +1,38 @@
+body{
+    font-family:"Lucida Grande", arial, sans-serif;
+    background:#F3F3F3;
+}
+
+ul{
+    margin:0;
+    padding:0;
+}
+
+li{
+    width:100px;
+    height:50px;
+    float:left;
+    color:#191919;
+    text-align:center;
+    overflow:hidden;
+}
+
+a{
+    color:#FFF;
+    text-decoration:none;
+}
+
+p{
+    padding:0px 5px;
+}
+
+    .subtext{
+        padding-top:15px;
+    }
+
+/*Menu Color Classes*/
+.green{background:#6AA63B;}
+.yellow{background:#FBC700;}
+.red{background:#D52100;}
+.purple{background:#5122B4;}
+.blue{background:#0292C0;}
