@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
   def find_game    
-    @game = Game.find_by_name(params["search_tag"])
     pp params
+    @game = Game.find_by_name(params["search_tag"])
     if @game      
       render :file => "games/index.html", :layout => "application" if params["load_page"].eql?("true")
       render :partial => "games/search_results" if !params["load_page"].eql?("true")

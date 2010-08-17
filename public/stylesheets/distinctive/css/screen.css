@@ -16,18 +16,22 @@ body {
 
 ul{
     margin:0;
-    padding:0;
-	display:inline;
-	float:left;
+    padding:0;	
+	list-style:none;
+	width:500px;
 }
 
 li{
     width:100px;
-    height:25px;
-	float:left;
+    height:25px;		
+	margin-left:0px;
     color: #FFFFFF;
     text-align:center;
     overflow:hidden;
+	float: left;
+	margin: 0;
+	padding: 0;
+	list-style: none;
 }
 
 a { 
@@ -164,13 +168,14 @@ td {
 	display:none
 }
 
-.add_game_partial {
-	float:left;
-	display:none;
-	padding-left:40px;
-}
+
 
 .clear { clear: both; }
+
+.clearLeft {
+	float:left;
+	clear:both;
+}
 
 .hide {
 	display:none;
@@ -191,9 +196,28 @@ td {
 	padding-right: 10px;
 }	
 
+.add_game_partial {
+	display:none;
+	margin-top: 0px;
+	margin-left: 150px;	
+	overflow:auto;
+}
+
+.leftScroll {	
+	display:none;
+	margin-top: 0px;
+	margin-left: 300px;	
+	overflow:auto;
+}
+
 .leftInline {
 	float:left;
 	display:inline;
+}
+.leftBorder {
+	float:left;	
+	padding-left: 10px;	
+	border-left: 1px solid #ddd;	
 }
 
 .line { 

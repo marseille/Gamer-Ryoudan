@@ -15,7 +15,7 @@
       <br><br>
       <%= submit_tag("AWESOME SAUCE GOOO!") %>
     </div>
-    <div class="left">
+    <div id="add_this_game_to_list" class="leftScroll">
       <%= render :partial => "shared/add_to_list", :locals => {:only_submit => false, :game_name => @name["name"]} if  @name%>              
     </div>    
 <% end %>

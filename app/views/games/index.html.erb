@@ -1,10 +1,10 @@
 <%= javascript_include_tag "games/games.js" %>
 <%= render :partial => "games/search_results" %>
-<%= render :partial => "shared/add_to_list", :locals => {:only_submit => true} %>
 <div class="clear">
   <br><br>
   Search again!
   <br>
+  <% @load_page = true %>
   <%= render :partial => "shared/search"%>
 </div>
 <br>
