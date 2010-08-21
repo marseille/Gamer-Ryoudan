@@ -8,7 +8,7 @@
   </thead>
   <tbody>
     <% @currently_playing.each do |game|%>
-      <tr>
+      <tr>        
         <td> <%= game[0] %> </td>
         <td> <%= game[1]%> </td>      
         <td> <%= link_to "(x)", :controller => "users", :action => "remove_game_from_list", :name => game[0] %></td>

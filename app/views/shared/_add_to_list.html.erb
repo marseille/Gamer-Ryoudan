@@ -1,5 +1,6 @@
-<b> Add <%=@game["name"] if @game %> to your list!</b><br>
-<% form_tag(:controller => "games", :action => "add_game", :method => "post") do %>  
+<% game = (@game) ? @game["id"] : "" %>
+<b> Add <%= game %> to your list!</b><br>
+<% form_tag(:game => game, :controller => "users", :action => "add_game_to_list", :method => "post") do %>  
   <%= label_tag(:hours_played, "Hours Played:") %><br>
   <%= text_field_tag(:hours_played) %> <br><br>
 
@@ -21,6 +22,5 @@
   <%= label_tag(:status, "status:") %>
   <%= select_tag(:status, options_for_select(["Campaigns","Conquests", "Centrum Contentus", "Contrived Crusades"])) %>        
   <br><br>
-  <%= submit_tag "FALCON PUUUUUUUNCH" if only_submit%><br>
-  <%= render :partial => "games/note" %>
+  <%= submit_tag "FALCON PUUUUUUUNCH" if only_submit%><br>  
 <% end %>    

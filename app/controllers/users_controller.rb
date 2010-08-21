@@ -3,9 +3,17 @@ class UsersController < ApplicationController
   before_filter :require_user, :only => [:show, :edit, :update]
   
   def add_game_to_list
-    User.transaction do
-      g = GameInformation.create(:status => params["something"])
-      para = {:user_id => current_user.id, :game_id => Game.find_by_name(params["name"]).id, :game_information_id => g.id}
+    p params
+    User.transaction do      
+      g = GameInformation.create(:hours_played => params["hours_played"], 
+                                                   :status => params["status"],
+                                                   :score => params["score"],
+                                                   :difficulty => params["difficulty"],
+                                                   :current_level => params["current_level"])
+      game_name = (params["name"]) ? params["name"] : Game.find(params["game"])["name"]
+      para = {:user_id => current_user["id"],
+                    :game_id => Game.find_by_name(game_name)["id"],
+                    :game_information_id => g["id"]}
       h = GameInformationMap.new(para)
       h.save
     end    

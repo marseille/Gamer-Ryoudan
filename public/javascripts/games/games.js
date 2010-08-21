@@ -1,5 +1,5 @@
 $(function() { 
-  $("#add_to_list").attr("checked", false)
+  $("#add_to_list").attr("checked", false)  
 })
 
 function show_hide() {  
@@ -37,6 +37,5 @@ function find_game() {
     },
     "processData":"false",
     "contentType":"application/json"
-  });
-    
+  });    
 }

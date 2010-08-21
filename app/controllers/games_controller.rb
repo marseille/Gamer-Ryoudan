@@ -21,14 +21,14 @@ class GamesController < ApplicationController
     else
       flash[:notice] = "OHHHH SHEEEET"
     end
-    if params["add_to_list"]
+    if params["add_to_list"]      
       redirect_to :controller => "users", 
                        :action => "add_game_to_list", 
                        :name => game.name, 
                        :something => param,
                        :flash => flash[:notice]
     else
-      render :file => "game_list/index.html.erb"
+      redirect_to  :controller => "game_list", :action => "index"
     end
   end
 end
