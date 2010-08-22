@@ -40,7 +40,7 @@ class GamesController < ApplicationController
         h = GameInformationMap.new(para)
         h.save
       end    
-                                    
+      render :file => "games/index.html", :layout => "application"
     else
       render :file => "games/index.html", :layout => "application"
       #redirect_to  :controller => "game_list", :action => "index"
