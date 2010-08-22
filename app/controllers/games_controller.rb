@@ -1,6 +1,6 @@
-class GamesController < ApplicationController
+class GamesController < ApplicationController  
+  
   def find_game    
-    pp params
     @game = Game.find_by_name(params["search_tag"])
     if @game      
       render :file => "games/index.html", :layout => "application" if params["load_page"].eql?("true")
@@ -13,22 +13,22 @@ class GamesController < ApplicationController
     end
   end
   
-  def add_game
-    param = params["status"]
+  def add_game    
     game = Game.new({"platform"=>params["platform"], "name" => params["name"]})
     if game.save
-      flash[:notice] = "SUHHHHHH-WEEEET!!! site haz moar " + params["name"]
+      flash[:notice] = "Thank you for adding this game to the database's knowledge base!"
     else
-      flash[:notice] = "OHHHH SHEEEET"
+      flash[:notice] = "There was an error processing your add request for:" + game["name"]
     end
     if params["add_to_list"]      
-      redirect_to :controller => "users", 
-                       :action => "add_game_to_list", 
-                       :name => game.name, 
-                       :something => param,
-                       :flash => flash[:notice]
+      #render :file => "games/index.html", :layout => "application"
+      render_component :controller =>"users", 
+                                    :action => "add_game_to_list",
+                                    :params => params
+                                    
     else
-      redirect_to  :controller => "game_list", :action => "index"
+      render :file => "games/index.html", :layout => "application"
+      #redirect_to  :controller => "game_list", :action => "index"
     end
   end
 end

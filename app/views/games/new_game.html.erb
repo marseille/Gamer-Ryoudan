@@ -1,6 +1,15 @@
 <%= javascript_include_tag "games/games.js" %>
-<%= render :partial => "shared/notice" %>
-
 <h3> Add a game to the database!! </h3>
 <%= render :partial => "add_game_db" %>
 <%= render :partial => "games/note" %>
+<div class="clear">
+  <br>
+  <h3> -or- Search again!</h3>
+  <br>
+  Search again!
+  <br>
+  <% @load_page = true %>
+  <%= render :partial => "shared/search"%>
+</div>
+<br>
+<h4><%= link_to "Back to your list", :controller => "game_list" %></h4>

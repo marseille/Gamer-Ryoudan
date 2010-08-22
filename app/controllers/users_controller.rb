@@ -1,24 +1,30 @@
+
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]  
   before_filter :require_user, :only => [:show, :edit, :update]
   
   def add_game_to_list
-    p params
+    game_name = (params["name"]) ? params["name"] : Game.find(params["game"])["name"]
     User.transaction do      
       g = GameInformation.create(:hours_played => params["hours_played"], 
                                                    :status => params["status"],
                                                    :score => params["score"],
                                                    :difficulty => params["difficulty"],
-                                                   :current_level => params["current_level"])
-      game_name = (params["name"]) ? params["name"] : Game.find(params["game"])["name"]
+                                                   :current_level => params["current_level"])      
       para = {:user_id => current_user["id"],
                     :game_id => Game.find_by_name(game_name)["id"],
                     :game_information_id => g["id"]}
       h = GameInformationMap.new(para)
       h.save
     end    
-    flash[:notice] = params["flash"]
-    redirect_to :controller => "game_list"
+    if params["flash"]
+      flash[:notice] += params["flash"] if params["flash"]
+      flash[:notice] += "\n\n Successfully added '"+game_name+"' to your list!"
+    else    
+      flash[:notice] = "Successfully added '"+game_name+"' to your list!"
+    end
+    render :file => "games/index.html", :layout => "application"
+    #redirect_to :controller => "game_list", :flash => flash[:notice]
   end
   
   def remove_game_from_list
@@ -35,6 +41,7 @@ class UsersController < ApplicationController
   end
   
   def new
+    flash[:notice] = "Account registered!"
     @user = User.new
   end
   

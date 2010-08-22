@@ -26,5 +26,6 @@ class GameListController < ApplicationController
     @completed = completed
     @orphans = orphaned_games
     @warning = "not nil" and flash[:notice] = "orphaned games noticed! scroll down for more information" if !@orphans.empty?      
+    flash["notice"] = params["flash"] if params["flash"]
   end
 end

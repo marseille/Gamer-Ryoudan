@@ -1,11 +1,12 @@
-<div class="clearLeft">
-  <%= "name: " + @game.name %>
-  <br>
-  <%= "platform: " + @game.platform %>
-  <br>
-  <%= link_to "add!", "#", :id => "add_game_button", :onclick=>"show_hide()" %>
-</div>
-
-<div id="add_this_game_to_list" class="add_game_partial">
-  <%= render :partial => "shared/add_to_list", :locals => {:only_submit => true} %>
-</div>
+<% if @game %>
+  <div class="clearLeft">     
+    <%= "name: " + @game.name %>
+    <br>
+    <%= "platform: " + @game.platform %>
+    <br>
+    <%= link_to "add!", "#", :id => "add_game_button", :onclick=>"show_hide()" %>
+  </div>
+  <div id="add_this_game_to_list" class="add_game_partial">
+    <%= render :partial => "shared/add_to_list", :locals => {:only_submit => true} %>
+  </div>
+<% end %> 

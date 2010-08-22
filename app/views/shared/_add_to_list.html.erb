@@ -1,5 +1,5 @@
 <% game = (@game) ? @game["id"] : "" %>
-<b> Add <%= game %> to your list!</b><br>
+<b> Add <%= @game["name"] if @game %> to your list!</b><br>
 <% form_tag(:game => game, :controller => "users", :action => "add_game_to_list", :method => "post") do %>  
   <%= label_tag(:hours_played, "Hours Played:") %><br>
   <%= text_field_tag(:hours_played) %> <br><br>
