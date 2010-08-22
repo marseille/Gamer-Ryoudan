@@ -22,9 +22,24 @@ class GamesController < ApplicationController
     end
     if params["add_to_list"]      
       #render :file => "games/index.html", :layout => "application"
-      render_component :controller =>"users", 
-                                    :action => "add_game_to_list",
-                                    :params => params
+      #render_component :controller =>"users", 
+      #                              :action => "add_game_to_list",
+      #                              :params => params
+      
+      #game_name = (params["name"]) ? params["name"] : Game.find(params["game"])["name"]
+      game_name = game["name"]
+      User.transaction do          
+        g = GameInformation.create(:hours_played => params["hours_played"], 
+                                                     :status => params["status"],
+                                                     :score => params["score"],
+                                                     :difficulty => params["difficulty"],
+                                                     :current_level => params["current_level"])      
+        para = {:user_id => current_user["id"],
+                      :game_id => Game.find_by_name(game_name)["id"],
+                      :game_information_id => g["id"]}
+        h = GameInformationMap.new(para)
+        h.save
+      end    
                                     
     else
       render :file => "games/index.html", :layout => "application"
