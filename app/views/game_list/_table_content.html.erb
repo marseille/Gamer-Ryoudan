@@ -1,8 +1,21 @@
+<%= javascript_include_tag "games/games.js" %>
 <tr>
   <td> <%= game[0] %> </td>
   <td> <%= label_tag(:platform, game[1], :class => "left_align") %> </td>      
-  <td> <%= label_tag(:difficulty, game[2]["difficulty"], :class => "left_align") %> </td>
-  <td> <%= label_tag(:level, game[2]["current_level"].to_s + " / " + game[2]["last_level"].to_s, :class => "left_align") %> </td>
-  <td> <%= label_tag(:hours, game[2]["hours_played"], :class => "left_align") %> </td>
-  <td> <%= link_to "(x)", :controller => "users", :action => "remove_game_from_list", :name => game[0] %></td>
+  <td> 
+    <div id=<%= game[0]+"_difficulty_div" %>>
+      <%= link_to game[2]["difficulty"], {}, {:selector_id => game[0] + "_difficulty", :class => "set_difficulty left_align"} %>       
+    </div>
+  </td>
+  <td> 
+    <div id=<%= game[0] + "_level_div" %>>
+      <% str = game[2]["current_level"].to_s + " / " + game[2]["last_level"].to_s %>
+      <%= link_to  str, {}, {:selector_id => game[0] +"_level", :class => "set_level left_align"} %>     
+    </div>
+  </td>
+  <td>
+    <div id=<%= game[0] + "_hours_played_div" %>>
+      <%= link_to game[2]["hours_played"], {}, {:selector_id => game[0] + "_hours_played", :class => "set_hours_played left_align"} %></td>
+    </div>
+  <td><%= link_to "(x)", :controller => "users", :action => "remove_game_from_list", :name => game[0] %></td>
 </tr>

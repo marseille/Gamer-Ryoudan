@@ -1,5 +1,27 @@
 $(function() { 
   $("#add_to_list").attr("checked", false)  
+
+  $(".set_difficulty").live("click", function(event) {
+    event.preventDefault()
+    var selector_id = $(event.target).attr("selector_id")
+    var div_id = selector_id + "_div"
+    $("#"+div_id).empty()
+    $("#"+div_id).data("previous", $(event.target).text())    
+    $("#"+div_id).append("<input id="+selector_id+"_input size=3></input>")
+    $("#"+div_id).append("<a href='#' class='save_difficulty'> <img selector_id="+selector_id+" border=0 src=/images/save_icon.png class=image_icon></a>")
+  });    
+  
+  $(".save_difficulty").live("click", function(event) {
+    event.preventDefault()
+    var div_id = $(event.target).attr("selector_id")
+    $("#"+div_id + "_div").empty()
+    if($("#"+div_id+"_input").text() == ""){
+      var previous = $("#"+div_id+"_div").data("previous")
+      $("#"+div_id + "_div").append("<a href='#' selector_id="+ div_id +" class=set_difficulty left_align>" + previous + " </a>")
+    } else {
+      $("#"+div_id + "_div").append("<a href='#' selector_id="+ div_id +" class=set_difficulty left_align> bleh </a>")
+    }
+  });
 })
 
 function show_hide() {  
