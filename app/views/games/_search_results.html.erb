@@ -1,12 +1,18 @@
 <% if @game %>
+  <% added = current_user.games.include?(@game) %>
   <div class="clearLeft">     
     <%= "name: " + @game.name %>
     <br>
     <%= "platform: " + @game.platform %>
-    <br>
-    <%= link_to "add!", "#", :id => "add_game_button", :onclick=>"show_hide()" %>
+    <br>        
+    <%= link_to "add!", "#", :id => "add_game_button", :onclick=>"show_hide()" if !added %>
+    <%= link_to "edit!", "#", :id => "add_game_button", :onclick=>"show_hide()" if added %>
   </div>
   <div id="add_this_game_to_list" class="add_game_partial">
+  <% if !added %>    
+      <%= render :partial => "shared/add_to_list", :locals => {:only_submit => true} %>    
+  <% else %> 
     <%= render :partial => "shared/add_to_list", :locals => {:only_submit => true} %>
+  <% end %>
   </div>
 <% end %> 

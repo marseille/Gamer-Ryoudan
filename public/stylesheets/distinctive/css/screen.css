@@ -79,6 +79,10 @@ p {
 	margin: 0 0 15px;
 }
 
+.submit {
+	margin-left:-5px;
+}
+
 th {
 	text-align: left;
 	padding-bottom:7px;
@@ -169,9 +173,9 @@ td {
 	display:none
 }
 
-
-
-.clear { clear: both; }
+.clear { 
+	clear: both; 
+}
 
 .clearLeft {
 	float:left;
@@ -212,6 +216,11 @@ td {
 	margin-left:3px;
 	vertical-align:text-top;
 	padding-right:10px;
+}
+
+.add_game_db_label {
+	padding:20px;
+	margin-bottom:10px;
 }
 
 .leftScroll {	

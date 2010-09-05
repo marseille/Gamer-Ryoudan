@@ -1,6 +1,11 @@
 $(function() { 
   $("#add_to_list").attr("checked", false)  
 
+  $(".number_of_levels").live("keyup", function(event) {
+    var number_of_levels = $("#levels").val()
+    $("#last_level_label").text(number_of_levels)
+  });
+  
   $(".set_difficulty").live("click", function(event) {
     set_attribute(event, "difficulty")
   });
@@ -102,11 +107,13 @@ function get_new_value_html(field,div_id,json) {
 function show_hide() {  
   if($("#add_this_game_to_list").is(":visible")){    
     if($("#add_game_button")) {
-      $("#add_game_button").text("add!")
+      var text =  $("#add_game_button").data("link_text")
+      $("#add_game_button").text(text)
     }
     $("#add_this_game_to_list").fadeOut("slow")
   } else {    
     if($("#add_game_button")){
+      $("#add_game_button").data("link_text", $("#add_game_button").text())
       $("#add_game_button").text("cancel!")
     }
     $("#add_this_game_to_list").fadeIn("slow")
@@ -117,7 +124,7 @@ function find_game() {
   var game = $("#search_tag").val()
   Rails.call(Rails.methods["find_game"], "html", "GET", {'search_tag' : game}, function(json) {
     $("#search-results").empty()
-    $("#search-results").hide()
+    $("#search-results").hide()    
     $("#search-results").append("<h3> Search results: </h3>")
     $("#search-results").append(json)    
     $("#search-results").animate({width: 'show', duration : '3000' });

@@ -1,23 +1,24 @@
 <%= javascript_include_tag "games.js" %>
+<% name = game[0]["name"] %>
 <tr>
-  <td> <%= game[0] %> </td>
-  <td> <%= label_tag(:platform, game[1], :class => "left_align") %> </td>      
+  <td> <%= name %> </td>
+  <td> <%= label_tag(:platform, game[0]["platform"], :class => "left_align") %> </td>      
   <td> 
-    <div name=<%=game[0]%> id=<%= game[0]+"_difficulty_div" %>>
-      <%= link_to game[2]["difficulty"], {}, {:selector_id => game[0] + "_difficulty", :class => "set_difficulty left_align"} %>       
+    <div name=<%= name%> id=<%= name+"_difficulty_div" %>>
+      <%= link_to game[1]["difficulty"], {}, {:selector_id => name + "_difficulty", :class => "set_difficulty left_align"} %>       
     </div>
   </td>
   <td> 
-    <div name=<%=game[0]%> id=<%= game[0] + "_level_div" %>>
-      <% str = game[2]["current_level"].to_s %> 
-      <%= link_to  str, {}, {:selector_id => game[0] +"_level", :class => "set_current_level level_align"} %>     
+    <div name=<%=name%> id=<%= name + "_level_div" %>>
+      <% str = game[1]["current_level"].to_s %> 
+      <%= link_to  str, {}, {:selector_id => name +"_level", :class => "set_current_level level_align"} %>     
       <%= label_tag :slash, " / ", :class => "level_align" %>
-      <%= label_tag :max_level, game[2]["last_level"].to_s, :id => game[0] + "_max_level", :class => "left_align" %>
+      <%= label_tag :max_level, game[0]["levels"].to_s, :id => name + "_max_level", :class => "left_align" %>
     </div>
   </td>
   <td>
-    <div name=<%=game[0]%> id=<%= game[0] + "_hours_played_div" %>>
-      <%= link_to game[2]["hours_played"], {}, {:selector_id => game[0] + "_hours_played", :class => "set_hours_played l"} %></td>
+    <div name=<%=name%> id=<%= name + "_hours_played_div" %>>
+      <%= link_to game[1]["hours_played"], {}, {:selector_id => name + "_hours_played", :class => "set_hours_played l"} %></td>
     </div>
-  <td><%= link_to "(x)", :controller => "users", :action => "remove_game_from_list", :name => game[0] %></td>
+  <td><%= link_to "(x)", :controller => "users", :action => "remove_game_from_list", :name => name %></td>
 </tr>

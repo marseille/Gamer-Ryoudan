@@ -1,26 +1,5 @@
-<% game = (@game) ? @game["id"] : "" %>
-<b> Add <%= @game["name"] if @game %> to your list!</b><br>
-<% form_tag(:game => game, :controller => "users", :action => "add_game_to_list", :method => "post") do %>  
-  <%= label_tag(:hours_played, "Hours Played:") %><br>
-  <%= text_field_tag(:hours_played) %> <br><br>
-
-  <% info_id_for_game = GameInformationMap.find_by_game_id(@game["id"]) if @game %>
-  <% player_game_info = GameInformation.find(info_id_for_game["game_information_id"]) if info_id_for_game%>
-  <% if player_game_info && player_game_info["last_level"] %>
-    <%= label_tag(:current_level, "current_level") %> <br>
-    <%= text_field_tag(:current_level, nil, :size => 1) %>
-    <%= label_tag(:slash, "/", :style => "font-size:1.6") %>
-    <b><%= player_game_info["last_level"] %></b> <br><br>
-  <% end %>
-  
-  <%= label_tag(:difficulty, "Difficulty:") %><br>
-  <%= text_field_tag(:difficulty) %> <br><br>    
-  
-  <%= label_tag(:score, "score:") %> <br>
-  <%= text_field_tag(:score) %> <br><br>
-  
-  <%= label_tag(:status, "status:") %>
-  <%= select_tag(:status, options_for_select(["Campaigns","Conquests", "Centrum Contentus", "Contrived Crusades"])) %>        
-  <br><br>
-  <%= submit_tag "FALCON PUUUUUUUNCH" if only_submit%><br>  
+<% if @game["id"] %>
+  <%= render :partial => "shared/add_to_list_game_exists", :locals => {:only_submit => only_submit}  %>
+<% else %>
+  <%= render :partial => "shared/add_to_list_game_nonexistent", :locals => {:only_submit => only_submit} %>
 <% end %>    

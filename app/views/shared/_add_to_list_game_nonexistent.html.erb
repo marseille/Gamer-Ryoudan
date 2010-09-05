@@ -1,0 +1,21 @@
+<b> Add <%= @name %> to your list!</b><br>
+<% form_for @game_information, :url => "users/add_game_to_list", :game => @name do |f| %>  
+  <%= f.label(:hours_played) %><br>
+  <%= f.text_field(:hours_played) %> <br><br>
+  
+  <%= f.label(:difficulty) %><br>
+  <%= f.text_field(:difficulty) %> <br><br>    
+
+  <%= f.label(:current_level) %> <br>
+  <%= f.text_field(:current_level, :size => 1) %>
+  <%= label_tag(:slash, "/", :style => "font-size:1.6") %>
+  <b><%= f.label(nil, {}, {:id => "last_level_label"}) %></b> <br><br>
+  
+  <%= f.label(:score, "score:") %> <br>
+  <%= f.text_field(:score) %> <br><br>
+  
+  <%= f.label(:status, "status:") %>
+  <%= f.select(:status, ["Campaigns","Conquests", "Centrum Contentus", "Contrived Crusades"]) %>        
+  <br><br>
+  <%= submit "FALCON PUUUUUUUNCH" if only_submit%><br>  
+<% end %>    

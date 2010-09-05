@@ -13,19 +13,20 @@ class UsersController < ApplicationController
   end
     
   def add_game_to_list
-    game_name = (params["name"]) ? params["name"] : Game.find(params["game"])["name"]
-    User.transaction do      
-      #g = GameInformation.create(:hours_played => params["hours_played"], 
-      #                                             :status => params["status"],
-      #                                             :score => params["score"],
-      #                                             :difficulty => params["difficulty"],
-      #                                             :current_level => params["current_level"])      
-      #para = {:user_id => current_user["id"],
-      #              :game_id => Game.find_by_name(game_name)["id"],
-     #              :game_information_id => g["id"]}
-     # h = GameInformationMap.new(para)
-     # h.save
-    end    
+    game_name = params["game"]
+    game = Game.find_by_name(game_name)    
+    user = current_user
+    params["game_information"]["user_id"] = user["id"]
+    params["game_information"]["game_id"] = game["id"]
+    GameInformation.transaction do 
+      if !GameInformation.find_by_user_id_and_game_id(user["id"], game["id"])
+        GameInformation.create(params["game_information"])      
+        GameInformationMap.create(:user_id => user["id"], :game_id => game["id"])
+      else 
+        flash["notice"] = "This game already exists on your list!"
+      end
+    end
+    
     if params["flash"]
       flash[:notice] += params["flash"] if params["flash"]
       flash[:notice] += "\n\n Successfully added '"+game_name+"' to your list!"
@@ -33,7 +34,6 @@ class UsersController < ApplicationController
       flash[:notice] = "Successfully added '"+game_name+"' to your list!"
     end
     render :file => "games/index.html", :layout => "application"
-    #redirect_to :controller => "game_list", :flash => flash[:notice]
   end
   
   def remove_game_from_list

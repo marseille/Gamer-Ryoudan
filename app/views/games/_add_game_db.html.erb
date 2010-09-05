@@ -1,21 +1,21 @@
-<% form_tag(:controller => "games", :action => "add_game", :method => "post") do %>                  
+<% form_for @game, :url => "../games/add_game" do |f| %>                  
     <div class="leftFloat">
       <b> New game </b><br>
-      <%= label_tag(:name, "Name:")%><br>
-      <%= text_field_tag(:name, @name) %> <br><br>
+      <%= f.label(:name)%><br>
+      <%= f.text_field(:name, :size => 29) %> <br><br>
       
-      <%= label_tag(:platform, "Platform:") %><br>
-      <%= text_field_tag(:platform) %> <br><br>  
+      <%= f.label(:platform) %><br>
+      <%= f.text_field(:platform, :size => 29) %> <br><br>  
       
-      <%= label_tag(:levels, "*Number of levels: (Enter N/A if non-existent)") %><br>
-       <%= text_field_tag(:levels) %> <br><br>
+      <%= f.label(:levels, "*Number of levels: (Enter N/A if non-existent)") %><br>
+      <%= f.text_field(:levels,:id => "levels", :size => 29, :class => "number_of_levels") %> <br><br>
       
       <%= label_tag(:add_to_list, "Add this game to your list?") %>
       <%= check_box_tag( :add_to_list, 1, false, {:onclick => "show_hide()"}) %>          
-      <br><br>
-      <%= submit_tag("AWESOME SAUCE GOOO!") %>
+      <br><br><br>
+      <%= f.submit("AWESOME SAUCE GOOO!", :class => "submit") %>
     </div>
     <div id="add_this_game_to_list" class="leftScroll">
-      <%= render :partial => "shared/add_to_list", :locals => {:only_submit => false, :game_name => @name["name"]} if  @name%>              
+      <%= render :partial => "shared/add_to_list", :locals => {:only_submit => false, :game_name => @name["name"]} if  @name%>                    
     </div>    
 <% end %>

@@ -9,12 +9,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100904174342) do
+ActiveRecord::Schema.define(:version => 20100905173946) do
 
   create_table "game_information_maps", :force => true do |t|
-    t.integer  "game_id",             :null => false
-    t.integer  "user_id",             :null => false
-    t.integer  "game_information_id", :null => false
+    t.integer  "game_id",    :null => false
+    t.integer  "user_id",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -26,7 +25,6 @@ ActiveRecord::Schema.define(:version => 20100904174342) do
     t.datetime "updated_at"
     t.string   "status",        :null => false
     t.integer  "score"
-    t.integer  "last_level"
     t.integer  "current_level"
     t.integer  "user_id"
     t.integer  "game_id"
@@ -37,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20100904174342) do
     t.string   "platform",   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "levels",     :null => false
   end
 
   create_table "user_sessions", :force => true do |t|
