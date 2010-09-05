@@ -1,8 +1,17 @@
-
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]  
   before_filter :require_user, :only => [:show, :edit, :update]
   
+  def save_attribute 
+    user = current_user    
+    game_info = GameInformation.find_by_user_id_and_game_id(user["id"], Game.find_by_name(params["game"]))          
+    game_info[params["field"]] = params["new_value"]
+    game_info.save
+    retval = game_info[params["field"]]
+    retval = [game_info[params["field"]], game_info["last_level"]] if params["field"] == "current_level"
+    render :json => retval.to_json
+  end
+    
   def add_game_to_list
     game_name = (params["name"]) ? params["name"] : Game.find(params["game"])["name"]
     User.transaction do      

@@ -187,9 +187,13 @@ td {
 }
 
 
-.left_align {
-	text-align: left;
+.left_align {	
 	padding-right: 40px;
+}
+
+.level_align {
+	text-align:left;
+	padding-right:10px;
 }
 
 .left { 
