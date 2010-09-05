@@ -2,6 +2,7 @@
 <%= render :partial => "game_list/completed" %>
 <%= render :partial => "game_list/hold" %>
 <%= render :partial => "game_list/planned" %>
+<%= javascript_include_tag "rails.js" %>
 <% @load_page = true %>
 <h4> Find games to add to your list searching the database! </h4>
 <%= render :partial => "shared/search"%>
