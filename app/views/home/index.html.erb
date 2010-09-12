@@ -1,16 +1,30 @@
 <%= javascript_include_tag "games.js" %>
 <%= javascript_include_tag "rails.js" %>
+<%= javascript_include_tag "quicksilver.js" %>
+<%= javascript_include_tag "jquery.quickselect.js" %>
+<%= stylesheet_link_tag "jquery.quickselect.css" %>
 <div class="clearLeft">
   <div id="games_list">
-    <h4> View your games list: <h4>
-    <%= link_to "muh list", :controller => "game_list", :action => "index" %>  
+    <h4>What do you want to do? </h4>    
+    <li class=lioption><label class="option"><b>View your games list!</b><br /></label></li>
+    <li class=lioption><label class="option"><b>Search for games to add to your list!</b><br /></label></li>
+    <li class=lioption><label class="option"><b>Add games to the knowledge database!</b><br /></label></li>
+    <li class=lioption><label class="option"><b>Visit your account settings page!</b><br /></label></li>
+    <li class=lioption><label class="option"><b>Spread the awesome word!</b><br /></label></li>
   <br><br><br>
   </div>
 
-  <div class="left">
-      Add a game to your list:<br><br>
-      <%= text_field_tag(:search_tag) %>
+  <div class="left">      
+      Start by:<br />
+      <label class="guidance">
+        1. Typing the name or platform of a game
+      </label><br />
+      <label class="guidance">
+        2. Selecting your game and add it for great justice!
+      </label><br /><br />
+      <%= text_field_tag(:search_tag) %>      
       <input type="button" value="Search!" onclick="find_game()">
+      <input type="hidden" value="blarg" id="abc"></input>
   </div>
 </div>
 

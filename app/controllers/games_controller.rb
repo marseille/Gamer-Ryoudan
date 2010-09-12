@@ -1,7 +1,16 @@
 class GamesController < ApplicationController  
   
+  def search_game
+    @games = Game.name_like(params["q"]) 
+    platform_result = Game.platform_like(params["q"])
+    if !platform_result.empty? && (@games & platform_result).empty?      
+      @games.push(platform_result)
+    end    
+    render :json => @games.flatten.collect {|game| [game["name"], game["platform"]]}
+  end
+  
   def find_game    
-    @game = Game.find_by_name(params["search_tag"])
+    @games = Game.name_like(params["search_tag"])
     @game_information = GameInformation.new
     if @game            
       render :file => "games/index.html", :layout => "application" if params["load_page"].eql?("true")

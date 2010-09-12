@@ -46,6 +46,9 @@ $(function() {
   $(".save_hours_played_shortcut").live("keyup", function(event) {
     check_save_attribute(event, "hours_played")
   });
+  $("input#search_tag").quickselect({ajax:"/games/search_game/", 
+                                                          /*noResultsDefault : "No results found",*/
+                                                        })
 })
 
 function check_save_attribute(event, field) {

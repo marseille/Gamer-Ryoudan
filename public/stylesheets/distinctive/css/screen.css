@@ -14,14 +14,14 @@ body {
 	color: #777; 
 }
 
-ul{
+.ul{
     margin:0;
     padding:0;	
 	list-style:none;
 	width:500px;
 }
 
-li{
+.li{
     width:100px;
     height:25px;		
 	margin-left:0px;
@@ -79,10 +79,6 @@ p {
 	margin: 0 0 15px;
 }
 
-.submit {
-	margin-left:-5px;
-}
-
 th {
 	text-align: left;
 	padding-bottom:7px;
@@ -91,6 +87,10 @@ th {
 
 td {
 	padding-right: 7px;
+}
+
+.main {
+	margin-left:5px;
 }
 
 #content { 
@@ -255,6 +255,11 @@ td {
 	padding-left: 9px;	
 }
 
+.menu {
+	float:left;
+	margin-left:5px;
+}
+
 .rightFloat {
 	float: right;
 	padding-left: 10px;
@@ -269,8 +274,17 @@ td {
 	float:left;
 	padding-left:30px;
 }
-	
-.subtext{
+
+.submit {
+	margin-left:-5px;
+}
+
+.tagline {
+	display:block;
+	font-size: 90%;  
+	font-weight: bold;
+	padding-bottom:10px;
+	margin-left:5px;
 }
 
 .title_bar {
@@ -296,3 +310,66 @@ td {
 	border-top: 1px solid #ddd; 
 	padding: 20px 0 0; 
 }
+
+.quickselect_results {
+	padding: 0px;
+	border: 1px solid WindowFrame;
+	background-color: Window;
+	overflow: hidden;
+}
+
+.quickselect_results ul {
+	width: 100%;
+	list-style-position: outside;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.quickselect_results iframe {
+	display:none;/*sorry for IE5*/
+	display/**/:block;/*sorry for IE5*/
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:-1;
+	filter:mask();
+	width:3000px;
+	height:3000px;
+}
+
+.quickselect_results li {
+	text-align:left;
+	margin: 0px;
+	padding: 2px 5px;
+	cursor: pointer;
+	color:red;	
+	display: block;
+	width: 100%;
+	font: menu;
+	font-size: 12px;
+	overflow: hidden;
+}
+
+.quickselect_loading {
+	background : Window url('/rails.png') right center no-repeat;
+}
+
+.quickselect_selected {
+	/*background-color: Highlight;
+	color: HighlightText;*/
+	background-color:yellow;
+}
+
+.guidance {
+	margin-left:5px;
+	color:#980000;
+	font-weight:bold;
+}
+
+.option {
+	margin-left:10px;
+}
+
+.lioption {
+	margin-left:25px;
