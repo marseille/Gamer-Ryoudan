@@ -3,7 +3,11 @@
 <%= javascript_include_tag "quicksilver.js" %>
 <%= javascript_include_tag "jquery.quickselect.js" %>
 <%= stylesheet_link_tag "jquery.quickselect.css" %>
-<div class="clearLeft">
+<div class="clearLeft">  
+  <div class=pushup>
+    <label class=welcome> Welcome back <%= current_user["login"] %>! </label>
+  </div>
+  <br />
   <div id="games_list">
     <h4>What do you want to do? </h4>    
     <li class=lioption><label class="option"><b>View your games list!</b><br /></label></li>
@@ -13,7 +17,7 @@
     <li class=lioption><label class="option"><b>Spread the awesome word!</b><br /></label></li>
   <br><br><br>
   </div>
-
+  
   <div class="left">      
       Start by:<br />
       <label class="guidance">

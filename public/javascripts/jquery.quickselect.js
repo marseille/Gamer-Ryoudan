@@ -308,8 +308,7 @@ var QuickSelect;
   };
 
   QuickSelect.matchers = {
-    quicksilver : function(q,data){
-      console.log(data)
+    quicksilver : function(q,data){      
       var match_query, match_label, self=this;
       match_query = (self.options.matchCase ? q : q.toLowerCase());
       self.AllItems[match_query] = [];

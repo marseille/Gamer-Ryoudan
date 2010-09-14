@@ -5,8 +5,7 @@ require 'pp'
 class ApplicationController < ActionController::Base
   protect_from_forgery :except => [:add_game_to_list]
   helper :all # include all helpers, all the time
-  before_filter :require_user, :except => []
-  #protect_from_forgery # :secret => '799813561a334d795562316f3dbcd045'
+  before_filter :require_user, :except => []  
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user
 

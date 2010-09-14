@@ -49,8 +49,7 @@ class UsersController < ApplicationController
     end
   end
   
-  def new
-    flash[:notice] = "Account registered!"
+  def new    
     @user = User.new
   end
   

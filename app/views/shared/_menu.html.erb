@@ -1,23 +1,25 @@
 <div style="float:left">
 <ul class="ul">
-    <li class="green li">
-        <p><a href="../home/" class="white_link">Home</a></p>
+    <li class="green li">    
+      <p><%= link_to("Home", {:controller => "home", :action => "index"}, {:class => "white_link"}) %></p>
         well excuuuse me PRINCESS!
     </li>
+    <% if current_user %>
     <li class="yellow li">
-        <p><a href="../game_list/index" class="white_link">My List</a></p>
+        <p> <%= link_to("My List", {:controller => "game_list"}, {:class => "white_link"}) %></p>
         A winner is you!
     </li>
+    <% end %>
     <li class="red li">
-        <p><a href="#" class="white_link">About</a></p>
+        <p><%= link_to("About", {:controller => "about"}, {:class=>"white_link"}) %></p>
         The cake is a lie!
     </li>
     <li class="blue li">
-        <p><a href="#" class="white_link">Contact</a></p>
+        <p><%= link_to("Contact", {:controller => "contact"}, {:class=>"white_link"})%></p>
         But our princess is in another castle!
     </li>
     <li class="purple li">
-        <p><a href="#" class="white_link">Terms</a></p>
+        <p><%= link_to("Terms", {:controller => "terms"}, {:class =>"white_link"})%></p>
         All your base are belong to us!
     </li>
 </ul>

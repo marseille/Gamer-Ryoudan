@@ -8,29 +8,21 @@
   <% @user = current_user %>      
   <% if @user %>
     <div class="title_bar">
-      <%= link_to "logout", :controller => "user_sessions", :action => "destroy" %>            
       <%= label(:current_login, "(currently logged in as: " + @user.login + ")") %>
-      <%= link_to "my list", :controller => "game_list"%><br>
+      <%= link_to "logout", :controller => "user_sessions", :action => "destroy" %> <br />                       
       <%= link_to "edit account details!", :controller => "users", :action => "edit" %>
     </div>
   <% end %>
-  <%#= link_to "<h1>Gamer Ryoudan!</h1>", :controller => "home" %>
-  <%= image_tag "logo.png" %><br /><br />
+  <%=link_to image_tag("logo.png", :border => 0), :controller => "home" %><br /><br />
   <label class=tagline> An outlandish brigade of gamer-awesomeness </label>  
-  <%#<h5> An outlandish brigade of gamer-awesomeness </h5> 
-  %>
   <div class="menu">
     <%= render :partial => "shared/menu" %>
   </div>
-  <br><br><br>
+  <div class=clear></div>
+  <br>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 	<%= stylesheet_link_tag "distinctive/css/screen.css" %>
 </head>
   <div id="main" class="main">
-    <br>
-    <% #flash doesn't get update because of javascript not apppending it
-    %>
-    <div id="flash">
-      <%= render :partial => "shared/notice" %>
-    </div>                    
+    <br>  
     <div id="error_messages"></div>
