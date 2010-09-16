@@ -9,20 +9,25 @@ class GamesController < ApplicationController
     render :json => @games.flatten.collect {|game| [game["name"], game["platform"]]}
   end
   
-  def find_game    
-    @games = Game.name_like(params["search_tag"])
+  def find_game        
+    @games = Game.name_or_platform_like(params["search_tag"])
     @game_information = GameInformation.new
-    if @game            
-      render :file => "games/index.html", :layout => "application" if params["load_page"].eql?("true")
-      render :partial => "games/search_results" if !params["load_page"].eql?("true")
-    else
+    
+    #still empty? that game must not exist yet.
+    if @games.empty?          
       @game = Game.new
-      flash[:notice] = "Couldn't find your game, add it to the database nao!"
       @name = params["search_tag"]      
-      if params["load_page"].eql?("true")
-        render :file => "games/new_game.html.erb", :layout => "application"
+      flash[:notice] = "Couldn't find your game, add it to the database nao!"
+      if params["load_page"] === "true"
+        render :file => "games/new_game.html.erb", :layout => "application"    
       else
         render :partial => "shared/add_game_and_to_list", :locals => {:only_submit => true}
+      end
+    else
+      if params["load_page"] === "true"
+        render :file => "games/index.html", :layout => "application"
+      else        
+        render :partial => "games/search_results" 
       end
     end
   end

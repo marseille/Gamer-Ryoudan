@@ -1,6 +1,12 @@
 $(function() { 
   $("#add_to_list").attr("checked", false)  
 
+  $(".show_hide_add").live("click", function(event) {
+    event.preventDefault();
+    var name = $(event.target).attr("name")
+    show_hide(name)
+  });
+  
   $(".number_of_levels").live("keyup", function(event) {
     var number_of_levels = $("#levels").val()
     $("#last_level_label").text(number_of_levels)
@@ -107,19 +113,19 @@ function get_new_value_html(field,div_id,json) {
   }
 }
 
-function show_hide() {  
-  if($("#add_this_game_to_list").is(":visible")){    
-    if($("#add_game_button")) {
-      var text =  $("#add_game_button").data("link_text")
-      $("#add_game_button").text(text)
+function show_hide(div_to_show) {  
+  if($("#"+div_to_show+"_div").is(":visible")){    
+    if($("#"+div_to_show+"_button")) {
+      var text =  $("#"+div_to_show+"_button").data("link_text")
+      $("#"+div_to_show+"_button").text(text)
     }
-    $("#add_this_game_to_list").fadeOut("slow")
+    $("#"+div_to_show+"_div").fadeOut("slow")
   } else {    
-    if($("#add_game_button")){
-      $("#add_game_button").data("link_text", $("#add_game_button").text())
-      $("#add_game_button").text("cancel!")
+    if($("#"+div_to_show+"_button")){
+      $("#"+div_to_show+"_button").data("link_text", $("#"+div_to_show+"_button").text())
+      $("#"+div_to_show+"_button").text("cancel!")
     }
-    $("#add_this_game_to_list").fadeIn("slow")
+    $("#"+div_to_show+"_div").fadeIn("slow")
   }
 }
 

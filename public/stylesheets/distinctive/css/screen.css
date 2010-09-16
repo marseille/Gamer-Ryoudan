@@ -363,8 +363,8 @@ td {
 	overflow: hidden;
 }
 
-.quickselect_loading {
-	background : Window url('/rails.png') right center no-repeat;
+.game {
+	padding-bottom:10px;
 }
 
 .quickselect_selected {
