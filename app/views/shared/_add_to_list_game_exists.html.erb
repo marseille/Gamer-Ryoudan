@@ -1,24 +1,20 @@
 <b> Add <%= @game["name"] %> to your list!</b><br>
-<% form_for @game_information, :game => @game["name"], :url => "../users/add_game_to_list" do |f| %>
-  
-  <%= hidden_field_tag "game", @game["name"] %>
-  
-  <%= f.label(:hours_played, "Hours Played:") %><br>
-  <%= f.text_field(:hours_played, :size => 15) %> <br><br>
-  
-  <%= f.label(:difficulty, "Difficulty:") %><br>
-  <%= f.text_field(:difficulty, :size => 15) %> <br><br>    
-
-  <%= f.label(:current_level, "current level") %> <br>
-  <%= f.text_field(:current_level, :size => 1) %>
-  <%= f.label(:slash, "/", :style => "font-size:1.6") %>
-  <b><%= f.label(:levels, @game["levels"], {:id => "last_level_label"}) %></b> <br><br>
-  
-  <%= f.label(:score, "score:") %> <br>
-  <%= f.text_field(:score, :size => 15) %> <br><br>
-  
-  <%= f.label(:status, "status:") %>
-  <%= f.select(:status, ["Campaigns","Conquests", "Centrum Contentus", "Contrived Crusades"]) %>        
-  <br><br>
-  <%= f.submit "FALCON PUUUUUUUNCH", :game => "abc" if only_submit%><br>  
-<% end %>    
+  <%= hidden_field_tag "game", @game["name"] %>  
+  <%= label_tag(:hours_played, "Hours Played:") %><br>
+  <%= text_field_tag(:hours_played, "", :size => 15) %> <br><br>
+  <%= label_tag(:difficulty, "Difficulty:") %><br>
+  <%= text_field_tag(:difficulty, "", :size => 15) %> <br><br>    
+  <%= label_tag(:current_level, "current level") %> <br>
+  <%=text_field_tag(:current_level, "", :size => 1) %>
+  <%=label_tag(:slash, "/", :style => "font-size:1.6") %>
+  <b><%= label_tag(:levels, @game["levels"], {:id => "last_level_label"}) %></b> <br><br>
+  <%= label_tag("score:") %> <br>
+  <%= text_field_tag(:score,  "",:size => 15) %> <br><br>
+  <%= label_tag("status:") %>
+  <%= select_tag(:status, options_for_select(["Campaigns","Conquests", "Centrum Contentus", "Contrived Crusades"])) %>        
+  <br><br>  
+  <%= submit_tag("Add to list!", {:class => "add_to_list_submit", "div_prefix" => @no_spaces}) if only_submit%>
+  <div class="saved_div">
+    <label class="red_text"></label>
+  </div>
+  <br />  

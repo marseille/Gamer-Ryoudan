@@ -1,15 +1,19 @@
+<%= javascript_include_tag "jquery.quickselect.js" %>
 <%= javascript_include_tag "games.js" %>
-<h3> Add a game to the database!! </h3>
+<div class="something">
+  <h3> Add a game to the database!! </h3>
 <%= render :partial => "add_game_db" %>
-<div class=clear><%= render :partial => "games/note" %></div>
+</div>
+<div class=clear>
+  <%= render :partial => "games/note" %>
+</div>
 <div class="clear">  
   <br>
-  <h3> -or- Search again!</h3>
-  <br>
-  Search again!
-  <br>
+  <h3> Search again!</h3>
+  <br /><br />
   <% @load_page = true %>
   <%= render :partial => "shared/search"%>
 </div>
 <br>
-<h4><%= link_to "Back to your list", :controller => "game_list" %></h4>
+<label class="list_search"><%= link_to "Back to your list", :controller => "game_list" %></label>
+<br /><br />

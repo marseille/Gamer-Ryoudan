@@ -1,0 +1,28 @@
+<h1>What do you want to do?</h1>			
+<br />
+<h2 class="push_right">You can:</h2>
+<li class=lioption>
+  <label class="option">
+    <b><%= link_to "View your games list!", :controller => "game_list" %></b><br />
+  </label>
+</li>
+<li class=lioption>
+  <label class="option">
+    <b><%= link_to "Search for games to add to your list!", :controller => "search" %></b><br />
+  </label>
+</li>
+<li class=lioption>
+  <label class="option">
+    <b><%= link_to "Add to our library of games!", :controller => "games", :action => "new_game" %></b><br />
+  </label>
+</li>
+<li class=lioption>
+  <label class="option">
+    <b> <%= link_to "Visit your account settings page!", :controller => "users", :action => "show" %></b><br />
+  </label>
+</li>
+<li class=lioption>
+  <label class="option">
+    <b><%= link_to "Spread the awesome word!", "http://www.google.com/search?as_q=awesome word spreading skills go!!!" %></b><br />
+  </label>
+</li>        

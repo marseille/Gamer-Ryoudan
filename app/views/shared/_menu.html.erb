@@ -1,26 +1,51 @@
 <div style="float:left">
 <ul class="ul">
-    <li class="green li">    
-      <p><%= link_to("Home", {:controller => "home", :action => "index"}, {:class => "white_link"}) %></p>
-        well excuuuse me PRINCESS!
+  <% if current_user %>
+    <li class="dark_red li">
+      <p> <%= link_to("My List", {:controller => "game_list"}, {:class => "white_link"}) %></p>
+      Are you in the top percentage <br /> of Rattatas?
     </li>
-    <% if current_user %>
-    <li class="yellow li">
-        <p> <%= link_to("My List", {:controller => "game_list"}, {:class => "white_link"}) %></p>
-        A winner is you!
-    </li>
-    <% end %>
+    <li class="maroon li">    
+      <p><%= link_to("My Profile", {:controller => "users", :action => "show"}, {:class => "white_link"}) %></p>
+      That's mama luigi to you, MARIO!
+    </li>  
     <li class="red li">
+      <p><%= link_to("About", {:controller => "about"}, {:class=>"white_link"}) %></p>
+      The cake is a lie!
+    </li>  
+    <li class="orange li">
+      <p><%= link_to("Contact", {:controller => "contact"}, {:class=>"white_link"})%></p>
+      But our princess is in another castle!
+    </li>    
+    <li class="light_orange li">
+      <p><%= link_to("Terms", {:controller => "terms"}, {:class =>"white_link"})%></p>
+      All your base are belong to us!
+    </li>
+    <li class="orange_yellow li">
+      <p><%= link_to("Log out", {:controller => "user_sessions", :action => "destroy"}, {:class => "white_link"})%></p>
+      SQUADALAH! We're off!!
+    </li>  
+  <% else %>
+    <li class="dark_red li">    
+      <p><%= link_to("Home", {:controller => "users", :action => "show"}, {:class => "white_link"}) %></p>
+      well excuuuse me PRINCESS!
+    </li>
+    <li class="maroon li">
         <p><%= link_to("About", {:controller => "about"}, {:class=>"white_link"}) %></p>
         The cake is a lie!
+      </li>  
+    <li class="red li">
+      <p><%= link_to("Contact", {:controller => "contact"}, {:class=>"white_link"})%></p>
+      But our princess is in another castle!
+    </li>    
+    <li class="orange li">
+      <p><%= link_to("Recent changes", {:controller => "terms"}, {:class =>"white_link"})%></p>
+      METAAAL GEAAAAAAAR!
     </li>
-    <li class="blue li">
-        <p><%= link_to("Contact", {:controller => "contact"}, {:class=>"white_link"})%></p>
-        But our princess is in another castle!
+    <li class="orange_yellow li">
+      <p><%= link_to("Terms", {:controller => "terms"}, {:class =>"white_link"})%></p>
+      All your base are belong to us!
     </li>
-    <li class="purple li">
-        <p><%= link_to("Terms", {:controller => "terms"}, {:class =>"white_link"})%></p>
-        All your base are belong to us!
-    </li>
+  <% end %>      
 </ul>
 </div>

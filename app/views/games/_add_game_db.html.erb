@@ -1,21 +1,21 @@
-<% form_for @game, :url => "../games/add_game" do |f| %>                  
-    <div class="leftFloat">
+<% form_for @game, :url => "/games/add_game" do |f| %>                  
+    <div class="leftFloat">      
       <b> New game </b><br>
       <%= f.label(:name)%><br>
       <%= f.text_field(:name, :size => 29) %> <br><br>
       
       <%= f.label(:platform) %><br>
       <%= f.text_field(:platform, :size => 29) %> <br><br>  
-      
+            
       <%= f.label(:levels, "*Number of levels: (Enter N/A if non-existent)") %><br>
       <%= f.text_field(:levels,:id => "levels", :size => 29, :class => "number_of_levels") %> <br><br>
       
       <%= label_tag(:add_to_list, "Add this game to your list?") %>
-      <%= check_box_tag( :add_to_list, 1, false, {:onclick => "show_hide()"}) %>          
+      <%= check_box_tag( :add_to_list, 1, false, {:onclick => "show_hide('add_this_game_to_list')"}) %>          
       <br><br><br>
-      <%= f.submit("AWESOME SAUCE GOOO!", :class => "submit") %>
-    </div>
-    <div id="add_this_game_to_list" class="leftScroll">
-      <%= render :partial => "shared/add_to_list", :locals => {:only_submit => false, :game_name => @name["name"]} if  @name%>                    
+      <%= f.submit("Improvify DB!", :class => "submit") %>
+    </div>    
+    <div id="add_this_game_to_list_div" class=add_nonexistent_game>      
+      <%= render :partial => "shared/add_to_list", :locals => {:only_submit => false, :game_name => @game["name"]} if  @game%>                    
     </div>    
 <% end %>

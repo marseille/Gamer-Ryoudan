@@ -14,26 +14,32 @@ class UsersController < ApplicationController
     
   def add_game_to_list
     game_name = params["game"]
-    game = Game.find_by_name(game_name)    
+    game = Game.find_by_name(game_name)        
     user = current_user
     params["game_information"]["user_id"] = user["id"]
     params["game_information"]["game_id"] = game["id"]
-    GameInformation.transaction do 
-      if !GameInformation.find_by_user_id_and_game_id(user["id"], game["id"])
-        GameInformation.create(params["game_information"])      
-        GameInformationMap.create(:user_id => user["id"], :game_id => game["id"])
-      else 
-        flash["notice"] = "This game already exists on your list!"
+    GameInformation.transaction do       
+      begin        
+        info_found = GameInformation.find_by_user_id_and_game_id(user["id"], game["id"])
+        if !info_found
+          GameInformation.create(params["game_information"])      
+          GameInformationMap.create(:user_id => user["id"], :game_id => game["id"])
+          flash["notice"] = "Added!"
+        else 
+          #update the info
+          params["game_information"].each do |stat|
+            info_found[stat.first] = stat[1]
+          end
+          info_found.save!
+          flash["notice"] = "Saved!"
+        end
+      rescue => exc
+        flash["notice"] = "Failed to add/save :("
+        #maybe do some logging here
       end
     end
     
-    if params["flash"]
-      flash[:notice] += params["flash"] if params["flash"]
-      flash[:notice] += "\n\n Successfully added '"+game_name+"' to your list!"
-    else    
-      flash[:notice] = "Successfully added '"+game_name+"' to your list!"
-    end
-    render :file => "games/index.html", :layout => "application"
+    render :json => flash["notice"].to_json    
   end
   
   def remove_game_from_list

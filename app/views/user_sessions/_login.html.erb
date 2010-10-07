@@ -1,0 +1,19 @@
+<div class="login">
+  <label class="login_label"> Member Login</label>
+  <br /><br />
+  <% form_for @user_session, :url => "/user_sessions/create" do |f| %>
+    <%= f.error_messages %>
+    <br />
+    <%= f.label :login %><br />
+    <%= f.text_field :login %><br />
+    <br />
+    <%= f.label :password %><br />
+    <%= f.password_field :password %><br />
+    <br />
+    <%= f.check_box :remember_me %><%= f.label :remember_me %><br />
+    <br />
+    <%= label_tag :register_label, "Don't have an account?"+ link_to("register now" , {:controller => "users", :action => "new"}, {:class =>"register_link"}), :class => "register_label" %>                
+    <%= f.submit "Login", :class => "login_submit" %>
+  <% end %>
+  <br />                
+</div>

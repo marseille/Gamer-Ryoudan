@@ -1,6 +1,25 @@
 $(function() { 
   $("#add_to_list").attr("checked", false)  
 
+  $(".add_to_list_submit").live("click", function(event) {    
+    var div_id = "add_" + $(event.target).attr("div_prefix") + "_div"
+    var form = {}    
+    var game = ""
+    $.each($("#"+div_id).children(), function(idx,key) {
+      var form_element = (key.localName == "input" || key.localName == "select") && key.className != "add_to_list_submit"
+      if(form_element){                
+        if($(key).attr("name") != "game"){
+          form[$(key).attr("name")] = $(key).val()
+        } else {
+          game = $(key).attr("value")
+        }
+      }      
+    });        
+    Rails.call(Rails.methods["add_to_list"], "json", "POST", {"game_information" : form, "game" : game}, function(json) {
+      $("#"+div_id+" label.red_text").text(json)
+    });
+  });
+  
   $(".show_hide_add").live("click", function(event) {
     event.preventDefault();
     var name = $(event.target).attr("name")
@@ -25,7 +44,7 @@ $(function() {
   });
   
   $(".save_difficulty").live("click", function(event) {    
-      check_save_attribute(event, "difficulty")
+    check_save_attribute(event, "difficulty")
   });
   
   $(".save_current_level").live("click", function(event) {    
@@ -114,6 +133,7 @@ function get_new_value_html(field,div_id,json) {
 }
 
 function show_hide(div_to_show) {  
+  console.log(div_to_show)
   if($("#"+div_to_show+"_div").is(":visible")){    
     if($("#"+div_to_show+"_button")) {
       var text =  $("#"+div_to_show+"_button").data("link_text")
@@ -134,7 +154,7 @@ function find_game() {
   Rails.call(Rails.methods["find_game"], "html", "GET", {'search_tag' : game}, function(json) {
     $("#search-results").empty()
     $("#search-results").hide()    
-    $("#search-results").append("<h3> Search results: </h3>")
+    $("#search-results").append("<h3> Search results: </h3><br /><br /><br />")
     $("#search-results").append(json)    
     $("#search-results").animate({width: 'show', duration : '3000' });
   });  

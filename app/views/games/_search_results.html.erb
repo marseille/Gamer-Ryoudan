@@ -2,12 +2,13 @@
   <% @game = game %>
   <% added =  !([game] & current_user.games).empty? %>
   <%= render :partial => "games/game", :locals => {:added => added}%>
-  <% no_spaces = @game.name.gsub(/ /,'_') %>
-  <div id=<%="'add_"+no_spaces+"_div'"%> class="add_game_partial">
+  <% @no_spaces = @game.name.gsub(/ /,'_') %>
+  <div id=<%="'add_"+@no_spaces+"_div'"%> class="add_game_partial">
     <% if !added %>    
-        <%= render :partial => "shared/add_to_list", :locals => {:only_submit => true} %>    
+        <%= render :partial => "shared/add_to_list", :locals => {:only_submit => true} %>            
     <% else %> 
       <%= render :partial => "shared/add_to_list", :locals => {:only_submit => true} %>
-    <% end %>
-  </div>
+    <% end %>        
+  </div>  
+  <br />
 <% end %>

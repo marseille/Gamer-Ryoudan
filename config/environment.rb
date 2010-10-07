@@ -31,6 +31,9 @@ Rails::Initializer.run do |config|
   #config.gem 'mongo_mapper'
    config.gem 'authlogic'
    config.gem 'mysql'
+   config.gem 'curb'
+   config.gem 'nokogiri' #need libxslt
+   
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
   # :all can be used as a placeholder for all plugins not explicitly named

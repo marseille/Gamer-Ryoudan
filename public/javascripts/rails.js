@@ -11,6 +11,7 @@ var Rails = {
       "data": params,
       "success": function(data) { success_callback(data) },
       "error": function (event, XMLHttpRequest, ajaxOptions, thrownError)  {
+        console.log(XMLHttpRequest)
         console.log("ERRAR")
       },
       "processData":"false",
@@ -18,6 +19,7 @@ var Rails = {
     });    
   },
   
-  methods : {"find_game" : "../games/find_game",
-                    "save_attribute" : "../users/save_attribute"}
+  methods : {"find_game" :        "/games/find_game",
+                    "save_attribute" :   "/users/save_attribute",
+                    "add_to_list" :         "/users/add_game_to_list"}
 }

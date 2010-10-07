@@ -1,0 +1,12 @@
+<%= javascript_include_tag "games.js" %>
+<div id="notice">
+  <%= flash["notice"] %>
+</div>
+<% @game = Game.new %>
+<div class="something">
+  <h3> Add a game to the database!! </h3>
+<%= render :partial => "games/add_game_db" %>
+</div>
+<div class=clear>
+  <%= render :partial => "games/note" %>
+</div>

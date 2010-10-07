@@ -1,5 +1,5 @@
-<b> Add <%= @name %> to your list!</b><br>
-<% form_for @game_information, :url => "users/add_game_to_list", :game => @name do |f| %>  
+<b> Add to your list!</b><br>
+<% form_for @game_information, :url => "users/add_game_to_list", :game => @game do |f| %>  
   <%= f.label(:hours_played) %><br>
   <%= f.text_field(:hours_played) %> <br><br>
   
@@ -17,5 +17,5 @@
   <%= f.label(:status, "status:") %>
   <%= f.select(:status, ["Campaigns","Conquests", "Centrum Contentus", "Contrived Crusades"]) %>        
   <br><br>
-  <%= submit "FALCON PUUUUUUUNCH" if only_submit%><br>  
+  <%= submit "Add to list!" if only_submit%><br>  
 <% end %>    

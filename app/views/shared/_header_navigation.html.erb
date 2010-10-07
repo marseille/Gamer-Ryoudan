@@ -1,0 +1,17 @@
+<body>
+	<div id="content">		
+    <p id="top"><label class=tagline> An outlandish brigade of gamer-awesomeness </label></p>
+		<%= text_field_tag :search_field,{}, {:class => "search_field"} %>
+    <%= label_tag :search_label, "Search!", :class => "search_label" %>             
+    <div id="logo">
+			<%=link_to image_tag("temp logo sheen.png", :border => 0, :class => "bleh"), :controller => "home" %><br /><br />
+		</div>        
+		<div class="menu">        
+      <%= render :partial => "shared/menu" %>		
+    </div>
+    <div style="position:relative;">
+      <div id="sdv" class="spiky_cool_thing">
+        <%= image_tag "small_long.png" %>
+      </div>    
+    </div>
+		<div class="line"></div>

@@ -234,7 +234,12 @@ var QuickSelect;
       
     // Set up the interface events
       // Mark that actual item was clicked if clicked item was NOT a DIV, so the focus doesn't leave the items.
-      $results_list.mousedown(function(e){if(e.srcElement)clickedLI=e.srcElement.tagName!='DIV';});
+      $results_list.mousedown(function(e){
+        console.log("1")
+        if(e.srcElement){          
+          clickedLI=e.srcElement.tagName!='DIV';
+        }
+        });
       $input_element.keydown(function(e){
         last_keyCode = e.keyCode;
         switch(e.keyCode){
@@ -280,7 +285,7 @@ var QuickSelect;
             timeout = setTimeout(onChange, options.delay);
             break;
         }
-      }).focus(function(){
+      }).focus(function(){        
         // track whether the field has focus, we shouldn't process any results if the field no longer has focus
         hasFocus = true;
       }).blur(function(e){
@@ -296,7 +301,8 @@ var QuickSelect;
         }else{
           // Select the current item
           timeout = setTimeout(function(){
-            if(activeSelection>-1){selectCurrent();}
+            //Uncomment the below to select the current option when the field loses focus
+            //if(activeSelection>-1){selectCurrent();}
             hideResultsNow();
             // Select null element, IF options.exactMatch and there is no selection.
             // !! CLEARS THE FIELD IF YOU BLUR AFTER CHOOSING THE ITEM AND RESULTS ARE ALREADY CLOSED!

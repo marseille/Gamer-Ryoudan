@@ -7,7 +7,6 @@ class GameListController < ApplicationController
     @planned_games = []
     @completed = []
     @orphans = []
-    p games 
     games.each do |game| 
       game_info = GameInformation.find_by_user_id_and_game_id(user.id, game.id)
       next if !game_info

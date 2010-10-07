@@ -1,11 +1,16 @@
 <%= javascript_include_tag "games.js" %>
+<h1><h3>Search Results:</h3></h1>
+<br />
 <%= render :partial => "games/search_results" %>
 <div class="clear">
   <br><br>
-  Search again!
+  <h3>Search again!</h3>
   <br>
   <% @load_page = true %>
-  <%= render :partial => "shared/search"%>
+  <div class=push_right_small>
+    <%= render :partial => "shared/search"%>
+    <br>
+    <label class=list_search><%= link_to "Back to your list", :controller => "game_list" %></label></b>
+    <br /> <br />
+  </div>
 </div>
-<br>
-<h4><%= link_to "Back to your list", :controller => "game_list" %></h4>
