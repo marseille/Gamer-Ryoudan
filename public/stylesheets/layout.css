@@ -581,6 +581,14 @@ p {
 	color:red;
 }
 
+.green_text {
+	color:green;
+}
+
+.push_down {
+	padding-bottom:15px;
+}
+
 /* BUTTONS */
 
 .buttons a, .buttons button{

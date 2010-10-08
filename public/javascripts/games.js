@@ -71,9 +71,8 @@ $(function() {
   $(".save_hours_played_shortcut").live("keyup", function(event) {
     check_save_attribute(event, "hours_played")
   });
-  $("input#search_tag").quickselect({ajax:"/games/search_game/", 
-                                                          /*noResultsDefault : "No results found",*/
-                                                        })
+  $("input#search_tag").quickselect({ajax:"/games/search_game/"})
+  $("input#search_field").quickselect({ajax:"/games/search_game/"})
 })
 
 function check_save_attribute(event, field) {
@@ -149,9 +148,10 @@ function show_hide(div_to_show) {
   }
 }
 
-function find_game() {
-  var game = $("#search_tag").val()
-  Rails.call(Rails.methods["find_game"], "html", "GET", {'search_tag' : game}, function(json) {
+//change this to a jquery bind event
+function find_game(field_id) {
+  var game = $("#"+field_id).val()
+  Rails.call(Rails.methods["find_game"], "html", "GET", {field_id : game}, function(json) {
     $("#search-results").empty()
     $("#search-results").hide()    
     $("#search-results").append("<h3> Search results: </h3><br /><br /><br />")

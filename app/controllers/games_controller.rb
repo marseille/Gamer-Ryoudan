@@ -10,11 +10,18 @@ class GamesController < ApplicationController
     if !platform_result.empty? && (@games & platform_result).empty?      
       @games.push(platform_result)
     end    
-    render :json => @games.flatten.collect {|game| [game["name"], game["platform"]]}
+    render :json => @games.flatten.collect {|game| [game["name"] + " ["+game["platform"]+"]", game["platform"]]}
   end
   
   def find_game        
-    @games = Game.name_or_platform_like(params["search_tag"])
+    @games = ""
+    if params["search_tag"].include?("[")
+      name = params["search_tag"].split("[").first
+      platform = params["search_tag"].split("[")[1].gsub(/["\[\]"]/,"")    
+      @games = [Game.find_by_name_and_platform(name,platform)]      
+    else 
+      @games = Game.name_or_platform_like(params["search_tag"])
+    end
     @game_information = GameInformation.new
     
     #still empty? that game must not exist yet.
@@ -39,9 +46,9 @@ class GamesController < ApplicationController
     game = Game.new(params["game"])
     if game.save
       game.save!
-      flash["notice"] = "Successfully added this game to the database!"
+      flash["notice"] = "<label class=green_text>Successfully added this game to the database!</label>"
     else
-      flash["notice"] = "There was an error processing your add request for:" + game["name"]
+      flash["notice"] = "<label class=red_text>There was an error processing your add request for:" + game["name"]+"</label>"
     end
     if params["add_to_list"]      
       game_name = game["name"]

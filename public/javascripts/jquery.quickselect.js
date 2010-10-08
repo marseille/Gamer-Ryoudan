@@ -116,7 +116,10 @@ var QuickSelect;
       var selectCurrent = function(){
         var li = $("li."+options.selectedClass, $results_list).get(0);
         if(li){
-          return self.selectItem(li);
+          //Uncomment the below to select the current option when you hit enter and the field
+          //doesn't have focus
+          
+          //return self.selectItem(li);
         } else {
           // No current selection - blank the fields if options.exactMatch and current value isn't valid.
           if(options.exactMatch){
@@ -296,7 +299,9 @@ var QuickSelect;
           $input_element.val('');
           timeout = setTimeout(function(){
             hideResultsNow();
-            if(options.exactMatch && $input_element.val() != $input_element.lastSelected){self.selectItem(null,true);}
+            if(options.exactMatch && $input_element.val() != $input_element.lastSelected){                            
+              self.selectItem(null,true)
+            }
           }, 100);
         }else{
           // Select the current item
@@ -453,8 +458,7 @@ var QuickSelect;
     options.matchMethod   = options.matchMethod || QuickSelect.matchers[(typeof(''.score) === 'function' && 'l'.score('l') == 1 ? 'quicksilver' : 'contains')];
       if(options.matchMethod==='quicksilver' && options.finderFunction==='data') options.finderFunction='data_for_quicksilver';
 
-      if(options.matchMethod==='quicksilver' || options.matchMethod==='contains' || options.matchMethod==='startsWith') options.matchMethod = QuickSelect.matchers[options.matchMethod];
-      // console.log(options.finderFunction);
+      if(options.matchMethod==='quicksilver' || options.matchMethod==='contains' || options.matchMethod==='startsWith') options.matchMethod = QuickSelect.matchers[options.matchMethod];      
       if(options.finderFunction==='data' || options.finderFunction==='ajax') options.finderFunction = QuickSelect.finders[options.finderFunction];
     if(options.matchCase === undefined) options.matchCase = false;
     if(options.exactMatch === undefined) options.exactMatch = false;
@@ -506,8 +510,7 @@ var QuickSelect;
         my_options.additionalFields = hidden_input;
         
         // Replace the select with a quickselect text_input
-        $(input).after(text_input).after(hidden_input).remove(); // add text input, hidden input, remove select.
-        // console.log(my_options);
+        $(input).after(text_input).after(hidden_input).remove(); // add text input, hidden input, remove select.        
         text_input.quickselect(my_options); // make the text input into a QuickSelect.
       }
     });

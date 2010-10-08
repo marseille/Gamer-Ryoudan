@@ -1,8 +1,10 @@
 <body>
 	<div id="content">		
-    <p id="top"><label class=tagline> An outlandish brigade of gamer-awesomeness </label></p>
-		<%= text_field_tag :search_field,{}, {:class => "search_field"} %>
-    <%= label_tag :search_label, "Search!", :class => "search_label" %>             
+    <p id="top"><label class=tagline> An outlandish brigade of gamer-awesomeness </label></p>		
+    <% form_tag(:load_page => true, :controller => "games", :action => "find_game") do %>            
+      <%= text_field_tag :search_tag,{}, {:class => "search_field", :id => "search_field"} %>    
+      <%= label_tag :search_label, "Search!", :class => "search_label" %>                   
+    <% end %>
     <div id="logo">
 			<%=link_to image_tag("temp logo sheen.png", :border => 0, :class => "bleh"), :controller => "home" %><br /><br />
 		</div>        
