@@ -20,6 +20,23 @@ $(function() {
     });
   });
   
+  $("#add_game_db_submit").live("click", function(event) {
+    var game = Gamer_Ryoudan.form_collect($(event.target).attr("div_id"))
+    var add_to_list = $("#add_to_list").attr("checked")
+    delete game["add_to_list"]    
+    var params = {"game" : game, "add_to_list" : add_to_list}    
+    if(add_to_list){
+      var game_information = Gamer_Ryoudan.form_collect($(event.target).attr("add_list_div"))
+      console.log(game_information)
+      console.log($(event.target).attr("add_list_div"))
+      params["game_information"] = game_information
+    }    
+    params["load_page"] = true
+    Rails.call(Rails.methods["add_to_db"], "json", "POST", params, function(json) {
+      $(".saved_db label.red_text").text(json)
+    });
+  });
+  
   $(".show_hide_add").live("click", function(event) {
     event.preventDefault();
     var name = $(event.target).attr("name")
@@ -74,6 +91,8 @@ $(function() {
   $("input#search_tag").quickselect({ajax:"/games/search_game/"})
   $("input#search_field").quickselect({ajax:"/games/search_game/"})
 })
+
+
 
 function check_save_attribute(event, field) {
   if(event.type == "keyup" && event.keyCode == 13) {
@@ -151,7 +170,7 @@ function show_hide(div_to_show) {
 //change this to a jquery bind event
 function find_game(field_id) {
   var game = $("#"+field_id).val()
-  Rails.call(Rails.methods["find_game"], "html", "GET", {field_id : game}, function(json) {
+  Rails.call(Rails.methods["find_game"], "html", "GET", {search_tag : game}, function(json) {
     $("#search-results").empty()
     $("#search-results").hide()    
     $("#search-results").append("<h3> Search results: </h3><br /><br /><br />")

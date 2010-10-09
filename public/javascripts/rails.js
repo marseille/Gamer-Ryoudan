@@ -21,5 +21,6 @@ var Rails = {
   
   methods : {"find_game" :        "/games/find_game",
                     "save_attribute" :   "/users/save_attribute",
-                    "add_to_list" :         "/users/add_game_to_list"}
+                    "add_to_list" :         "/users/add_game_to_list",
+                    "add_to_db":          "/games/add_game"}
 }

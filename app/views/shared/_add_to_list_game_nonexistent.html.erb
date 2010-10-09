@@ -1,21 +1,19 @@
 <b> Add to your list!</b><br>
-<% form_for @game_information, :url => "users/add_game_to_list", :game => @game do |f| %>  
-  <%= f.label(:hours_played) %><br>
-  <%= f.text_field(:hours_played) %> <br><br>
-  
-  <%= f.label(:difficulty) %><br>
-  <%= f.text_field(:difficulty) %> <br><br>    
+<%= label_tag(:hours_played, "hours played:",:size => 15) %><br>
+<%= text_field_tag(:hours_played) %> <br><br>
 
-  <%= f.label(:current_level) %> <br>
-  <%= f.text_field(:current_level, :size => 1) %>
-  <%= label_tag(:slash, "/", :style => "font-size:1.6") %>
-  <b><%= f.label(nil, {}, {:id => "last_level_label"}) %></b> <br><br>
-  
-  <%= f.label(:score, "score:") %> <br>
-  <%= f.text_field(:score) %> <br><br>
-  
-  <%= f.label(:status, "status:") %>
-  <%= f.select(:status, ["Campaigns","Conquests", "Centrum Contentus", "Contrived Crusades"]) %>        
-  <br><br>
-  <%= submit "Add to list!" if only_submit%><br>  
-<% end %>    
+<%= label_tag(:difficulty, "difficulty:", :size => 15) %><br>
+<%= text_field_tag(:difficulty) %> <br><br>    
+
+<%= label_tag(:current_level, "current_level:") %> <br>
+<%= text_field_tag(:current_level,"", :size => 1) %>
+<%= label_tag(:slash, "/", :style => "font-size:1.6") %>
+<b><%= label_tag(nil, {}, {:id => "last_level_label"}) %></b> <br><br>
+
+<%= label_tag(:score, "score:", :size => 15) %> <br>
+<%= text_field_tag(:score) %> <br><br>
+
+<%= label_tag(:status, "status:") %>
+<%= select_tag(:status, options_for_select(["Campaigns","Conquests", "Centrum Contentus", "Contrived Crusades"])) %>        
+<br><br>
+<%= submit_tag "Add to list!", :id => "add_to_list_submit" if only_submit%><br>  

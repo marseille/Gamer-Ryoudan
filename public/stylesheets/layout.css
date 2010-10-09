@@ -577,6 +577,12 @@ p {
 	top:-20px;
 }
 
+.saved_db{
+	position:relative;
+	top:14px;
+	float:right;
+}
+
 .red_text {
 	color:red;
 }

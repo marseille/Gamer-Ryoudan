@@ -59,10 +59,13 @@ class GamesController < ApplicationController
         GameInformation.create(params["game_information"])      
         GameInformationMap.create(:user_id => user["id"], :game_id => game["id"])
       end
-      render :file => "/games/new_game_generic.html.erb", :layout => "application"
+      render :json => "added to list and db".to_json if params["load_page"] 
+      render :file => "/games/new_game_generic.html.erb", :layout => "application" if !params["load_page"]
     else
+      render :json => "added to db".to_json if params["load_page"]
+      
       #render :file => "games/index.html", :layout => "application"
-      render :file => "/games/new_game_generic.html.erb", :layout => "application"
+      render :file => "/games/new_game_generic.html.erb", :layout => "application" if !params["load_page"]
     end
   end
 end
