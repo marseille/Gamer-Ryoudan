@@ -237,8 +237,7 @@ var QuickSelect;
       
     // Set up the interface events
       // Mark that actual item was clicked if clicked item was NOT a DIV, so the focus doesn't leave the items.
-      $results_list.mousedown(function(e){
-        console.log("1")
+      $results_list.mousedown(function(e){        
         if(e.srcElement){          
           clickedLI=e.srcElement.tagName!='DIV';
         }

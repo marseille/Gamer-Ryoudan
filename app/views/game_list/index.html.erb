@@ -7,12 +7,7 @@
 <br /><br />
 <%= render :partial => "game_list/planned" %>
 <br /><br />
-<%= javascript_include_tag "rails.js" %>
-<%= javascript_include_tag "jquery.quickselect.js" %>
 <% @load_page = true %>
 <label class=list_search>Look for more games!</label>
 <%= render :partial => "shared/search"%>
-<% if @warning %>
-  <%= render :partial => "game_list/notifications" %>
-<% end %>
 <br /><br />

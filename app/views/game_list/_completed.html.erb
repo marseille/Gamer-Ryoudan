@@ -1,7 +1,7 @@
-<h3> Conquests </h3>
-<table id="user-game-list" class="left_align">
-  <thead>
-  <%= render :partial => "table_headers" %>
+<h3 class=red_list_header> Conquests </h3>
+<table class="hor-minimalist-a">
+  <thead>  
+    <%= render :partial => "table_headers" %>  
   </thead>
   <tbody>
     <% @completed.each do |game|%>      
@@ -9,4 +9,4 @@
     <% end %>
   </tbody>
 </table>
-<br>
+<br />

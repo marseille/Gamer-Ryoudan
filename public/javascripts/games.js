@@ -27,8 +27,6 @@ $(function() {
     var params = {"game" : game, "add_to_list" : add_to_list}    
     if(add_to_list){
       var game_information = Gamer_Ryoudan.form_collect($(event.target).attr("add_list_div"))
-      console.log(game_information)
-      console.log($(event.target).attr("add_list_div"))
       params["game_information"] = game_information
     }    
     params["load_page"] = true
@@ -38,7 +36,7 @@ $(function() {
   });
   
   $(".show_hide_add").live("click", function(event) {
-    event.preventDefault();
+    event.preventDefault();    
     var name = $(event.target).attr("name")
     show_hide(name)
   });
@@ -48,7 +46,7 @@ $(function() {
     $("#last_level_label").text(number_of_levels)
   });
   
-  $(".set_difficulty").live("click", function(event) {
+  $(".set_difficulty").live("click", function(event) {    
     set_attribute(event, "difficulty")
   });
 
@@ -58,6 +56,10 @@ $(function() {
   
   $(".set_hours_played").live("click", function(event) {
     set_attribute(event, "hours_played")
+  });
+  
+  $(".set_notes").live("click", function(event) {
+    set_attribute(event, "notes")
   });
   
   $(".save_difficulty").live("click", function(event) {    
@@ -75,6 +77,10 @@ $(function() {
     check_save_attribute(event, "hours_played")
   });
   
+  $(".save_notes").live("click", function(event) {
+    check_save_attribute(event, "notes")
+  });
+  
   $(".save_difficulty_shortcut").live("keyup", function(event) {
     check_save_attribute(event, "difficulty")
   });
@@ -87,6 +93,10 @@ $(function() {
   
   $(".save_hours_played_shortcut").live("keyup", function(event) {
     check_save_attribute(event, "hours_played")
+  });
+  
+  $(".save_notes_shortcut").live("keyup", function(event) {
+    check_save_attribute(event, "notes")
   });
   $("input#search_tag").quickselect({ajax:"/games/search_game/"})
   $("input#search_field").quickselect({ajax:"/games/search_game/"})
@@ -103,17 +113,20 @@ function check_save_attribute(event, field) {
 }
 
 function set_attribute(event, field) {
-  event.preventDefault()
+  event.preventDefault()  
   var selector_id = $(event.target).attr("selector_id")
-  var div_id = selector_id + "_div"
-  var previous = $(event.target).text()
-  if(field == "current_level") $("#"+div_id).data("previous_level", $("#"+div_id).children())    
+  var div_id = selector_id + "_div"  
+  var previous = $(event.target).text()  
+  $("#"+div_id).data("previous", previous)
   $("#"+div_id).empty()
-  $("#"+div_id).data("previous", previous)        
-  $("#"+div_id).append("<input class=save_"+field + "_shortcut selector_id ="+selector_id+" id="+selector_id+"_input size=3></input>")
-  $("#"+selector_id+"_input").focus()
-  $("#"+div_id).append("<a href='#' class=save_"+field+"> <img selector_id="+selector_id+" border=0 src=/images/save_icon.png class=image_icon></a>")
-  $("#"+div_id).append("<label  class=left_align> (previously: " + previous + ") </label>")  
+  if(field != "notes") {
+    $("#"+div_id).append("<input class=save_"+field + "_shortcut selector_id ="+selector_id+" id="+selector_id+"_input size=3></input>")
+    $("#"+div_id).append("<a href='#' class=save_"+field+"> <img selector_id="+selector_id+" border=0 src=/images/save_icon.png class=image_icon></a>")    
+    $("#"+div_id).append("<label > (previously: " + previous + ") </label>")        
+  } else {    
+    $("#"+div_id).append("<textarea class=save_"+field + "_shortcut selector_id ="+selector_id+" id="+selector_id+"_input></textarea>")          
+    $("#"+div_id).append("<a href='#' class=save_"+field+"> <img selector_id="+selector_id+" border=0 src=/images/save_icon.png class=notes_save_icon></a>")    
+  }
 }
 
 function save_attribute(event, field) {
@@ -126,7 +139,7 @@ function save_attribute(event, field) {
     if(reset_level){
       $.each(reset_level, function(idx,key){$("#"+div_id+"_div").append(key)})      
     } else {
-      $("#"+div_id + "_div").append("<a href='#' selector_id="+ div_id +" class=set_"+field+" left_align>" + previous + " </a>")  
+      $("#"+div_id + "_div").append("<a href='#' selector_id='"+ div_id +"' class='set_"+field+" red_text'>" + previous + " </a>")  
     }
   } else {
     var new_value = $("#"+div_id+"_input").val()        
@@ -150,8 +163,7 @@ function get_new_value_html(field,div_id,json) {
   }
 }
 
-function show_hide(div_to_show) {  
-  console.log(div_to_show)
+function show_hide(div_to_show) {    
   if($("#"+div_to_show+"_div").is(":visible")){    
     if($("#"+div_to_show+"_button")) {
       var text =  $("#"+div_to_show+"_button").data("link_text")

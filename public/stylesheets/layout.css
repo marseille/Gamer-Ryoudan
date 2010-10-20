@@ -56,14 +56,15 @@ author:  Luka Cvrk (www.solucija.com)
 	color:red;
 	font-size:30px;
 	position:relative;
-	top:-119px;
-	left:-146px;	
+	padding-right:10px;
+	top:40px;	
+	float:right;	
 }
 
 .avatar {
 	position:relative;
-	top:-104px;
-	left:-436px;
+	top:-150px;
+	left:15px;
 }
 
 .widget {
@@ -71,17 +72,21 @@ author:  Luka Cvrk (www.solucija.com)
 	left:664px;
 	top:-130px;
 	z-index:-1;
+	width:323px;
 }
 
 .more_acc_info {
 	position:relative;
-	left:43px;
-	top:-91px;
-	
+	left:30px;
+	top:-140px;
 }
 
 .more_acc_info li {
 	color:#000;
+}
+
+.game_count {
+	font-size:15px;
 }
 
 .guidance {
@@ -431,18 +436,14 @@ p {
 	overflow:auto;
 }
 
-.left_align {
-	padding-right: 40px;
-}
-
-
 .list_header {
-	min-width:100px;
+	/*min-width:100px;*/
+	min-width:75px;
 	text-align:left;
 }
 
 .list_row {
-	min-width:100px;
+	/*min-width:100px;*/
 	text-align:left;
 }
 
@@ -454,6 +455,11 @@ p {
 	margin-left:3px;
 	vertical-align:text-top;
 	padding-right:10px;
+}
+
+.notes_save_icon {
+	margin-left:140px;
+	vertical-align:text-top;
 }
 
 .li_home {
@@ -653,4 +659,80 @@ button.positive, .buttons a.positive{
 
 .register_img {
 	width:20px;
+}
+
+
+/* TABLENESS */
+
+.red_list_header {
+	width:100%;
+}
+
+.hor-minimalist-a
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	/*font-size: 12px;*/
+	background: #fff;
+	width:994px;
+	border-collapse: collapse;
+	/*text-align: left;*/
+}
+.hor-minimalist-a th
+{
+	font-size: 14px;
+	font-weight: normal;
+	color: #8B0000;
+	padding: 10px 5px;
+	border-bottom: 2px solid #CD0000;
+}
+.hor-minimalist-a td
+{	
+	padding: 9px 6px 11px;
+	padding-bottom:10px;
+	border-bottom:1px solid #CCC;
+}
+
+.game_header {
+	width:496px;
+}
+
+.hours_played_header {
+	text-align:center;
+}
+
+.notes_header {
+	text-align:center;
+	width:85px;
+}
+
+.edit_tag {
+	float:right; 
+	padding-left:3px;
+	color:red;
+}
+
+.game_row {
+	width:496px;
+}
+
+.platform_row {
+	max-width:147px;
+}
+
+.difficulty_row {
+	max-width:147px;
+}
+
+.level_row {
+	max-width:147px;
+}
+
+.hours_played_row {
+	max-width:147px;
+	text-align:center;
+}
+
+.notes_row {
+	max-width:147px;
+	text-align:center;
 }
