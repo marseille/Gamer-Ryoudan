@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   acts_as_authentic
   has_many :game_information_maps
   has_many :games, :through => :game_information_maps  
+  has_attached_file :avatar, :storage => :database
+
 
   def game_count(status_name)
     matched_games = []

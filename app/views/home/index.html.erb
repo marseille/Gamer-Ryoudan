@@ -1,4 +1,5 @@
 <%= javascript_include_tag "gamer_ryoudan.js" %>
+<%= javascript_include_tag "jquery.fileUploader.js" %>
 <div id="pitch_home">      
   <%= render :partial => "home/logged_in_pitch" %>
   <%= render :partial => "home/profile_widget" %>
@@ -6,3 +7,27 @@
 <%= render :partial => "home/home_search" %>    
 <div id="search-results" class="search_results" >
 </div>
+<%= p current_user.avatar_file %>
+<%= image_tag("/users/code_image", :alt => "oh noes!") %>
+<form action="/users/save_avatar" method="post" enctype="multipart/form-data">
+  <input id="your" name="yourfilename" type="file" />
+  <br /><br />
+  <input type="submit" value="Upload" id="pxUpload" />
+  <input type="reset" value="Clear" id="pxClear" />
+  </form>
+  <br /><br /><br />
+
+<script type="text/javascript">  
+  $(function(){
+    $('#your').fileUploader({
+      imageLoader: '',      
+      buttonUpload: '#pxUpload',      
+      buttonClear: '#pxClear',
+      successOutput: 'File Uploaded',
+      errorOutput: 'Failed',
+      inputName: 'userfile',
+      inputSize: 30,
+      allowedExtension: 'jpg|jpeg|png|gif'
+    });
+  });
+</script>
