@@ -1,11 +1,37 @@
 <h1>Edit My Account</h1>
-
+<%= javascript_include_tag "jquery.fileUploader.js" %>
+<br />
+<%= link_to "My Profile", "/users/show" %>
+<br /><br />
 <% form_for @user, :url => edit_account_path do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
   <%= f.submit "Update" %>
 <% end %>
-
-<br /><%= link_to "My Profile", :url => account_path %>
-
-
+<div class=change_avatar>
+  <h2> change your avatar </h2>  
+  <div class=current_avatar>
+    <%= label_tag :current_avatar_label, "your current avatar:" %>
+    <%= image_tag("/users/code_image", :alt => "user_avatar") %>      
+  </div>
+  <div class=avatar_form>
+    <p class=instructions>
+      Please limit your avatars to jpegs,pngs, and gifs. They will be resized automatically
+    </p>
+    <form action="/users/save_avatar" method="post" enctype="multipart/form-data">
+      <input id="your" name="yourfilename" type="file" />            
+    </form>  
+  </div>
+</div>
+<script type="text/javascript">  
+  $(function(){
+    $('#your').fileUploader({      
+      buttonUpload: '#pxUpload',      
+      buttonClear: '#pxClear',
+      successOutput: 'File Uploaded',      
+      inputName: 'userfile',
+      inputSize: 20,
+      allowedExtension: 'jpg|jpeg|png|gif'
+    });
+  });
+</script>

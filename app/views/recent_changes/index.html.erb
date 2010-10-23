@@ -1,0 +1,9 @@
+<h1>Latest changes</h1><br />
+For a complete list of changes and more info on the gamer-ryoudan project, checkout the github page: <a href=http://github.com/marseille/Gamer-Ryoudan>http://github.com/marseille/Gamer-Ryoudan</a>
+<br /><br />
+
+<% latest_commits = recent_changes %>
+<% latest_commits.each do |commit| %>
+  <h3><%=commit["committed_date"] %> </h3>
+  <p class=commit_message><%=commit["message"] %></p>
+<% end %>

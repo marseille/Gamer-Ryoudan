@@ -22,6 +22,43 @@
 		
 		var itr = 0; //number of files to uploaded
 		
+    function upload_image() {      
+      $('#px_button input').attr("disabled","disabled");
+      $("#pxupload_form form").each(function(){
+        e = $(this);
+        var id = "#" + $(e).attr("id");
+        var input_id = id + "_input";
+        var input_val = $(input_id).val();
+        if (input_val != ""){
+          $(id + "_text .status").text("Uploading...");
+          $(id + "_text").css("background-color", "#FFF0E1");
+          $(id + "_text .loader").show();
+          $(id + "_text .close").hide();
+          $(id).submit();            
+          $(id +"_frame").load(function(){
+            $(id + "_text .loader").hide();
+            up_output = $(this).contents().find("#output").text();              
+            if (up_output == "success"){
+              $(id + "_text").css("background-color", "#F0F8FF");
+              up_output = config.successOutput;
+            }else{                
+              //$(id + "_text").css("background-color", "#FF0000");
+              //up_output = config.errorOutput;                
+            }
+            up_output += '<br />' + $(this).contents().find("#message").text();
+            $(id + "_text .status").html(up_output);              
+            $("#px_display").empty()
+            $("#px_display").append("<label class=success_label>uploaded!</label><br /><br />")
+            //$(e).remove(); <-- removes browse field? why would you do this..?							
+            //$(config.buttonUpload).removeAttr("disabled");
+          });
+        }
+      });			
+    }
+    $(".upload_image").click(function(){
+			
+		});
+    
 		//public function
 		$.fileUploader.change = function(e){
 			var fname = px.validateFile( $(e).val() );
@@ -40,46 +77,13 @@
 				'<span class="fname">'+ fname +'</span>' +
 				'<span class="loader" style="display:none">'+ imageLoader +'</span>' +
 				'<div class="status">Pending...</div></div>';
-			
-			$("#px_display").append(display);
-			px.appendForm();
-			$(e).hide();
-		}
-		
-		$(config.buttonUpload).click(function(){
-			if (itr > 1){
-				$('#px_button input').attr("disabled","disabled");
-				$("#pxupload_form form").each(function(){
-					e = $(this);
-					var id = "#" + $(e).attr("id");
-					var input_id = id + "_input";
-					var input_val = $(input_id).val();
-					if (input_val != ""){
-						$(id + "_text .status").text("Uploading...");
-						$(id + "_text").css("background-color", "#FFF0E1");
-						$(id + "_text .loader").show();
-						$(id + "_text .close").hide();
-						
-						$(id).submit();
-						$(id +"_frame").load(function(){
-							$(id + "_text .loader").hide();
-							up_output = $(this).contents().find("#output").text();
-							if (up_output == "success"){
-								$(id + "_text").css("background-color", "#F0F8FF");
-								up_output = config.successOutput;
-							}else{
-								$(id + "_text").css("background-color", "#FF0000");
-								up_output = config.errorOutput;
-							}
-							up_output += '<br />' + $(this).contents().find("#message").text();
-							$(id + "_text .status").html(up_output);
-							$(e).remove();
-							$(config.buttonClear).removeAttr("disabled");
-						});
-					}
-				});
-			}
-		});
+        
+        $("#px_display").empty()
+        $("#px_display").append(display);
+        px.appendForm();
+        $(e).hide();        
+        upload_image()
+		}				
 		
 		$(".close").live("click", function(){
 			var id = "#" + $(this).parent().attr("title");

@@ -1,5 +1,4 @@
 <%= link_to "home", :controller => "home" %>
-
 <p>
   <b>Login:</b>
   <%=h @user.login %>
@@ -34,6 +33,4 @@
   <b>Current login ip:</b>
   <%=h @user.current_login_ip %>
 </p>
-
-
-<%= link_to 'Edit', :url => edit_account_path %>
+<%= link_to 'Edit my details/avatar', "/users/edit" %>

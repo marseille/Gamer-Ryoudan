@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]  
   before_filter :require_user, :only => [:show, :edit, :update]
   protect_from_forgery :only => []
-  #helper_method => :code_image
+  require 'RMagick'
   
   def save_attribute 
     user = current_user    
@@ -14,23 +14,23 @@ class UsersController < ApplicationController
     render :json => retval.to_json
   end
   
-  def code_image 
-    @image = current_user.avatar_file
-    send_data(@image, :type => current_user.avatar_content_type, 
-                                   :filename => current_user.avatar_file_name, 
+  def code_image     
+    user = current_user
+    @image = user.avatar["image"]    
+    send_data(@image, :type => user.avatar["content_type"], 
+                                   :filename => user["login"]+"_avatar", 
                                    :disposition => 'inline')
   end
   
   def save_avatar    
-    user = current_user              
-    user.avatar_file = params["yourfilename"].read
-    user.avatar_medium_file = params["yourfilename"].read
-    user.avatar_thumb_file = params["yourfilename"].read
-    user.avatar_file_name = params["yourfilename"].original_filename
-    user.avatar_content_type = params["yourfilename"].content_type
-    user.avatar_file_size = params["yourfilename"].size
-    user.save!    
-    render :text => "success!"
+    user = current_user                  
+    magicks = Magick::Image.from_blob(params["yourfilename"].read)            
+    magicks.first.change_geometry!("54x50!") {|cols,rows,img| img.resize!(54,50)}    
+    user.avatar = Avatar.create(:user_id => user["id"]) if user.avatar.nil?
+    user.avatar["image"] = magicks.first.to_blob
+    user.avatar["content_type"] = params["yourfilename"].content_type
+    user.avatar.save!
+    render :text => "success"
   end
   
   def add_game_to_list

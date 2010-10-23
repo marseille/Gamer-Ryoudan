@@ -1,0 +1,12 @@
+<div class="right">        
+  <h4>Latest changes</h4>
+  <% latest_commits = recent_changes %>
+  <h3><%=latest_commits.first["committed_date"] %></h3>
+  <p><%=latest_commits.first["message"]%></p>
+  <br />
+  <h3><%=latest_commits[1]["committed_date"] %></h3>
+  <p><%=latest_commits[1]["message"] %></p>
+  <br />
+  <h3><%=latest_commits[2]["committed_date"] %></h3>
+  <p><%= latest_commits[2]["message"] %></p>
+</div>

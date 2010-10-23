@@ -462,6 +462,31 @@ p {
 	vertical-align:text-top;
 }
 
+.change_avatar {
+	padding-top:40px;
+	padding-bottom:20px;
+}
+
+.current_avatar {
+	position:relative;
+	left:300px;
+	top:43px;
+}
+
+.avatar_form {
+	position:relative;
+	top:-35px;
+}
+
+.instructions {
+	width:280px;
+}
+
+.success_label {
+	color:green;
+	font-weight:bold;	
+}
+
 .li_home {
 	margin-top:5px;
 	margin-left:20px;
@@ -601,6 +626,10 @@ p {
 	padding-bottom:15px;
 }
 
+.commit_message {
+	width:91%; 
+}
+
 /* BUTTONS */
 
 .buttons a, .buttons button{
@@ -736,26 +765,3 @@ button.positive, .buttons a.positive{
 	max-width:147px;
 	text-align:center;
 }
-
-
-
-
-
-
-
-
-
- .bar {
-    width: 300px;
-  }
-  
-  #progress {
-    background: #eee;
-    border: 1px solid #222;
-    margin-top: 20px;
-  }
-  #progressbar {
-    width: 0px;
-    height: 24px;
-    background: #333;
-  }
