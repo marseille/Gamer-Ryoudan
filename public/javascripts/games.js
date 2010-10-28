@@ -40,18 +40,9 @@ $(function() {
     var name = $(event.target).attr("name")
     show_hide(name)
   });
-  
-  $(".number_of_levels").live("keyup", function(event) {
-    var number_of_levels = $("#levels").val()
-    $("#last_level_label").text(number_of_levels)
-  });
-  
+    
   $(".set_difficulty").live("click", function(event) {    
     set_attribute(event, "difficulty")
-  });
-
-  $(".set_current_level").live("click", function(event) {
-    set_attribute(event, "current_level")
   });
   
   $(".set_hours_played").live("click", function(event) {
@@ -66,13 +57,6 @@ $(function() {
     check_save_attribute(event, "difficulty")
   });
   
-  $(".save_current_level").live("click", function(event) {    
-    var a = $(event.target).attr("selector_id")
-    var max_level = $("#"+a+"_max_level").val()
-    $("#"+a+"_div").attr("max_level", max_level)
-    check_save_attribute(event, "current_level")
-  });
-  
   $(".save_hours_played").live("click", function(event) {
     check_save_attribute(event, "hours_played")
   });
@@ -83,12 +67,6 @@ $(function() {
   
   $(".save_difficulty_shortcut").live("keyup", function(event) {
     check_save_attribute(event, "difficulty")
-  });
-  
-  $(".save_current_level_shortcut").live("keyup", function(event) {
-    if(event.type == "keyup" && event.keyCode == 13) {        
-      check_save_attribute(event, "current_level")
-    }
   });
   
   $(".save_hours_played_shortcut").live("keyup", function(event) {
@@ -134,13 +112,8 @@ function save_attribute(event, field) {
   var div_id = $(event.target).attr("selector_id")
   if($("#"+div_id+"_input").val() == ""){    
     var previous = $("#"+div_id+"_div").data("previous")
-    $("#"+div_id + "_div").empty()
-    var reset_level = $("#"+div_id + "_div").data("previous_level")    
-    if(reset_level){
-      $.each(reset_level, function(idx,key){$("#"+div_id+"_div").append(key)})      
-    } else {
-      $("#"+div_id + "_div").append("<a href='#' selector_id='"+ div_id +"' class='set_"+field+" red_text'>" + previous + " </a>")  
-    }
+    $("#"+div_id + "_div").empty()    
+    $("#"+div_id + "_div").append("<a href='#' selector_id='"+ div_id +"' class='set_"+field+" red_text'>" + previous + " </a>")      
   } else {
     var new_value = $("#"+div_id+"_input").val()        
     var game = $("#"+div_id+"_div").attr("name")
@@ -152,15 +125,8 @@ function save_attribute(event, field) {
   }
 }
 
-function get_new_value_html(field,div_id,json) {
-  if(field == "current_level") {        
-    var link = "<a href='#' selector_id="+div_id+" class='set_current_level level_align'>" + json[0] + "</a>"        
-    link += "<label class=level_align> / </label>"
-    link += "<label id="+div_id+"_max_level class=left_align>"+json[1]+"</label>"    
-    return link
-  } else {    
-    return "<a href='#' selector_id="+ div_id +" class=set_"+field+" left_align>"+json+"</a>"
-  }
+function get_new_value_html(field,div_id,json) {  
+  return "<a href='#' selector_id="+ div_id +" class=set_"+field+" left_align>"+json+"</a>"
 }
 
 function show_hide(div_to_show) {    

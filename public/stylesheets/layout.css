@@ -22,6 +22,10 @@ author:  Luka Cvrk (www.solucija.com)
 	padding-left: 9px;	
 }
 
+.future_change {
+	margin-left:25px;
+}
+
 .add_nonexistent_game {
 	float:left;
 	margin-left:60px;
@@ -749,10 +753,6 @@ button.positive, .buttons a.positive{
 }
 
 .difficulty_row {
-	max-width:147px;
-}
-
-.level_row {
 	max-width:147px;
 }
 

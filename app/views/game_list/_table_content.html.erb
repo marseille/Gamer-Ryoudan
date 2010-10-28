@@ -6,15 +6,7 @@
     <div name=<%= name%> id=<%= name+"_difficulty_div" %>>            
       <%= link_to(game[1]["difficulty"], {}, {:selector_id => name + "_difficulty", :class => "set_difficulty left_align red_text", :href=>"#"}) %>       
     </div>
-  </td>
-  <td class="list_row level_row"> 
-    <div name=<%=name%> id=<%= name + "_level_div" %>>
-      <% str = game[1]["current_level"].to_s %> 
-      <%= link_to  str, {}, {:selector_id => name +"_level", :class => "set_current_level level_align red_text"} %>     
-      <%= label_tag :slash, " / ", :class => "level_align" %>
-      <%= label_tag :max_level, game[0]["levels"].to_s, :id => name + "_max_level"%>
-    </div>
-  </td>
+  </td>  
   <td class="list_row hours_played_row">
     <div name=<%=name%> id=<%= name + "_hours_played_div" %>>
       <%= link_to game[1]["hours_played"], {}, {:selector_id => name + "_hours_played", :class => "set_hours_played red_text"} %>

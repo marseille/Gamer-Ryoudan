@@ -3,11 +3,8 @@
   <%= label_tag(:hours_played, "Hours Played:") %><br>
   <%= text_field_tag(:hours_played, "", :size => 15) %> <br><br>
   <%= label_tag(:difficulty, "Difficulty:") %><br>
-  <%= text_field_tag(:difficulty, "", :size => 15) %> <br><br>    
-  <%= label_tag(:current_level, "current level") %> <br>
-  <%=text_field_tag(:current_level, "", :size => 1) %>
-  <%=label_tag(:slash, "/", :style => "font-size:1.6") %>
-  <b><%= label_tag(:levels, @game["levels"], {:id => "last_level_label"}) %></b> <br><br>
+  <%= text_field_tag(:difficulty, "", :size => 15) %> <br><br>        
+  <%=label_tag(:slash, "/", :style => "font-size:1.6") %>  
   <%= label_tag("score:") %> <br>
   <%= text_field_tag(:score,  "",:size => 15) %> <br><br>
   <%= label_tag("status:") %>

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101022030225) do
+ActiveRecord::Schema.define(:version => 20101027230411) do
 
   create_table "avatars", :force => true do |t|
     t.integer "user_id",                            :null => false
@@ -29,19 +29,17 @@ ActiveRecord::Schema.define(:version => 20101022030225) do
     t.string   "difficulty"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "status",                         :null => false
+    t.string   "status",                        :null => false
     t.integer  "score"
-    t.integer  "current_level"
     t.integer  "user_id"
     t.integer  "game_id"
-    t.string   "notes",         :default => "-"
+    t.string   "notes",        :default => "-"
   end
 
   create_table "games", :force => true do |t|
     t.string   "platform",   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "levels",     :null => false
     t.string   "name",       :null => false
   end
 
