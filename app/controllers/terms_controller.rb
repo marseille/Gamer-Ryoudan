@@ -1,3 +1,2 @@
-class TermsController < ApplicationController
-  before_filter :require_user, :only => []
+class TermsController < ApplicationController  
 end

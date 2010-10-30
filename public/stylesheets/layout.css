@@ -16,7 +16,6 @@ author:  Luka Cvrk (www.solucija.com)
 	padding-bottom:10px;
 }
 
-
 .leftFloat {
 	float:left;
 	padding-left: 9px;	
@@ -52,7 +51,7 @@ author:  Luka Cvrk (www.solucija.com)
 .spiky_cool_thing {
 	z-index:-1;
 	position:absolute;
-	top:-183px;
+	top:-205px;
 	left:338px;	
 }
 
@@ -263,6 +262,11 @@ p {
 	margin-top:220px;
 }
 
+.third_line {
+	height:200px;
+	border-bottom:1px solid #ddd;	
+}
+
 .line_second_desc {
 	border-top:1px solid #ddd;
 	padding-top:25px;
@@ -274,6 +278,10 @@ p {
 
 .bleh { 
 	margin-top:-40px;
+}
+
+.pad_up {
+	padding-top:50px;
 }
 
 #content { 
@@ -291,6 +299,8 @@ p {
 	background: url(../images/redbg.gif) repeat-x;
 	padding: 100px 25px 15px;
 	margin: -46px 0px; 
+	position:relative;
+	top:-21px;
 }
 
 #logo h1 { 
@@ -396,6 +406,8 @@ p {
 	float:left;
 	margin-left:5px;
 	height:66px;
+	position:relative;
+	top:-21px;
 }
 
 #menu { 
@@ -604,6 +616,12 @@ p {
 	left: 89px;
 	float:right;
 	margin-right:10px;
+}
+
+.search_button {
+	position:relative;
+	bottom:38px;
+	left:1060px;
 }
 
 .saved_div {

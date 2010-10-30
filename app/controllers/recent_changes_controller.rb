@@ -1,3 +1,2 @@
-class RecentChangesController < ApplicationController
-  before_filter :require_user, :only => []  
+class RecentChangesController < ApplicationController  
 end

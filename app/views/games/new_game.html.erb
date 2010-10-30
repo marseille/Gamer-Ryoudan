@@ -1,5 +1,6 @@
 <%= javascript_include_tag "jquery.quickselect.js" %>
 <%= javascript_include_tag "games.js" %>
+<%if current_user %>
 <div class="something">
   <h3> Add a game to the database!! </h3>
 <%= render :partial => "add_game_db" %>
@@ -14,6 +15,10 @@
   <% @load_page = true %>
   <%= render :partial => "shared/search"%>
 </div>
-<br>
+<% else %>
+  <%= label_tag :should_be_logged_in, "You need to be logged in to add games", :class => "red" %>
+  <% render :partial => "user_sessions/login" %>  
+<% end %>
+<br />
 <label class="list_search"><%= link_to "Back to your list", :controller => "game_list" %></label>
 <br /><br />

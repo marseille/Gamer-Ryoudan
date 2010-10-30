@@ -1,15 +1,17 @@
 class GamesController < ApplicationController  
+  before_filter :require_user, :only => [:add_game, :new_game]
   
   def new_game
     render :file => "/games/new_game_generic.html.erb", :layout => "application"
   end
   
   def search_game
-    @games = Game.name_like(params["q"]) 
-    platform_result = Game.platform_like(params["q"])
-    if !platform_result.empty? && (@games & platform_result).empty?      
-      @games.push(platform_result)
-    end    
+    @games = Game.name_or_platform_like(params["q"])[0..20]
+    #@games = Game.name_like(params["q"])[0..20]
+    #platform_result = Game.platform_like(params["q"])
+    #if !platform_result.empty? && (@games & platform_result).empty?      
+#      @games.push(platform_result)
+    #end    
     render :json => @games.flatten.collect {|game| [game["name"] + " ["+game["platform"]+"]", game["platform"]]}
   end
   
@@ -18,10 +20,11 @@ class GamesController < ApplicationController
     if params["search_tag"].include?("[")
       name = params["search_tag"].split("[").first
       platform = params["search_tag"].split("[")[1].gsub(/["\[\]"]/,"")    
-      @games = [Game.find_by_name_and_platform(name,platform)]      
+      @games = [Game.find_by_name_and_platform(name,platform)]
     else 
       @games = Game.name_or_platform_like(params["search_tag"])
     end
+    @games = @games[0..20]
     @game_information = GameInformation.new
     
     #still empty? that game must not exist yet.

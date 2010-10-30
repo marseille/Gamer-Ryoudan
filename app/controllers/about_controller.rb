@@ -1,4 +1,3 @@
-class AboutController < ApplicationController
-  before_filter :require_user, :only => []
+class AboutController < ApplicationController  
 end
 

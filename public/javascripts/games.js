@@ -76,10 +76,9 @@ $(function() {
   $(".save_notes_shortcut").live("keyup", function(event) {
     check_save_attribute(event, "notes")
   });
-  $("input#search_tag").quickselect({ajax:"/games/search_game/"})
-  $("input#search_field").quickselect({ajax:"/games/search_game/"})
+  $("input#search_tag").quickselect({ajax:"/games/search_game/", minChars: 3, width:300})
+  $("input#search_field").quickselect({ajax:"/games/search_game/", minChars: 3, width:300})
 })
-
 
 
 function check_save_attribute(event, field) {

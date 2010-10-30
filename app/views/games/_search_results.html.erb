@@ -1,6 +1,7 @@
 <% @games.each do |game| %>    
   <% @game = game %>
-  <% added =  !([game] & current_user.games).empty? %>
+  <% added = false %>  
+  <% added =  !([game] & current_user.games).empty? if current_user%>      
   <%= render :partial => "games/game", :locals => {:added => added}%>
   <% @no_spaces = @game.name.gsub(/ /,'_') %>
   <div id=<%="'add_"+@no_spaces+"_div'"%> class="add_game_partial">

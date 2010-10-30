@@ -6,7 +6,7 @@ require 'ruby-github'
 class ApplicationController < ActionController::Base
   protect_from_forgery :except => [:add_game_to_list]
   helper :all # include all helpers, all the time
-  before_filter :require_user, :except => []  
+  #before_filter :require_user, :except => []  
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user, :recent_changes
 

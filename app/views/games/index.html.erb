@@ -10,7 +10,9 @@
   <div class=push_right_small>
     <%= render :partial => "shared/search"%>
     <br>
-    <label class=list_search><%= link_to "Back to your list", :controller => "game_list" %></label></b>
+    <label class=list_search>
+      <%= link_to "Back to your list", :controller => "game_list" if current_user%>
+    </label>    
     <br /> <br />
   </div>
 </div>

@@ -1,6 +1,7 @@
 <div class="login">
   <label class="login_label"> Member Login</label>
   <br /><br />
+  <% @user_session = UserSession.new if @user_session.nil? %>
   <% form_for @user_session, :url => "/user_sessions/create" do |f| %>
     <%= f.error_messages %>
     <br />

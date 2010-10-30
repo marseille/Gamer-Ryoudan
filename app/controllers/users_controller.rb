@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]  
-  before_filter :require_user, :only => [:show, :edit, :update]
+  before_filter :require_user, :only => [:show, 
+                                                          :edit, 
+                                                          :update,
+                                                          :save_attribute,
+                                                          :code_image,
+                                                          :save_avatar,
+                                                          :add_game_to_list,
+                                                          :remove_game_from_list]
   protect_from_forgery :only => []
   require 'RMagick'
   

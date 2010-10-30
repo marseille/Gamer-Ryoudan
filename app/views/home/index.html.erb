@@ -1,9 +1,17 @@
 <%= javascript_include_tag "gamer_ryoudan.js" %>
 <%= javascript_include_tag "jquery.fileUploader.js" %>
-<div id="pitch_home">      
-  <%= render :partial => "home/logged_in_pitch" %>
-  <%= render :partial => "home/profile_widget" %>
-</div>	
-<%= render :partial => "home/home_search" %>    
-<div id="search-results" class="search_results" >
-</div>
+<% if current_user %>
+  <div id="pitch_home">      
+    <%= render :partial => "home/logged_in_pitch" %>
+    <%= render :partial => "home/profile_widget" %>
+  </div>	
+  <%= render :partial => "home/home_search" %>    
+  <div id="search-results" class="search_results" >
+  </div>
+<% else %>
+  <%= render :partial => "user_sessions/main_description" %>
+  <%= render :partial => "user_sessions/more_description" %>
+  <div class=third_line></div>
+  <%= render :partial => "user_sessions/lower_left_pitch" %>
+  <%= render :partial => "recent_changes/latest_changes" %>		  
+<% end %>

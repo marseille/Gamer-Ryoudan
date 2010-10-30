@@ -1,3 +1,2 @@
-class ContactController < ApplicationController
-  before_filter :require_user, :only => []
+class ContactController < ApplicationController  
 end
