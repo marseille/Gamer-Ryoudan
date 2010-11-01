@@ -1,7 +1,7 @@
 <body>
 	<div id="content">		
-    <p id="top"><label class=tagline> An outlandish brigade of gamer-awesomeness </label></p>		
-    <% form_tag(:method => "GET", :load_page => true, :controller => "games", :action => "find_game") do %>                  
+    <p id="top"><label class=tagline> An outlandish brigade of gamer-awesomeness </label></p>		    
+    <% form_tag(:controller => "games", :action => "find_game") do %>                        
       <%= text_field_tag :search_tag,{}, {:class => "search_field", :id => "search_field"} %>    
       <%= label_tag :search_label, "Search!", :class => "search_label" %>                   
       <input type="image" src="/images/images.png" border=0 class="search_button", alt="search button">        

@@ -1,6 +1,8 @@
 <%= javascript_include_tag "games.js" %>
 <h1><h3>Search Results:</h3></h1>
-<br />
+<br /><br /><br /><br />
+<%= label_tag :search_count, "Found #{@result_count} games. Showing #{@start_interval} - #{@end_interval}" %>
+<br /><br />
 <%= render :partial => "games/search_results" %>
 <div class="clear">
   <br><br>

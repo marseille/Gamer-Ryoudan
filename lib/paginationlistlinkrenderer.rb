@@ -1,0 +1,34 @@
+class PaginationListLinkRenderer < WillPaginate::LinkRenderer
+
+  def to_html    
+    links = @options[:page_links] ? windowed_links : []
+    links.unshift(page_link_or_span(@collection.previous_page, 'previous', @options[:previous_label]))
+    links.push(page_link_or_span(@collection.next_page, 'next', @options[:next_label]))
+    html = links.join(@options[:separator])
+    @options[:container] ? @template.content_tag(:ul, html, html_attributes) : html
+  end
+
+protected
+  def windowed_links
+    visible_page_numbers.map { |n| page_link_or_span(n, (n == current_page ? 'current' : nil)) }
+  end
+
+  def page_link_or_span(page, span_class, text = nil)
+    text ||= page.to_s
+    if page && page != current_page
+      page_link(page, text, :class => "#{span_class} home_search ajax_search")
+    else
+      page_span(page, text, :class => "#{span_class} home_search")
+    end
+  end
+
+  def page_link(page, text, attributes = {})        
+    #default: @template.content_tag(:li, @template.link_to(text, url_for(page)), attributes)                
+    text = current_page if text == "Next >>"
+    @template.content_tag(:li, @template.link_to(text, "#", :page => page), attributes)
+  end
+
+  def page_span(page, text, attributes = {})    
+    @template.content_tag(:li, text, attributes)
+  end
+end

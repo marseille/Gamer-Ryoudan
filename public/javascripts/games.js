@@ -1,6 +1,15 @@
 $(function() { 
   $("#add_to_list").attr("checked", false)  
 
+  $(".change").live("change", function(event) {
+    event.preventDefault()
+    event.preventDefault()
+    event.preventDefault()
+    event.preventDefault()
+    console.log("whoa!")
+  })
+  
+  
   $(".add_to_list_submit").live("click", function(event) {    
     var div_id = "add_" + $(event.target).attr("div_prefix") + "_div"
     var form = {}    
@@ -147,10 +156,9 @@ function show_hide(div_to_show) {
 //change this to a jquery bind event
 function find_game(field_id) {
   var game = $("#"+field_id).val()
-  Rails.call(Rails.methods["find_game"], "html", "GET", {search_tag : game}, function(json) {
+  Rails.call(Rails.methods["find_game"], "html", "GET", {search_tag : game, home_search : "true"}, function(json) {
     $("#search-results").empty()
-    $("#search-results").hide()    
-    $("#search-results").append("<h3> Search results: </h3><br /><br /><br />")
+    $("#search-results").hide()        
     $("#search-results").append(json)    
     $("#search-results").animate({width: 'show', duration : '3000' });
   });  

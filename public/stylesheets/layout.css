@@ -16,6 +16,13 @@ author:  Luka Cvrk (www.solucija.com)
 	padding-bottom:10px;
 }
 
+.home_search {
+	list-style:none;	
+	float:left;
+	padding-right:4px;
+	padding-top:4px;
+}
+
 .leftFloat {
 	float:left;
 	padding-left: 9px;	
@@ -73,7 +80,7 @@ author:  Luka Cvrk (www.solucija.com)
 .widget {
 	position:relative;
 	left:664px;
-	top:-130px;
+	top:-185px;
 	z-index:-1;
 	width:323px;
 }

@@ -1,4 +1,6 @@
-<% @games.each do |game| %>    
+<br /><br />
+<h3> Search results: </h3>
+<% @game_results.each do |game| %>
   <% @game = game %>
   <% added = false %>  
   <% added =  !([game] & current_user.games).empty? if current_user%>      
@@ -13,3 +15,12 @@
   </div>  
   <br />
 <% end %>
+<br />
+<div class=clear>
+<%= "More results" %>
+<%= will_paginate @game_results, 
+                             :search_tag => @search_tag, 
+                             :home_search=> @home_search,
+                             :seperator => " ", 
+                             :renderer => @renderer %>
+</div>
