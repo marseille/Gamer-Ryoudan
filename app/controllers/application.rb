@@ -4,15 +4,26 @@ require 'pp'
 require 'ruby-github'
 
 class ApplicationController < ActionController::Base
-  protect_from_forgery :except => [:add_game_to_list]
-  helper :all # include all helpers, all the time
-  #before_filter :require_user, :except => []  
+  protect_from_forgery :except => [:add_game_to_list]  
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user, :recent_changes
 
-  private 
+  private   
+  def log_error(exception) 
+    super(exception)
+    begin
+      Emailer.deliver_error(request.request_uri, exception.message)
+      Rails.logger.error(exception)
+      Rails.logger.error(exception.backtrace)    
+    rescue => e
+      Rails.logger.error(e)
+      Rails.logger.error(e.backtrace)    
+    end
+  end
   
-  def recent_changes
+  def recent_changes    
+    pp "WTF!?!?"
+    1 / 0
     user = GitHub::API.user("marseille")
     latest_commits = user.repositories.first.commits[0..9]    
   end
@@ -27,7 +38,7 @@ class ApplicationController < ActionController::Base
     @current_user = current_user_session && current_user_session.record
   end
   
-  def require_user
+  def require_user    
     unless current_user
       store_location
       flash[:notice] = "You must be logged in to access this page"

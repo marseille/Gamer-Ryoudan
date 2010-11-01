@@ -22,3 +22,13 @@ config.action_controller.perform_caching             = true
 
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
+
+config.action_mailer.smtp_settings = {
+    :address              => 'smtp.gmail.com',
+    :port                 => 587,
+    :domain               => 'gmail.com',
+    :user_name            => 'do.not.reply.gr@gmail.com',
+    :password             => 'gamer_ryoudan_donotreply',
+    :authentication       => 'login',
+    :enable_starttls_auto => true
+  }

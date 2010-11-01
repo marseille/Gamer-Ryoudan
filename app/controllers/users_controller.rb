@@ -93,6 +93,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       flash[:notice] = "Account registered!"
+      Emailer.deliver_created_account(@user["email"], @user["login"], @user["password"])
       redirect_back_or_default account_url
     else
       render :action => :new
