@@ -27,7 +27,7 @@ Rails::Initializer.run do |config|
    config.gem 'mysql', :version => "2.8.1"
    config.gem 'rails', :version => "2.2.3"
    config.gem 'ruby-github'
-   config.gem 'rmagick', :version => "2.13.1" #need some special libraries for this one
+   #config.gem 'rmagick', :version => "2.13.1" #need some special libraries for this one
    config.gem 'will_paginate'
    
   # Only load the plugins named here, in the order given. By default, all plugins 
