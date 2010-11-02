@@ -1,0 +1,6 @@
+config.gem 'authlogic'
+config.gem 'mysql'
+config.gem 'rails'
+config.gem 'ruby-github'
+config.gem 'rmagick'
+config.gem 'will_paginate'
