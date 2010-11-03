@@ -493,7 +493,7 @@ p {
 .current_avatar {
 	position:relative;
 	left:300px;
-	top:43px;
+	top:61px;
 }
 
 .avatar_form {
@@ -503,6 +503,7 @@ p {
 
 .instructions {
 	width:280px;
+	padding-top:20px
 }
 
 .success_label {

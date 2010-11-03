@@ -22,20 +22,19 @@ class UsersController < ApplicationController
   
   def code_image     
     user = current_user
-    @image = user.avatar["image"]    
-    send_data(@image, :type => user.avatar["content_type"], 
+    @image = user.avatar    
+    send_data(@image.value, :type => @image.content_type, 
                                    :filename => user["login"]+"_avatar", 
                                    :disposition => 'inline')
   end
   
   def save_avatar    
     user = current_user                  
+    filename = "Avatars/"+user["login"] +"_avatar.png"
     magicks = Magick::Image.from_blob(params["yourfilename"].read)            
     magicks.first.change_geometry!("54x50!") {|cols,rows,img| img.resize!(54,50)}    
-    user.avatar = Avatar.create(:user_id => user["id"]) if user.avatar.nil?
-    user.avatar["image"] = magicks.first.to_blob
-    user.avatar["content_type"] = params["yourfilename"].content_type
-    user.avatar.save!
+    AWS::S3::Base.establish_connection!(:access_key_id => ENV["AMAZON_ACCESS_ID"], :secret_access_key => ENV["AMAZON_ACCESS_KEY"])    
+    AWS::S3::S3Object.store(filename, magicks.first.to_blob, 'gamer-ryoudan-avatars')        
     render :text => "success"
   end
   

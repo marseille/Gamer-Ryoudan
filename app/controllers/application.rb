@@ -21,9 +21,7 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def recent_changes    
-    pp "WTF!?!?"
-    1 / 0
+  def recent_changes        
     user = GitHub::API.user("marseille")
     latest_commits = user.repositories.first.commits[0..9]    
   end

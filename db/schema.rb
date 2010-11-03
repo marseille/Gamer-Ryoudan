@@ -9,13 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101027230411) do
-
-  create_table "avatars", :force => true do |t|
-    t.integer "user_id",                            :null => false
-    t.binary  "image",        :limit => 2147483647
-    t.string  "content_type"
-  end
+ActiveRecord::Schema.define(:version => 20101027224341) do
 
   create_table "game_information_maps", :force => true do |t|
     t.integer  "game_id",    :null => false
