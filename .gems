@@ -1,7 +1,7 @@
+aws-s3
 rails -v 2.2.3
 authlogic
 mysql
 ruby-github
 rmagick
 will_paginate
-aws/s3
