@@ -1,7 +1,9 @@
-<h1>Register</h1>
+<h3>Gamer Ryoudan Registration</h3><div class=clear></div>
 
 <% form_for @user, :url => account_path do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
+  <br />
   <%= f.submit "Register" %>
 <% end %>
+<br /><br />

@@ -11,7 +11,7 @@ var Rails = {
       "data": params,
       "success": function(data) { success_callback(data) },
       "error": function (event, XMLHttpRequest, ajaxOptions, thrownError)  {
-        alert("problems")
+        
       },
       "processData":"false",
       "contentType":"application/json"

@@ -45,4 +45,18 @@ class Emailer < ActionMailer::Base
 	 
 	              eos
   end
+  
+  def game_request(game, username)
+    recipients ["gamer.ryoudan@gmail.com"]
+    from ["do.not.replygr@gmail.com"]
+    subject "Add game request to the gamer-ryoudan!"
+    body <<-eos
+    #{username} has requested that you add this nonexistent
+    game to the library of awesomeness: 
+    #{game}
+    
+    WOOT
+    
+    eos
+  end
 end
