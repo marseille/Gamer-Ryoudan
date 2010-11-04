@@ -24,8 +24,7 @@ Rails::Initializer.run do |config|
   # They can then be installed with "rake gems:install" on new installations.
   # You have to specify the :lib option for libraries, where the Gem name (sqlite3-ruby) differs from the file itself (sqlite3)  
    config.gem 'authlogic', :version => "2.1.6"
-   config.gem 'mysql', :version => "2.8.1"
-   config.gem 'rails', :version => "2.2.3"
+   config.gem 'mysql', :version => "2.8.1"   
    config.gem 'ruby-github'
    #config.gem 'rmagick', :version => "2.13.1" #need some special libraries for this one
    config.gem 'will_paginate'

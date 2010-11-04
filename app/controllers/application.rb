@@ -22,8 +22,8 @@ class ApplicationController < ActionController::Base
   end
   
   def recent_changes        
-    user = GitHub::API.user("marseille")
-    latest_commits = user.repositories.first.commits[0..9]    
+    commits = GitHub::API.new({"use_ssl" => true}).commits("marseille","gamer-ryoudan")
+    latest_commits = commits[0..9]    
   end
   
   def current_user_session
