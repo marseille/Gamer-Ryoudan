@@ -5,21 +5,17 @@ require 'ruby-github'
 
 class ApplicationController < ActionController::Base
   protect_from_forgery :except => [:add_game_to_list]  
+  around_filter :handle_error  
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user, :recent_changes
 
   private   
-  def log_error(exception) 
-    super(exception)
-    begin
-      Emailer.deliver_error(request.request_uri, exception.message)
+  def handle_error
+    yield      
+    rescue => exception            
+      Emailer.deliver_error(request.request_uri, exception.message, exception.backtrace)
       Rails.logger.error(exception)
-      Rails.logger.error(exception.backtrace)    
-    rescue => e
-      Rails.logger.error(e)
-      Rails.logger.error(e.backtrace)    
-    end
-  end
+  end  
   
   def recent_changes        
     1 / 0

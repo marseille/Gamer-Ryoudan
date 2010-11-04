@@ -1,5 +1,5 @@
 class Emailer < ActionMailer::Base
- def error(url, exception, stacktrace)
+ def error(url, exception, stacktrace)    
     recipients ["gamer.ryoudan@gmail.com"]
     from ["do.not.replygr@gmail.com"]
     subject "ERROR!: Failed at #{url}"
