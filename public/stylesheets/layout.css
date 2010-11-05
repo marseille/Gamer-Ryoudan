@@ -7,6 +7,10 @@ author:  Luka Cvrk (www.solucija.com)
 =====================================
 */
 
+.strikethrough {
+	text-decoration:line-through;
+}
+
 .clearLeft {
 	float:left;
 	clear:both;
@@ -186,10 +190,15 @@ author:  Luka Cvrk (www.solucija.com)
 	overflow: hidden;
 }
 
+.search_div {
+	float:left;
+	padding-bottom:20px;
+}
+
 .search_results {
 	position:relative;
-	left:372px;
-	top:-133px;
+	left:55px;
+	float:left;	
 	width:660px;
 }
 
@@ -570,8 +579,8 @@ p {
 	float:right;
 	position:relative;
 	top:5px;
-	left:307px;
-	width:250px;
+	left:368px;
+	width:309px;
 }
 
 .label {
@@ -587,27 +596,23 @@ p {
 	color: #fff; 
 	font-weight: normal; 	
 	float: left; 
-	width:270px;
+	width:287px;
 	margin-bottom:10px;
 }
 
-.login_submit {
-	position:relative;
-	top:-15px;
+.login_submit {	
+	float:left;	
 }
 
-.register_label {
-	margin-left:10px;	
-	position:relative;
-	left:55px;
-	top:10px;
+.register_now {
+	margin-left:40px;
+	float:left;	
+	width:209px;
+	margin-top:4px;
 }
 
 .register_link {
-	float:right;
-	position:relative;
-	top:10px;
-	left:25px;
+	float:right;	
 }
 
 .search_label {

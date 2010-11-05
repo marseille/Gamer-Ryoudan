@@ -78,13 +78,13 @@ class GamesController < ApplicationController
         #GameInformation.create(params["game_information"])      
         #GameInformationMap.create(:user_id => user["id"], :game_id => game["id"])
       end      
-      Emailer.deliver_game_request(params, current_user)
+      Emailer.deliver_game_request(params, current_user["login"])
       render :json => "Your request has been submitted! Thank you so much for your support!!".to_json if !params["home_search"] 
       #render :json => "added to list and db".to_json if !params["home_search"] 
       #render :json => "added to list and db".to_json if !params["home_search"] 
       render :file => "/games/new_game_generic.html.erb", :layout => "application" if params["home_search"]
     else
-      Emailer.deliver_game_request(params, current_user)
+      Emailer.deliver_game_request(params, current_user["login"])
       render :json => "Your request has been submitted! Thank you so much for your support!!".to_json if !params["home_search"]            
       #render :json => "added to db".to_json if !params["home_search"]            
       render :file => "/games/new_game_generic.html.erb", :layout => "application" if params["home_search"]

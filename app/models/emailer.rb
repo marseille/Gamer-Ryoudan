@@ -53,9 +53,19 @@ class Emailer < ActionMailer::Base
     body <<-eos
     #{username} has requested that you add this nonexistent
     game to the library of awesomeness: 
-    #{game}
     
-    WOOT
+    name:#{game['game']['name']}
+    platform:#{game['game']['platform']}
+    
+    hours played: #{game['game_information']['hours_played']}
+    difficulty: #{game['game_information']['difficulty']}
+    score: #{game['game_information']['score']}
+    status: #{game['game_information']['status']
+    
+          
+    THAT IS ALL
+    
+    M
     
     eos
   end
