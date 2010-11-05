@@ -23,6 +23,8 @@ class UsersController < ApplicationController
   def code_image     
     user = current_user
     @image = user.avatar    
+    Rails.logger.info(@image)
+    Rails.logger.info(@image.value)
     send_data(@image.value, :type => @image.content_type, 
                                    :filename => user["login"]+"_avatar", 
                                    :disposition => 'inline')
