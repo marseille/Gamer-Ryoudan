@@ -60,13 +60,12 @@ class Emailer < ActionMailer::Base
     hours played: #{game['game_information']['hours_played']}
     difficulty: #{game['game_information']['difficulty']}
     score: #{game['game_information']['score']}
-    status: #{game['game_information']['status']
+    status: #{game['game_information']['status']}
     
           
     THAT IS ALL
     
-    M
-    
+    M    
     eos
   end
 end
