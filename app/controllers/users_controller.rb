@@ -18,17 +18,7 @@ class UsersController < ApplicationController
     game_info.save
     retval = game_info[params["field"]]    
     render :json => retval.to_json
-  end
-  
-  def code_image     
-    user = current_user
-    @image = user.avatar    
-    Rails.logger.info(@image)
-    Rails.logger.info(@image.value)
-    send_data(@image.value, :type => @image.content_type, 
-                                   :filename => user["login"]+"_avatar", 
-                                   :disposition => 'inline')
-  end
+  end  
   
   def save_avatar    
     user = current_user                  
