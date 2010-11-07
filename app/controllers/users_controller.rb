@@ -25,8 +25,15 @@ class UsersController < ApplicationController
     filename = "Avatars/"+user["login"] +"_avatar.png"
     magicks = Magick::Image.from_blob(params["yourfilename"].read)            
     magicks.first.change_geometry!("54x50!") {|cols,rows,img| img.resize!(54,50)}    
-    AWS::S3::Base.establish_connection!(:access_key_id => ENV["AMAZON_ACCESS_ID"], :secret_access_key => ENV["AMAZON_ACCESS_KEY"])    
-    AWS::S3::S3Object.store(filename, magicks.first.to_blob, 'gamer-ryoudan-avatars')        
+    AWS::S3::Base.establish_connection!(:access_key_id => ENV["AMAZON_ACCESS_ID"], :secret_access_key => ENV["AMAZON_ACCESS_KEY"])        
+    if AWS::S3::S3Object.exists? filename, 'gamer-ryoudan-avatars'
+      AWS::S3::S3Object.delete filename, 'gamer-ryoudan-avatars'
+      AWS::S3::S3Object.store(filename, magicks.first.to_blob, 'gamer-ryoudan-avatars')        
+      user["avatar_path"] = "https://s3.amazonaws.com/gamer-ryoudan-avatars/#{filename}"    
+    else          
+      user["avatar_path"] = "https://s3.amazonaws.com/gamer-ryoudan-avatars/Avatars/default.png"    
+    end
+    
     render :text => "success"
   end
   
@@ -81,11 +88,12 @@ class UsersController < ApplicationController
   end
   
   def create
-    @user = User.new(params[:user])
+    @user = User.new(params[:user])    
+    @user["avatar"] = "https://s3.amazonaws.com/gamer-ryoudan-avatars/Avatars/default.png"
     if @user.save
       flash[:notice] = "Account registered!"
       Emailer.deliver_created_account(@user["email"], @user["login"], @user["password"])
-      Emailer.deliver_new_signup(@user["email"], @user["login"])
+      Emailer.deliver_new_signup(@user["email"], @user["login"])      
       redirect_to "/home"
       #redirect_back_or_default account_url
     else

@@ -1,5 +1,4 @@
-class User < ActiveRecord::Base
-  require 'aws/s3'
+class User < ActiveRecord::Base  
   acts_as_authentic
   has_many :game_information_maps
   has_many :games, :through => :game_information_maps   
@@ -11,11 +10,11 @@ class User < ActiveRecord::Base
       matched_games.push(game) if match
     end
     matched_games
-  end  
-  
-  def avatar    
-    avatar_filename = "Avatars/"+self.login+"_avatar.png"        
+  end 
+
+  def avatar
+    avatar_filename = "Avatars/"+self.login+"_avatar.png"
     AWS::S3::Base.establish_connection!(:access_key_id => ENV["AMAZON_ACCESS_ID"], :secret_access_key => ENV["AMAZON_ACCESS_KEY"])
-    avatar_object = AWS::S3::S3Object.find avatar_filename, 'gamer-ryoudan-avatars'               
+    avatar_object = AWS::S3::S3Object.find avatar_filename, 'gamer-ryoudan-avatars'
   end
 end

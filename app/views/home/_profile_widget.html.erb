@@ -2,7 +2,8 @@
 <div class="widget">
   <%= label_tag :login, user["login"], :class => "acc_name" %>  
   <%= image_tag "backgroundedit.png", :border => 0 %>    
-  <%= image_tag("https://s3.amazonaws.com/"+current_user.avatar.path, :alt => "user_avatar", :class => "avatar") %>  
+  <%#= image_tag("https://s3.amazonaws.com/"+current_user.avatar.path, :alt => "error with avatar", :class => "avatar") %>  
+  <%= image_tag(user["avatar"], :alt => "error with avatar", :class => "avatar") %>  
   <div class="more_acc_info">
     <li>Currently playing: <b class=game_count><%= user.game_count("Campaigns").length %> </b></li>
     <li>Completed: <b class=game_count><%= user.game_count("Conquests").length %> </b></li> 
