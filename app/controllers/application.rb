@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   def handle_error
     yield      
     rescue => exception            
-      Emailer.deliver_error(request.request_uri, exception.message, exception.backtrace)
+      Emailer.deliver_error(request.request_uri,exception)
       Rails.logger.error(exception)
   end  
   

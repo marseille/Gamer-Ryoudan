@@ -1,9 +1,20 @@
 class Emailer < ActionMailer::Base
- def error(url, exception, stacktrace)    
+ def error(url, exception)    
     recipients ["gamer.ryoudan@gmail.com"]
     from ["do.not.replygr@gmail.com"]
     subject "ERROR!: Failed at #{url}"
-    body "#{exception} \n #{stacktrace}"
+    body %&<pre>
+    #{exception["message"]}
+    
+    <code>
+    #{exception['application_backtrace']}
+    
+    </code>
+    </pre>
+    &
+    
+    
+    
   end
   
   def created_account(to_email, username, password)
