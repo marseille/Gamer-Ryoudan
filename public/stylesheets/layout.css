@@ -7,6 +7,10 @@ author:  Luka Cvrk (www.solucija.com)
 =====================================
 */
 
+.email_label {
+	width: 955px;
+} 
+
 .results_label {
 	font-weight:bold;
 	padding-bottom:10px;	
