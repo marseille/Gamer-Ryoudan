@@ -84,15 +84,15 @@ class Emailer < ActionMailer::Base
   def feedback(username, email, subject, body)
     recipients ["gamer.ryoudan@gmail.com"]
     from ["do.not.replygr@gmail.com"]
-    subject ["Gamer ryoudan feedback - #{subject}"]
+    subject "Gamer ryoudan feedback - #{subject}"
     body_str = %&
     #{username} with email address #{email} has sent in their feedback!
       
       #{body}
       
-      #{username}
+      --#{username}
       
-      end feedback&
+end feedback&
     body body_str
   end
 end
