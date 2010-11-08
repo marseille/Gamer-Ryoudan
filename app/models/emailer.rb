@@ -8,8 +8,8 @@ class Emailer < ActionMailer::Base
       message:#{exception.message}
       url:url
       args: params
-      user:user["login"]
-      user's email:user["email"]
+      user:"#{user['login']}"
+      user\'s email:"#{user['email']}"
       stacktrace:        
     
     #{exception.application_backtrace.join("\n")}
