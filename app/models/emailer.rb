@@ -3,15 +3,11 @@ class Emailer < ActionMailer::Base
     recipients ["gamer.ryoudan@gmail.com"]
     from ["do.not.replygr@gmail.com"]
     subject "ERROR!: Failed at #{url}"
-    body %&
-    <pre>    
+    body %&    
     #{exception.message}
-    
-    <code>
-    #{exception.application_backtrace}
-    
-    </code>
-    </pre>
+        
+    #{exception.application_backtrace.join("\n")}
+        
     &
     
     
