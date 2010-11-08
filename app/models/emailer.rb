@@ -6,8 +6,8 @@ class Emailer < ActionMailer::Base
     body %&    
     The Gamer Ryoudan website has crashed with the following information:
       message:#{exception.message}
-      url:url
-      args: params
+      url:"#{url}"
+      args: "#{params}"
       user:"#{user['login']}"
       user\'s email:"#{user['email']}"
       stacktrace:        
@@ -15,9 +15,6 @@ class Emailer < ActionMailer::Base
     #{exception.application_backtrace.join("\n")}
         
     &
-    
-    
-    
   end
   
   def created_account(to_email, username, password)
