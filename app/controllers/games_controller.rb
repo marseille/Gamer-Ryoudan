@@ -15,15 +15,19 @@ class GamesController < ApplicationController
     render :json => @games.flatten.collect {|game| [game["name"] + " ["+game["platform"]+"]", game["platform"]]}
   end
   
-  def find_game        
+  def find_game            
+    pp params
     @game_information = GameInformation.new
     @game = Game.new    
     @search_tag = params["search_tag"]    
     @home_search = params["home_search"]        
     @games = parse_and_find_games(@search_tag)            
-    @result_count = @games.count
-    @start_interval = params["page"].to_i ||= 1; (@start_interval * 20) - 19
-    @end_interval = params["page"].to_i ||= 1; (@end_interval * 20)        
+    @result_count = @games.count    
+    @start_interval = (params["page"]) ? params["page"].to_i : 1    
+    @start_interval = (@start_interval * 20) - 19
+    @end_interval = (params["page"]) ? params["page"].to_i : 1
+    @end_interval = (@end_interval * 20)        
+    pp "start: #{@start_interval} end:#{@end_interval}"
     @game_results = @games.paginate({:page => params[:page], :per_page => 20})        
     (@games.empty?) ? render_for_new_game(@search_tag) : render_for_search_results(@home_search)    
   end
@@ -51,7 +55,7 @@ class GamesController < ApplicationController
   end
   
   def render_for_search_results(home_search)
-    if !home_search
+    if !home_search      
       @renderer = "WillPaginate::LinkRenderer"
       render :file => "games/index.html", :layout => "application"
     else        

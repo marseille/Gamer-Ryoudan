@@ -7,6 +7,29 @@ author:  Luka Cvrk (www.solucija.com)
 =====================================
 */
 
+.results_label {
+	font-weight:bold;
+	padding-bottom:10px;	
+}
+
+.errorExplanation {
+	width:215px;	
+}
+
+.errorExplanation h2 {
+	margin-left:10px;
+	padding-bottom:10px
+}
+
+.errorExplanation p {
+	margin-left:10px;
+	width:261px;
+}
+
+.errorExplanation ul {
+	margin-left:25px;
+}
+
 .comments_box {
 	width:300px;
 	height:100px;
@@ -586,6 +609,7 @@ p {
 	top:5px;
 	left:368px;
 	width:309px;
+	padding-bottom:20px;
 }
 
 .label {
