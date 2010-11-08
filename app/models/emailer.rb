@@ -1,11 +1,17 @@
 class Emailer < ActionMailer::Base
- def error(url, exception)        
+ def error(url, exception, user, params)        
     recipients ["gamer.ryoudan@gmail.com"]
     from ["do.not.replygr@gmail.com"]
     subject "ERROR!: Failed at #{url}"
     body %&    
-    #{exception.message}
-        
+    The Gamer Ryoudan website has crashed with the following information:
+      message:#{exception.message}
+      url:url
+      args: params
+      user:user["login"]
+      user's email:user["email"]
+      stacktrace:        
+    
     #{exception.application_backtrace.join("\n")}
         
     &

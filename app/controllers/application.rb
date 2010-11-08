@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   def handle_error
     yield      
     rescue => exception            
-      Emailer.deliver_error(request.request_uri,exception)
+      Emailer.deliver_error(request.request_uri,exception, current_user,params.collect{|param| param.first + " : " + param[1]})
       Rails.logger.error(exception)
   end  
   
