@@ -2,4 +2,4 @@ sudo apt-get install libmysqlclient-dev
 libmysqld-pic
 libmysqld-dev
 libmysql++-dev
-libmysql-cil-dev
+libmysql-cil-dev 

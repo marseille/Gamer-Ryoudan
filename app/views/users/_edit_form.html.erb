@@ -1,0 +1,13 @@
+<% if flash[:notice] %>
+  <h3><%= flash[:notice] %></h3>
+  <div class=clear></div>
+<% end %>
+<h1>Edit My Account</h1>
+<br />
+<%= link_to "My Profile", "/users/show" %>
+<br /><br />
+<% form_for @user, :url => "/users/update" do |f| %>
+  <%= f.error_messages %>
+  <%= render :partial => "form", :object => f %>
+  <%= f.submit "Update" %>
+<% end %>

@@ -10,6 +10,7 @@ class UsersController < ApplicationController
                                                           :remove_game_from_list]
   protect_from_forgery :only => []
   require 'RMagick'
+  require 'aws/s3'
   
   def save_attribute 
     user = current_user    
@@ -21,19 +22,25 @@ class UsersController < ApplicationController
   end  
   
   def save_avatar    
-    user = current_user                  
-    filename = "Avatars/"+user["login"] +"_avatar.png"
-    magicks = Magick::Image.from_blob(params["yourfilename"].read)            
-    magicks.first.change_geometry!("54x50!") {|cols,rows,img| img.resize!(54,50)}    
-    AWS::S3::Base.establish_connection!(:access_key_id => ENV["AMAZON_ACCESS_ID"], :secret_access_key => ENV["AMAZON_ACCESS_KEY"])        
-    if AWS::S3::S3Object.exists? filename, 'gamer-ryoudan-avatars'
-      AWS::S3::S3Object.delete filename, 'gamer-ryoudan-avatars'
-      AWS::S3::S3Object.store(filename, magicks.first.to_blob, 'gamer-ryoudan-avatars')        
-      user["avatar_path"] = "https://s3.amazonaws.com/gamer-ryoudan-avatars/#{filename}"    
-    else          
-      user["avatar_path"] = "https://s3.amazonaws.com/gamer-ryoudan-avatars/Avatars/default.png"    
+    begin
+      user = current_user            
+      filename = "Avatars/"+user["login"] +"_avatar.png"    
+      magicks = Magick::Image.from_blob(params["yourfilename"].read)                
+      magicks.first.change_geometry!("54x50!") {|cols,rows,img| img.resize!(54,50)}        
+      AWS::S3::Base.establish_connection!(:access_key_id => ENV["AMAZON_ACCESS_ID"], :secret_access_key => ENV["AMAZON_ACCESS_KEY"])                  
+      if AWS::S3::S3Object.exists?(filename, 'gamer-ryoudan-avatars')
+        AWS::S3::S3Object.delete(filename, 'gamer-ryoudan-avatars')
+        AWS::S3::S3Object.store(filename, magicks.first.to_blob, 'gamer-ryoudan-avatars', :access => :public_read)        
+        user["avatar_path"] = "https://s3.amazonaws.com/gamer-ryoudan-avatars/#{filename}"      
+      else          
+        user["avatar_path"] = "https://s3.amazonaws.com/gamer-ryoudan-avatars/Avatars/default.png"    
+      end
+      
+      user.save!
+    rescue => e 
+      Rails.logger.error(e)
+      Rails.logger.error(e.application_backtrace().join("/n"))
     end
-    
     render :text => "success"
   end
   
@@ -105,17 +112,15 @@ class UsersController < ApplicationController
     @user = @current_user
   end
 
-  def edit
+  def edit    
     @user = @current_user
   end
   
   def update
-    @user = @current_user # makes our views "cleaner" and more consistent
+    @user = @current_user # makes our views "cleaner" and more consistent    
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account updated!"
-      redirect_to account_url
-    else
-      render :action => :edit
-    end
+    end      
+    render :action => :edit    
   end
 end

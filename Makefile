@@ -1,7 +1,7 @@
 
 SHELL = /bin/sh
 
-#### Start of system configuration section. ####
+#### Start of system configuration section . ####
 
 srcdir = ../.rvm/src/ruby-1.9.2-rc2/ext/zlib
 topdir = /home/mars/.rvm/rubies/ruby-1.9.2-rc2/include/ruby-1.9.1
