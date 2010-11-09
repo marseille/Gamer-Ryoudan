@@ -47,12 +47,12 @@ class Emailer < ActionMailer::Base
     from ["do.not.replygr@gmail.com"]
     subject "#{username} has joined the Gamer Ryoudan!"
      body <<-eos  
-	  A person by the email, "#{to_email}", has registered an account
-    with the username: "#{username}"
+  A person by the email, "#{to_email}", has registered an account
+  with the username: "#{username}"
 
-    Long live the revolution!
+  Long live the revolution!
     
-	  http://gamer-ryoudan.heroku.com
+  http://gamer-ryoudan.heroku.com
 	 
 	              eos
   end
