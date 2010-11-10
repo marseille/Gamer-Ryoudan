@@ -78,7 +78,11 @@ $(function() {
   $(".save_notes_shortcut").live("keyup", function(event) {
     check_save_attribute(event, "notes")
   });
-  $("input#search_tag").quickselect({ajax:"/games/search_game/", minChars: 3, width:300})
+  if($(".search_page_spinner").length == 0) {    
+    $("input#search_tag").quickselect({ajax:"/games/search_game/", minChars: 3, width:300})  
+  } else {
+    $("input#search_tag").quickselect({ajax:"/games/search_game/", minChars: 3, width:300, spinner_class:".search_page_spinner"})  
+  }
   $("input#search_field").quickselect({ajax:"/games/search_game/", minChars: 3, width:300})
 })
 
@@ -130,8 +134,7 @@ function get_new_value_html(field,div_id,json) {
   return "<a href='#' selector_id="+ div_id +" class=set_"+field+" left_align>"+json+"</a>"
 }
 
-function show_hide(div_to_show) {    
-  console.log(div_to_show)
+function show_hide(div_to_show) {      
   if($("#"+div_to_show+"_div").is(":visible")){    
     if($("#"+div_to_show+"_button")) {
       var text =  $("#"+div_to_show+"_button").data("link_text")

@@ -12,6 +12,12 @@ author:  Luka Cvrk (www.solucija.com)
 	margin-top:-20px;
 }
 
+.search_page_spinner {
+	position:relative;
+	left:280px;
+	top:-35px;
+}
+
 .email_label {
 	width: 955px;
 } 
@@ -661,7 +667,7 @@ p {
 
 .search_label {
 	position:relative;
-	left:82px;
+	left:-5px;
 	top:-33px;
 	color:#FFF;	
 	float:right;
@@ -669,8 +675,7 @@ p {
 
 .search_field {
 	position:relative;
-	top:-37px;	
-	left: 89px;
+	top:-37px;		
 	float:right;
 	margin-right:10px;
 }
@@ -678,7 +683,7 @@ p {
 .search_button {
 	position:relative;
 	bottom:38px;
-	left:1060px;
+	left:1080px;
 }
 
 .saved_div {

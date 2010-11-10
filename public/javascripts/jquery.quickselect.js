@@ -202,11 +202,13 @@ var QuickSelect;
         $results_list.show();
         // Option autoSelectFirst, and Option selectSingleMatch (activate the first item if only item)
         if(options.autoSelectFirst || (options.selectSingleMatch && $lis.length == 1)) moveSelect($lis.get(0));
+        console.log(options)
+        Gamer_Ryoudan.hide_loader(options.spinner_class)
       };
       var onChange = function(){
         // ignore if non-consequence key is pressed,
         //   such as shift, ctrl, alt, escape, caps, pg up/down, home, end, arrows
-        if(last_keyCode >= 9 && last_keyCode <= 45){return;}
+        if(last_keyCode >= 9 && last_keyCode <= 45){return;}        
         // compare with previous value / store new previous value
         var q = $input_element.val();
         if(q == previous_value) return;
@@ -214,6 +216,7 @@ var QuickSelect;
         // if enough characters have been typed,
         //   load/populate the list with whatever matches and show the results list.        
         if(q.length >= options.minChars){
+          Gamer_Ryoudan.show_loader(options.spinner_class)
           $input_element.addClass(options.loadingClass);
           // Populate the list, then show the list.
           repopulate(q,show_results);
