@@ -79,7 +79,7 @@ $(function() {
     check_save_attribute(event, "notes")
   });
   if($(".search_page_spinner").length == 0) {    
-    $("input#search_tag").quickselect({ajax:"/games/search_game/", minChars: 3, width:300})  
+    $("input#search_tag").quickselect({ajax:"/games/search_game/", minChars: 3, width:300, spinner_class:".spinner"})  
   } else {
     $("input#search_tag").quickselect({ajax:"/games/search_game/", minChars: 3, width:300, spinner_class:".search_page_spinner"})  
   }
