@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
     yield      
     rescue => exception            
       user = current_user
-      user = {"login" => "anonymous", "email" => "anonymous"} if !user      
-      Emailer.deliver_error(request.request_uri,exception, user,params.collect{|param| param.first + " : " + param[1]})
+      user = {"login" => "anonymous", "email" => "anonymous"} if !user           
+      Emailer.deliver_error(request.request_uri,exception, user,params.collect{|param| param.to_a})      
       Rails.logger.error(exception)
   end  
   

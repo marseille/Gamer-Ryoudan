@@ -66,13 +66,11 @@ class Emailer < ActionMailer::Base
     game to the library of awesomeness: 
     
     name:#{game['game']['name']}
-    platform:#{game['game']['platform']}
-    
-    hours played: #{game['game_information']['hours_played']}
-    difficulty: #{game['game_information']['difficulty']}
-    score: #{game['game_information']['score']}
-    status: #{game['game_information']['status']}
-    
+    platform:#{game['game']['platform']}    
+    hours played: #{game['game_information']['hours_played'] if game['game_information']}
+    difficulty: #{game['game_information']['difficulty'] if game['game_information']}
+    score: #{game['game_information']['score'] if game['game_information']}
+    status: #{game['game_information']['status'] if game['game_information']}    
           
     THAT IS ALL
     

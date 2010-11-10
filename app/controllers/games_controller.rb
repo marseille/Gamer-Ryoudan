@@ -15,8 +15,7 @@ class GamesController < ApplicationController
     render :json => @games.flatten.collect {|game| [game["name"] + " ["+game["platform"]+"]", game["platform"]]}
   end
   
-  def find_game            
-    pp params
+  def find_game                
     @game_information = GameInformation.new
     @game = Game.new    
     @search_tag = params["search_tag"]    
@@ -26,8 +25,7 @@ class GamesController < ApplicationController
     @start_interval = (params["page"]) ? params["page"].to_i : 1    
     @start_interval = (@start_interval * 20) - 19
     @end_interval = (params["page"]) ? params["page"].to_i : 1
-    @end_interval = (@end_interval * 20)        
-    pp "start: #{@start_interval} end:#{@end_interval}"
+    @end_interval = (@end_interval * 20)            
     @game_results = @games.paginate({:page => params[:page], :per_page => 20})        
     (@games.empty?) ? render_for_new_game(@search_tag) : render_for_search_results(@home_search)    
   end
@@ -65,32 +63,27 @@ class GamesController < ApplicationController
   end
   
   def add_game    
+    flash[:notice] = ""
     game = Game.new(params["game"])
     if game.save
-    #  game.save!
-      #flash["notice"] = "<label class=green_text>Successfully added this game to the database!</label>"
-      flash["notice"] = "<label class=green_text>Your request has been submitted! Thank you so much for your support!!</label>"
-    else
-      flash["notice"] = "<label class=red_text>There was an error processing your add request for:" + game["name"]+"</label>"
+      #do nothing, yay.
+    elsif Game.find_by_name_and_platform(params["game"]["name"],params["game"]["platform"])
+      render :json => "That game already exists".to_json
+    else      
+      render :json => "There was an error processing your add request".to_json
     end
+    
     if params["add_to_list"]      
       game_name = game["name"]
       user = current_user
       params["game_information"]["user_id"] = user["id"]
-      params["game_information"]["game_id"] = game["id"]
-      GameInformation.transaction do        
-        #GameInformation.create(params["game_information"])      
-        #GameInformationMap.create(:user_id => user["id"], :game_id => game["id"])
-      end      
+      params["game_information"]["game_id"] = game["id"]      
       Emailer.deliver_game_request(params, current_user["login"])
-      render :json => "Your request has been submitted! Thank you so much for your support!!".to_json if !params["home_search"] 
-      #render :json => "added to list and db".to_json if !params["home_search"] 
-      #render :json => "added to list and db".to_json if !params["home_search"] 
+      render :json => "Your request has been submitted! Thank you so much for your support!!".to_json if !params["home_search"]       
       render :file => "/games/new_game_generic.html.erb", :layout => "application" if params["home_search"]
     else
-      Emailer.deliver_game_request(params, current_user["login"])
-      render :json => "Your request has been submitted! Thank you so much for your support!!".to_json if !params["home_search"]            
-      #render :json => "added to db".to_json if !params["home_search"]            
+      Emailer.deliver_game_request(params, current_user["login"])      
+      render :json => "Your request has been submitted! Thank you so much for your support!!".to_json if !params["home_search"]                  
       render :file => "/games/new_game_generic.html.erb", :layout => "application" if params["home_search"]
     end
   end

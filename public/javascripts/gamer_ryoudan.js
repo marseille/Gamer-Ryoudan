@@ -11,5 +11,14 @@ var Gamer_Ryoudan = {
     });      
     delete form["commit"]
     return form
-  }
+  },
+  
+  show_loader : function(id) {
+    $(id).empty()
+    $(id).append("<img src=/images/ajax-loader.gif></img>")
+  },
+  
+  hide_loader : function(id) {
+    $(id).empty()
+  }  
 }

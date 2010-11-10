@@ -1,14 +1,5 @@
 $(function() { 
-  $("#add_to_list").attr("checked", false)  
-
-  $(".change").live("change", function(event) {
-    event.preventDefault()
-    event.preventDefault()
-    event.preventDefault()
-    event.preventDefault()
-    console.log("whoa!")
-  })
-  
+  $("#add_to_list").attr("checked", false)    
   
   $(".add_to_list_submit").live("click", function(event) {    
     var div_id = "add_" + $(event.target).attr("div_prefix") + "_div"
@@ -24,12 +15,13 @@ $(function() {
         }
       }      
     });        
-    Rails.call(Rails.methods["add_to_list"], "json", "POST", {"game_information" : form, "game" : game}, function(json) {
+    Rails.call(Rails.methods["add_game_to_list"], "json", "POST", {"game_information" : form, "game" : game}, function(json) {
       $("#"+div_id+" label.red_text").text(json)
     });
   });
   
-  $("#add_game_db_submit").live("click", function(event) {
+  $("#add_game_db_submit").live("click", function(event) {    
+    Gamer_Ryoudan.show_loader(".saved_db label.red_text")
     var game = Gamer_Ryoudan.form_collect($(event.target).attr("div_id"))
     var add_to_list = $("#add_to_list").attr("checked")
     delete game["add_to_list"]    
@@ -39,7 +31,8 @@ $(function() {
       params["game_information"] = game_information
     }    
     params["load_page"] = true
-    Rails.call(Rails.methods["add_to_db"], "json", "POST", params, function(json) {
+    Rails.call(Rails.methods["add_game"], "json", "POST", params, function(json) {
+      $(".saved_db label.red_text").empty()
       $(".saved_db label.red_text").text(json)
     });
   });
@@ -138,6 +131,7 @@ function get_new_value_html(field,div_id,json) {
 }
 
 function show_hide(div_to_show) {    
+  console.log(div_to_show)
   if($("#"+div_to_show+"_div").is(":visible")){    
     if($("#"+div_to_show+"_button")) {
       var text =  $("#"+div_to_show+"_button").data("link_text")
@@ -155,11 +149,13 @@ function show_hide(div_to_show) {
 
 //change this to a jquery bind event
 function find_game(field_id) {
+  Gamer_Ryoudan.show_loader(".spinner")
   var game = $("#"+field_id).val()
   Rails.call(Rails.methods["find_game"], "html", "GET", {search_tag : game, home_search : "true"}, function(json) {
     $("#search-results").empty()
     $("#search-results").hide()        
     $("#search-results").append(json)    
     $("#search-results").animate({width: 'show', duration : '3000' });
+    Gamer_Ryoudan.hide_loader(".spinner")
   });  
 }
