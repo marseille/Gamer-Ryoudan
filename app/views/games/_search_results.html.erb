@@ -10,8 +10,7 @@
   <% added = false %>  
   <% added =  !([game] & current_user.games).empty? if current_user%>      
   <%= render :partial => "games/game", :locals => {:added => added}%>  
-  <%# @no_spaces = @game.name.gsub(/[^0-9A-Za-z]/, '_') %>
-  <% no_spaces = @game.name.gsub(/ /,'_') %> 
+  <% @no_spaces = @game.name.gsub(/[^0-9A-Za-z]/, '_') %>
   <% css_class = (@game["name"].length > 45) ? "long_name_game_partial" : "add_game_partial" %>  
   <div id=<%='"add_'+ERB::Util::h(@no_spaces)+'_div"'%> class=<%=css_class%>>
     <% if !added %>    
