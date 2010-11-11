@@ -20,7 +20,8 @@ class GamesController < ApplicationController
     @game = Game.new    
     @search_tag = params["search_tag"]    
     @home_search = params["home_search"]        
-    @games = parse_and_find_games(@search_tag)            
+    pp CGI::escape("'''''''''''''")
+    @games = parse_and_find_games(ERB::Util::h(@search_tag))            
     @result_count = @games.count    
     @start_interval = (params["page"]) ? params["page"].to_i : 1    
     @start_interval = (@start_interval * 20) - 19
@@ -35,11 +36,12 @@ class GamesController < ApplicationController
   end
   
   def parse_and_find_games(search_tag)
+    pp "Search tag: #{search_tag}"
     games = ""
     if search_tag.include?("[")
       name = search_tag.split("[").first
       platform = search_tag.split("[")[1].gsub(/["\[\]"]/,"")    
-      games = [Game.find_by_name_and_platform(name,platform)]
+      games = [Game.find_by_name_and_platform(ERB::Util::h(name),platform)]
     else 
       games = Game.name_or_platform_like(search_tag)
     end    
