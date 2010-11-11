@@ -201,9 +201,8 @@ var QuickSelect;
         }).show();}
         $results_list.show();
         // Option autoSelectFirst, and Option selectSingleMatch (activate the first item if only item)
-        if(options.autoSelectFirst || (options.selectSingleMatch && $lis.length == 1)) moveSelect($lis.get(0));
-        console.log(options)
         Gamer_Ryoudan.hide_loader(options.spinner_class)
+        if(options.autoSelectFirst || (options.selectSingleMatch && $lis.length == 1)) moveSelect($lis.get(0));              
       };
       var onChange = function(){
         // ignore if non-consequence key is pressed,

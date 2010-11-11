@@ -64,13 +64,13 @@ class GamesController < ApplicationController
   
   def add_game    
     flash[:notice] = ""
-    game = Game.new(params["game"])
-    if game.save
-      #do nothing, yay.
-    elsif Game.find_by_name_and_platform(params["game"]["name"],params["game"]["platform"])
+    game = Game.new(params["game"])    
+    if Game.find_by_name_and_platform(params["game"]["name"],params["game"]["platform"])
       render :json => "That game already exists".to_json
-    else      
-      render :json => "There was an error processing your add request".to_json
+    else
+      #if game.save
+      #do nothing, yay.
+      #render :json => "There was an error processing your add request".to_json
     end
     
     if params["add_to_list"]      
