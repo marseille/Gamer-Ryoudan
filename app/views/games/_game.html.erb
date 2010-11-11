@@ -4,7 +4,8 @@
   <br>
   <%= "platform: " + @game.platform %>
   <br>          
-  <% no_spaces = @game.name.gsub(/[^0-9A-Za-z]/, '_') %>  
+  <%# no_spaces = @game.name.gsub(/[^0-9A-Za-z]/, '_') %>  
+  <% no_spaces = @game.name.gsub(/ /,'_') %> 
   <% if current_user %>
     <%= link_to "add!", "#", :name => "add_" + no_spaces, :id => "add_"+no_spaces+"_button",  :class=> "show_hide_add" if !added %>
     <%= link_to "edit!", "#", :name => "add_" + no_spaces, :id => "add_"+no_spaces+"_button", :class => "show_hide_add" if added %>      
