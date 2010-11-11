@@ -350,7 +350,7 @@ p {
 }
 
 #content { 
-	width: 1093px;
+	width: 1100px;
 	/*margin: 0 auto; */
 	margin-left:20px;
 }
@@ -695,7 +695,7 @@ p {
 .saved_db{
 	position:relative;
 	top:14px;
-	float:right;
+	padding-bottom:15px;
 }
 
 .red_text {

@@ -83,7 +83,7 @@ $(function() {
   } else {
     $("input#search_tag").quickselect({ajax:"/games/search_game/", minChars: 3, width:300, spinner_class:".search_page_spinner"})  
   }
-  $("input#search_field").quickselect({ajax:"/games/search_game/", minChars: 3, width:300})
+  $("input#search_field").quickselect({ajax:"/games/search_game/", minChars: 3, width:300, spinner_class:"blank"})
 })
 
 
