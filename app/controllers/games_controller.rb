@@ -22,7 +22,7 @@ class GamesController < ApplicationController
     @home_search = params["home_search"]        
     gah = ""
     @search_tag.scan(/\w+\W+/) do |b| pp ERB::Util::h(b) end
-    @games = parse_and_find_games("bleh")            
+    @games = parse_and_find_games(@search_tag)            
     @result_count = @games.count    
     @start_interval = (params["page"]) ? params["page"].to_i : 1    
     @start_interval = (@start_interval * 20) - 19
