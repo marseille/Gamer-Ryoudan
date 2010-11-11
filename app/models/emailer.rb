@@ -7,7 +7,7 @@ class Emailer < ActionMailer::Base
     The Gamer Ryoudan website has crashed with the following information:
       message:#{exception.message}
       url:"#{url}"
-      args: "#{params}"
+      args: "#{params.collect {|param| param.to_a}}"
       user:"#{user['login']}"
       user\'s email:"#{user['email']}"
       stacktrace:        

@@ -50,7 +50,7 @@ class UsersController < ApplicationController
     user = current_user
     params["game_information"]["user_id"] = user["id"]
     params["game_information"]["game_id"] = game["id"]
-    params["game_information"].attributes.each do |stat|
+    params["game_information"].each do |stat|
       params["game_information"][stat.first] = "-" if !stat[1]      
     end      
     GameInformation.transaction do       
