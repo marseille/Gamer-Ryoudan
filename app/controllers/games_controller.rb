@@ -19,30 +19,22 @@ class GamesController < ApplicationController
     @game_information = GameInformation.new
     @game = Game.new    
     @search_tag = params["search_tag"]    
-    @home_search = params["home_search"]        
-    gah = ""
-    @search_tag.scan(/\w+\W+/) do |b| pp ERB::Util::h(b) end
+    @home_search = params["home_search"]            
     @games = parse_and_find_games(@search_tag)            
     @result_count = @games.count    
     @start_interval = (params["page"]) ? params["page"].to_i : 1    
     @start_interval = (@start_interval * 20) - 19
     @end_interval = (params["page"]) ? params["page"].to_i : 1
-    @end_interval = (@end_interval * 20)            
-    pp "games"
-    pp @games
-    @game_results = @games.paginate({:page => params[:page], :per_page => 20})        
-    pp "game_results"
-    pp @game_results
+    @end_interval = (@end_interval * 20)                
+    @game_results = @games.paginate({:page => params[:page], :per_page => 20})                
     (@games.empty?) ? render_for_new_game(@search_tag) : render_for_search_results(@home_search)    
   end
   
-  def parse_and_find_games(search_tag)
-    pp search_tag
+  def parse_and_find_games(search_tag)    
     games = ""
     if search_tag.include?("[")
       name = search_tag.split("[").first
-      platform = search_tag.split("[")[1].gsub(/["\[\]"]/,"")    
-      pp "official game we are searching for #{name}"      
+      platform = search_tag.split("[")[1].gsub(/["\[\]"]/,"")          
       games = [Game.find_by_name_and_platform(name.strip,platform)]
     else 
       games = Game.name_or_platform_like(search_tag)
