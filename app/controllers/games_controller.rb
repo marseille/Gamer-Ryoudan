@@ -42,9 +42,8 @@ class GamesController < ApplicationController
     if search_tag.include?("[")
       name = search_tag.split("[").first
       platform = search_tag.split("[")[1].gsub(/["\[\]"]/,"")    
-      pp "official game we are searching for #{name}"
-      name = name.gsub(/\'/, "\'")
-      games = [Game.find_by_name_and_platform(name,platform)]
+      pp "official game we are searching for #{name}"      
+      games = [Game.find_by_name_and_platform(name.strip,platform)]
     else 
       games = Game.name_or_platform_like(search_tag)
     end    
