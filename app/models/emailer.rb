@@ -20,7 +20,7 @@ class Emailer < ActionMailer::Base
   def created_account(to_email, username, password)
     recipients [to_email]
     from ["do.not.replygr@gmail.com"]
-    subject "Created account"
+    subject "Your new account on the Gamer Ryoudan"
      body <<-eos  
 	  
     An account has been created for you on the Gamer Ryoudan.

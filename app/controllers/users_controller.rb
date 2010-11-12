@@ -97,12 +97,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])    
     @user["avatar"] = "https://s3.amazonaws.com/gamer-ryoudan-avatars/Avatars/default.png"
+    password = params["user"]["password"]    
     if @user.save
       flash[:notice] = "Account registered!"
-      Emailer.deliver_created_account(@user["email"], @user["login"], @user["password"])
+      Emailer.deliver_created_account(@user["email"], @user["login"], password)
       Emailer.deliver_new_signup(@user["email"], @user["login"])      
-      redirect_to "/home"
-      #redirect_back_or_default account_url
+      redirect_to "/home"      
     else
       render :action => :new
     end
