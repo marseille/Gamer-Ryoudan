@@ -1,6 +1,7 @@
 <% name = game[0]["name"] %>
 <tr>
-  <td class="list_row game_row"> <b><%= name %></b><a href=# class=edit_tag>Edit</a></td>
+  <td class="list_row game_row"> <b><%= name %></b>
+    <a href=# class=edit_tag title="To be implemented!">Edit</a></td>
   <td class="list_row platform_row"> <%= label_tag(:platform, game[0]["platform"], :class => "left_align") %> </td>      
   <td class="list_row difficulty_row"> 
     <div name=<%= name%> id=<%= name+"_difficulty_div" %>>            
