@@ -17,8 +17,7 @@ class ApplicationController < ActionController::Base
   private   
   def handle_error
     yield      
-    rescue => exception            
-      pp "MOTHER"
+    rescue => exception                  
       user = current_user
       user = {"login" => "anonymous", "email" => "anonymous"} if !user           
       Emailer.deliver_error(request.request_uri,exception, user,params.collect{|param| param.to_a})      
