@@ -9,10 +9,16 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user, :recent_changes
 
+  protected
+  def rescues_path(template_name)    
+    "#{RAILS_ROOT}/public/500.html"
+  end
+
   private   
   def handle_error
     yield      
     rescue => exception            
+      pp "MOTHER"
       user = current_user
       user = {"login" => "anonymous", "email" => "anonymous"} if !user           
       Emailer.deliver_error(request.request_uri,exception, user,params.collect{|param| param.to_a})      

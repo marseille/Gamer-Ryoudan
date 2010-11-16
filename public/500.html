@@ -1,33 +1,77 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <title>We're sorry, but something went wrong (500)</title>
-	<style type="text/css">
-		body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-		div.dialog {
-			width: 25em;
-			padding: 0 4em;
-			margin: 4em auto 0 auto;
-			border: 1px solid #ccc;
-			border-right-color: #999;
-			border-bottom-color: #999;
-		}
-		h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
-	</style>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
+	<script src="/javascripts/jquery-1.3.2.min.js?1289429529" type="text/javascript"></script>
+  <script src="/javascripts/jquery.easing.1.3.js?1289429529" type="text/javascript"></script>
+  <script src="/javascripts/animated-menu.js?1289429529" type="text/javascript"></script>
+  <script src="/javascripts/quicksilver.js?1289429529" type="text/javascript"></script>
+  <script src="/javascripts/jquery.quickselect.js?1289445468" type="text/javascript"></script>  
+  <script src="/javascripts/rails.js?1289429529" type="text/javascript"></script>
+  <script src="/javascripts/gamer_ryoudan.js?1289429529" type="text/javascript"></script>
+  <script src="/javascripts/search.js?1289429529" type="text/javascript"></script>
+  <script src="/javascripts/games.js?1289669990" type="text/javascript"></script>
+  <link href="/stylesheets/layout.css?1289447415" media="screen" rel="stylesheet" type="text/css" />  
+	<title>Gamer Ryoudan</title>
 </head>
-
 <body>
-  <!-- This file lives in public/500.html -->
-  <div class="dialog">
-    <h1>We're sorry, but something went wrong.</h1>
-    <p>We've been notified about this issue and we'll take a look at it shortly.</p>
-    <p><small>(If you're the administrator of this website, then please read
-    the log file "<%=h RAILS_ENV %>.log"
-    to find out what went wrong.)</small></p>
+	<div id="content">		
+    <p id="top"><label class=tagline> An outlandish brigade of gamer-awesomeness </label></p>		    
+    <form action="/games/find_game" method="post"><div style="margin:0;padding:0"><input name="authenticity_token" type="hidden" value="d749a9262226a058f69a516a13d687050cb0e619" /></div>                        
+      <input class="search_field" id="search_field" name="search_tag" type="text" value="" />    
+      <label class="search_label" for="search_label">Search!</label>                   
+      <input type="image" src="/images/images.png" border=0 class="search_button", alt="search button">        
+      </input>      
+    </form>
+    <div id="logo">
+			<a href="/"><img alt="Temp logo sheen" border="0" class="bleh" src="/images/temp logo sheen.png?1289429529" /></a><br /><br />
+		</div>        
+		<div class="menu">        
+      <div style="float:left">
+        <ul class="ul">
+          <li class="dark_red li">    
+            <p><a href="/account" class="white_link">Home</a></p>
+            well excuuuse me PRINCESS!
+          </li>
+        <li class="maroon li">
+          <p><a href="/about" class="white_link">About</a></p>
+          The cake is a lie!
+        </li>  
+        <li class="red li">
+          <p><a href="/contact" class="white_link">Contact</a></p>
+          But our princess is in another castle!
+        </li>    
+        <li class="orange li">
+          <p><a href="/recent_changes" class="white_link">Recent changes</a></p>
+
+          METAAAL GEAAAAAAAR!
+        </li>
+        <li class="orange_yellow li">
+          <p><a href="/terms" class="white_link">Terms</a></p>
+          All your base are belong to us!
+        </li>        
+      </ul>
+    </div>		
+  </div>  
+  <div style="position:relative;">
+    <div id="sdv" class="spiky_cool_thing">
+      <img alt="Small_long" src="/images/small_long.png?1289429529" />
+    </div>    
+  </div>
+  <div class="line"></div>
+  <h1>OH SNAP ZOMG THE PAGE BLEW UP! ZOHES NOES!</h1>
+  <br />
+  Try again another time, and make sure you are logged in for things that require a login. visiting the same page just from the url will likely have <br />problems since all the parameters haven't been passed
+  <br /><br />
+  <div id="footer">
+    <p>Any questions? Concerns? Is something breaking or do you have any suggestions for the site? Don't hesitate to contact me! email at: Muradin007@gmail.com.
+      <a href="/about" class="bottom_link">about</a>
+      <a href="/recent_changes" class="bottom_link">change log</a>
+      <a href="/contact" class="bottom_link">contact</a>          
+      <a href="/credit" class="bottom_link">credit</a>
+      <a href="/terms" class="bottom_link">terms</a>
+    </p>			
+  </div>	
   </div>
 </body>
 </html>

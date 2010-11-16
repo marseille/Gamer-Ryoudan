@@ -1,7 +1,8 @@
 class GamesController < ApplicationController  
   before_filter :require_user, :only => [:add_game, :new_game]
+  before_filter :validate, :only => [:find_game]
   require 'will_paginate'  
-  
+
   def new_game
     render :file => "/games/new_game_generic.html.erb", :layout => "application"
   end
@@ -87,4 +88,10 @@ class GamesController < ApplicationController
       render :file => "/games/new_game_generic.html.erb", :layout => "application" if params["home_search"]
     end
   end
+  
+  private
+  
+    def validate
+      
+    end
 end

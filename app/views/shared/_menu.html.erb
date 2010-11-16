@@ -1,12 +1,13 @@
 <div style="float:left">
 <ul class="ul">
-  <% if current_user %>
+  <% user = current_user %>
+  <% if user %>
     <li class="dark_red li">
       <p> <%= link_to("Home", {:controller => "home"}, {:class => "white_link"}) %></p>
       well excuuuse me PRINCESS!
     </li>
     <li class="maroon li">    
-      <p><%= link_to("My List", {:controller => "game_list"}, {:class => "white_link"}) %></p>
+      <p><%= link_to("My List", {:controller => "game_list", :action => "index", :user => user["login"]}, {:class => "white_link"}) %></p>
       Are you in the top percentage <br /> of Rattatas?
     </li>  
     <li class="red li">

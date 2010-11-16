@@ -1,6 +1,10 @@
 <%= javascript_include_tag "gamer_ryoudan.js" %>
 <%= javascript_include_tag "search.js" %>
 
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+
 <% if current_user %>
   <div id="pitch_home">      
     <%= render :partial => "home/logged_in_pitch" %>

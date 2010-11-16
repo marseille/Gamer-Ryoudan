@@ -1,5 +1,5 @@
 <br />
-<h2> <%= current_user["login"] + " 's list" %> </h2><br />
+<h2> <%= @user["login"] + "'s list" %> </h2><br />
 <%= render :partial => "game_list/playing" %>
 <br /><br />
 <%= render :partial => "game_list/completed" %>
