@@ -1,6 +1,5 @@
 class GamesController < ApplicationController  
-  before_filter :require_user, :only => [:add_game, :new_game]
-  before_filter :validate, :only => [:find_game]
+  before_filter :require_user, :only => [:add_game, :new_game]  
   require 'will_paginate'  
 
   def new_game
@@ -21,7 +20,7 @@ class GamesController < ApplicationController
     @game = Game.new    
     @search_tag = params["search_tag"]    
     @home_search = params["home_search"]            
-    @games = parse_and_find_games(@search_tag)            
+    @games = (@search_tag) ? parse_and_find_games(@search_tag) : Game.find(:all)
     @result_count = @games.count    
     @start_interval = (params["page"]) ? params["page"].to_i : 1    
     @start_interval = (@start_interval * 20) - 19
@@ -88,10 +87,4 @@ class GamesController < ApplicationController
       render :file => "/games/new_game_generic.html.erb", :layout => "application" if params["home_search"]
     end
   end
-  
-  private
-  
-    def validate
-      
-    end
 end
