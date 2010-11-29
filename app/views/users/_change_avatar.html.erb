@@ -8,8 +8,10 @@
     <p class=instructions>
       Please limit your avatars to jpegs,pngs, and gifs. They will be resized automatically
     </p>
-    <form action="/users/save_avatar" method="post" enctype="multipart/form-data">
-      <input id="avatar_input" name="yourfilename" type="file" />            
+    <form action="/users/save_avatar" method="post" enctype="multipart/form-data">      
+      <div id="browse_container">
+        <input id="avatar_input" name="yourfilename" type="file" />            
+      </div>
     </form>  
   </div>
 </div>

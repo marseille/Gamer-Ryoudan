@@ -22,17 +22,20 @@ class UsersController < ApplicationController
   end  
   
   def save_avatar    
-    begin
+    begin      
       user = current_user            
       filename = "Avatars/"+user["login"] +"_avatar.png"    
       magicks = Magick::Image.from_blob(params["yourfilename"].read)                
       magicks.first.change_geometry!("54x50!") {|cols,rows,img| img.resize!(54,50)}        
-      AWS::S3::Base.establish_connection!(:access_key_id => ENV["AMAZON_ACCESS_ID"], :secret_access_key => ENV["AMAZON_ACCESS_KEY"])                  
+      AWS::S3::Base.establish_connection!(:access_key_id => ENV["AMAZON_ACCESS_ID"], :secret_access_key => ENV["AMAZON_ACCESS_KEY"])                            
       if AWS::S3::S3Object.exists?(filename, 'gamer-ryoudan-avatars')
         AWS::S3::S3Object.delete(filename, 'gamer-ryoudan-avatars')
         AWS::S3::S3Object.store(filename, magicks.first.to_blob, 'gamer-ryoudan-avatars', :access => :public_read)        
         user["avatar_path"] = "https://s3.amazonaws.com/gamer-ryoudan-avatars/#{filename}"      
-      else          
+      elsif user["avatar_path"] === "https://s3.amazonaws.com/gamer-ryoudan-avatars/Avatars/default.png"
+        AWS::S3::S3Object.store(filename, magicks.first.to_blob, 'gamer-ryoudan-avatars', :access => :public_read)        
+        user["avatar_path"] = "https://s3.amazonaws.com/gamer-ryoudan-avatars/#{filename}"
+      else                
         user["avatar_path"] = "https://s3.amazonaws.com/gamer-ryoudan-avatars/Avatars/default.png"    
       end
       
@@ -40,8 +43,8 @@ class UsersController < ApplicationController
     rescue => e 
       Rails.logger.error(e)
       Rails.logger.error(e.application_backtrace().join("/n"))
-    end
-    render :text => "success"
+    end    
+    render :nothing => true
   end
   
   def add_game_to_list

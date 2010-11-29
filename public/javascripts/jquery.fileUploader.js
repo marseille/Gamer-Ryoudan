@@ -23,18 +23,19 @@
 		var itr = 0; //number of files to uploaded
 		
     function upload_image() {      
-      $('#px_button input').attr("disabled","disabled");
+      
+      $('#px_button input').attr("disabled","disabled");      
       $("#pxupload_form form").each(function(){
-        e = $(this);
+        e = $(this);        
         var id = "#" + $(e).attr("id");
         var input_id = id + "_input";
-        var input_val = $(input_id).val();
+        var input_val = $(input_id).val();        
         if (input_val != ""){
           $(id + "_text .status").text("Uploading...");
           $(id + "_text").css("background-color", "#FFF0E1");
           $(id + "_text .loader").show();
           $(id + "_text .close").hide();
-          $(id).submit();            
+          $(id).submit();                     
           $(id +"_frame").load(function(){
             $(id + "_text .loader").hide();
             up_output = $(this).contents().find("#output").text();              
@@ -42,22 +43,18 @@
               $(id + "_text").css("background-color", "#F0F8FF");
               up_output = config.successOutput;
             }else{                
-              //$(id + "_text").css("background-color", "#FF0000");
-              //up_output = config.errorOutput;                
+              $(id + "_text").css("background-color", "#FF0000");
+              up_output = config.errorOutput;                
             }
             up_output += '<br />' + $(this).contents().find("#message").text();
             $(id + "_text .status").html(up_output);              
             $("#px_display").empty()
-            $("#px_display").append("<label class=success_label>uploaded!</label><br /><br />")
-            //$(e).remove(); <-- removes browse field? why would you do this..?							
-            //$(config.buttonUpload).removeAttr("disabled");
+            $("#px_display").append("<label class=success_label>uploaded!</label><br /><br />")            
+            //  $(e).remove(); // <-- removes browse field? why would you do this..?							                        
           });
         }
       });			
-    }
-    $(".upload_image").click(function(){
-			
-		});
+    }    
     
 		//public function
 		$.fileUploader.change = function(e){
@@ -79,9 +76,11 @@
 				'<div class="status">Pending...</div></div>';
         
         $("#px_display").empty()
-        $("#px_display").append(display);
-        px.appendForm();
-        $(e).hide();        
+        $("#px_display").append(display);        
+        //px.appendForm(); // THESE TWO LINES CAUSE YOU TO HIDE A FORM AND CREATE ANOTHER ONE
+                                      // WHICH RESULTS IN CALLING YOUR FORM ACTION MULTIPLE TIMES EACH TIME
+                                      // IT IS TRIGGERED
+        //$(e).hide();        
         upload_image()
 		}				
 		
@@ -134,8 +133,7 @@
 				var contents = '<form method="post" id="'+ formId +'" action="'+ px.formAction +'" enctype="multipart/form-data" target="'+ iframeId +'">' +
 				'<input type="file" name="'+ config.inputName +'" id="'+ inputId +'" class="pxupload" size="'+ config.inputSize +'" onchange="$.fileUploader.change(this);" />' +
 				'</form>' + 
-				'<iframe id="'+ iframeId +'" name="'+ iframeId +'" src="about:blank" style="display:none"></iframe>';
-				
+				'<iframe id="'+ iframeId +'" name="'+ iframeId +'" src="about:blank" style="display:none"></iframe>';				
 				$("#pxupload_form").append( contents );
 			},
 			validateFile: function(file) {

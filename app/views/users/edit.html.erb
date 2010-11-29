@@ -1,15 +1,4 @@
 <%= javascript_include_tag "jquery.fileUploader.js" %>
-<script type="text/javascript">  
-  $(function(){
-    $('#avatar_input').fileUploader({      
-      buttonUpload: '#pxUpload',      
-      buttonClear: '#pxClear',
-      successOutput: 'File Uploaded',      
-      inputName: 'userfile',
-      inputSize: 20,
-      allowedExtension: 'jpg|jpeg|png|gif'
-    });
-  });
-</script>
+<%= javascript_include_tag "bind_to_avatar_input.js" %>
 <%= render :partial => "users/edit_form" %>
 <%= render :partial => "users/change_avatar" %>
