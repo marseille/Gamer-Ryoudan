@@ -12,9 +12,9 @@ class UsersController < ApplicationController
   require 'RMagick'
   require 'aws/s3'
   
-  def save_attribute 
-    user = current_user    
-    game_info = GameInformation.find_by_user_id_and_game_id(user["id"], Game.find_by_name(params["game"]))          
+  def save_attribute     
+    user = current_user        
+    game_info = GameInformation.find_by_user_id_and_game_id(user["id"], Game.find_by_name(params["game"]))              
     game_info[params["field"]] = params["new_value"]
     game_info.save
     retval = game_info[params["field"]]    
@@ -37,8 +37,7 @@ class UsersController < ApplicationController
         user["avatar_path"] = "https://s3.amazonaws.com/gamer-ryoudan-avatars/#{filename}"
       else                
         user["avatar_path"] = "https://s3.amazonaws.com/gamer-ryoudan-avatars/Avatars/default.png"    
-      end
-      
+      end      
       user.save!
     rescue => e 
       Rails.logger.error(e)
@@ -47,37 +46,41 @@ class UsersController < ApplicationController
     render :nothing => true
   end
   
-  def add_game_to_list
-    game_name = params["game"]
-    game = Game.find_by_name(game_name)        
+  def default_parameters(collection)
+    collection.each do |stat|
+      collection[stat.first] = "-" if stat[1] == ""
+    end      
+  end
+  
+  def add_game_to_list                
+    game = Game.find_by_name_and_platform(params["game"]["name"],params["game"]["platform"])            
     user = current_user
     params["game_information"]["user_id"] = user["id"]
     params["game_information"]["game_id"] = game["id"]
-    params["game_information"].each do |stat|
-      params["game_information"][stat.first] = "-" if !stat[1]      
-    end      
+    params["game_information"] = default_parameters(params["game_information"])    
     GameInformation.transaction do       
       begin        
         info_found = GameInformation.find_by_user_id_and_game_id(user["id"], game["id"])
-        if !info_found
+        if !info_found          
           GameInformation.create(params["game_information"])      
           GameInformationMap.create(:user_id => user["id"], :game_id => game["id"])
           flash["notice"] = "Added!"
-        else 
-          #update the info
-          params["game_information"].each do |stat|
-            info_found[stat.first] = stat[1]
-          end
-          info_found.save!
-          flash["notice"] = "Saved!"
+        else           
+          flash["notice"] = update_game_info(params["game_information"], info_found)
         end
       rescue => exc
-        flash["notice"] = "Failed to add/save :("
-        #maybe do some logging here
+        flash["notice"] = "Failed to add/save :("        
       end
-    end
-    
+    end    
     render :json => flash["notice"].to_json    
+  end
+  
+  def update_game_info(collection, game_information)    
+    collection.each do |stat|
+      game_information[stat.first] = stat[1]            
+    end
+    game_information.save!
+    "Saved!"
   end
   
   def remove_game_from_list

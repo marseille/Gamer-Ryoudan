@@ -1,5 +1,6 @@
 <b> Add <%= @game["name"] %> to your list!</b><br>
-  <%= hidden_field_tag "game", @game["name"] %>  
+  <%= hidden_field_tag "name", @game["name"], :game => true %>  
+  <%= hidden_field_tag "platform", @game["platform"], :game => true %>  
   <%= label_tag(:hours_played, "Hours Played (HH:MM):") %><br>
   <%= text_field_tag(:hours_played, "", :size => 15) %> <br><br>
   <%= label_tag(:difficulty, "Difficulty:") %><br>

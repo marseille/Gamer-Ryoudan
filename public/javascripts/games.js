@@ -4,14 +4,14 @@ $(function() {
   $(".add_to_list_submit").live("click", function(event) {    
     var div_id = "add_" + $(event.target).attr("div_prefix") + "_div"
     var form = {}    
-    var game = ""
+    var game = {}
     $.each($("#"+div_id).children(), function(idx,key) {
       var form_element = (key.localName == "input" || key.localName == "select") && key.className != "add_to_list_submit"
       if(form_element){                
-        if($(key).attr("name") != "game"){
+        if(!$(key).attr("game")){
           form[$(key).attr("name")] = $(key).val()
         } else {
-          game = $(key).attr("value")
+          game[$(key).attr("name")] = $(key).attr("value")
         }
       }      
     });        
@@ -100,7 +100,8 @@ function set_attribute(event, field) {
   var selector_id = $(event.target).attr("selector_id")
   var div_id = selector_id + "_div"  
   var previous = $(event.target).text()  
-  $("#"+div_id).data("previous", previous)
+  $("#"+div_id).data("previous", previous)  
+  $("#"+div_id).data("name", $("#"+div_id+" label")[0].textContent)
   $("#"+div_id).empty()
   if(field != "notes") {
     $("#"+div_id).append("<input class=save_"+field + "_shortcut selector_id ="+selector_id+" id="+selector_id+"_input size=3></input>")
@@ -114,14 +115,14 @@ function set_attribute(event, field) {
 
 function save_attribute(event, field) {
   event.preventDefault()
-  var div_id = $(event.target).attr("selector_id")
+  var div_id = $(event.target).attr("selector_id")  
+  var game = $("#"+div_id+"_div").data("name")  
   if($("#"+div_id+"_input").val() == ""){    
-    var previous = $("#"+div_id+"_div").data("previous")
+    var previous = $("#"+div_id+"_div").data("previous")    
     $("#"+div_id + "_div").empty()    
     $("#"+div_id + "_div").append("<a href='#' selector_id='"+ div_id +"' class='set_"+field+" red_text'>" + previous + " </a>")      
   } else {
-    var new_value = $("#"+div_id+"_input").val()        
-    var game = $("#"+div_id+"_div").attr("name")
+    var new_value = $("#"+div_id+"_input").val()                
     Rails.call(Rails.methods["save_attribute"], "json", "POST", {"game":game, "new_value" : new_value, "field" : field}, function(json){
       $("#"+div_id + "_div").empty()      
       var new_value_html = get_new_value_html(field,div_id, json)      

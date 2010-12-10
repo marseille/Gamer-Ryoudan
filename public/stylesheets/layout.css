@@ -7,6 +7,14 @@ author:  Luka Cvrk (www.solucija.com)
 =====================================
 */
 
+.hide {
+	display:none;
+}
+
+.bold {
+	font-weight:bold;
+}
+
 .spinner {
 	margin-left:275px;
 	margin-top:-20px;
