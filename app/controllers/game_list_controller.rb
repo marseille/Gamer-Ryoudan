@@ -1,8 +1,8 @@
 class GameListController < ApplicationController
   before_filter :validate, :except => []
   
-  def index    
-    @user = User.find_by_login(params["user"].downcase)
+  def index        
+    @user = User.find(:first, :conditions => ["lower(login) = ?", params["user"].downcase])
     games = @user.games
     @currently_playing = []
     @hiatus = []
