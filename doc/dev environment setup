@@ -1,0 +1,12 @@
+mysql libs
+ruby mysql libs
+libreadline6-dev
+libmagickwand-dev
+curl
+git
+rvm
+ruby 1.8.7
+rails 2.2.3
+cd ~/.rvm/src/rubyXXXX/ext/openssl;ruby extconf.rb;make;make install
+
+
