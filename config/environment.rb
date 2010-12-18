@@ -5,7 +5,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.2.3' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -26,6 +26,7 @@ Rails::Initializer.run do |config|
    config.gem 'authlogic', :version => "2.1.6"
    config.gem 'mysql', :version => "2.8.1"   
    config.gem 'ruby-github'
+   #config.gem 'aws-s3'
    #config.gem 'rmagick', :version => "2.13.1" #need some special libraries for this one
    config.gem 'will_paginate'
    

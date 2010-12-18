@@ -84,16 +84,18 @@ class UsersController < ApplicationController
   end
   
   def remove_game_from_list
-    User.transaction do
-      g = Game.find_by_name(params["name"])
-      h = GameInformationMap.find_by_game_id_and_user_id(g.id, current_user.id)
-      if h.delete
-        flash[:notice] = "#{params['name']} was successfully deleted from your list!"        
+    User.transaction do      
+      user = current_user
+      g = Game.find(params["game_id"])     
+      h = GameInformationMap.find_by_game_id_and_user_id(g.id, user.id)
+      game_info = GameInformation.find_by_user_id_and_game_id(user["id"], g["id"])
+      if h.delete && game_info.delete        
+        flash[:notice] = "Removed!"        
       else
-        flash[:notice] = "Failed to remove #{params['name']} :("
-      end
-      redirect_to :controller => "game_list"
+        flash[:notice] = "Failed :("        
+      end      
     end
+    render :text => flash[:notice]    
   end
   
   def new    

@@ -11,12 +11,6 @@
 
 ActiveRecord::Schema.define(:version => 20101106055134) do
 
-  create_table "avatars", :force => true do |t|
-    t.integer "user_id",                            :null => false
-    t.binary  "image",        :limit => 2147483647
-    t.string  "content_type"
-  end
-
   create_table "game_information_maps", :force => true do |t|
     t.integer  "game_id",    :null => false
     t.integer  "user_id",    :null => false

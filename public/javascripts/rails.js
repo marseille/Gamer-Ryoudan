@@ -18,8 +18,9 @@ var Rails = {
     });    
   },
   
-  methods : {"find_game" :                   "/games/find_game",
-                    "save_attribute" :              "/users/save_attribute",
-                    "add_game_to_list" :         "/users/add_game_to_list",
-                    "add_game":                    "/games/add_game"}
+  methods : {"find_game" :                     "/games/find_game",                    
+                    "add_game":                       "/games/add_game",
+                    "add_game_to_list" :            "/users/add_game_to_list",                
+                    "remove_game_from_list":   "/users/remove_game_from_list",
+                    "save_attribute" :                "/users/save_attribute"}                    
 }

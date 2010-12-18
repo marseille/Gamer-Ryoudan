@@ -53,6 +53,16 @@ author:  Luka Cvrk (www.solucija.com)
 	margin-left:25px;
 }
 
+.remove_status {
+	float:right;
+	left:70px;
+	position:relative;
+	top:49px;
+	height:0;
+	color:red;
+	display:none;
+}
+
 .comments_box {
 	width:300px;
 	height:100px;
@@ -536,6 +546,11 @@ p {
 	text-align:left;
 }
 
+.remove_row {
+	text-align:right;
+	width:10px;
+}
+
 .last_delete {
 	margin-left:50px;
 }
@@ -794,7 +809,7 @@ button.positive, .buttons a.positive{
 	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 	/*font-size: 12px;*/
 	background: #fff;
-	width:994px;
+	width:1108px;
 	border-collapse: collapse;
 	/*text-align: left;*/
 }

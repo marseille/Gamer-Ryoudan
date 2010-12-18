@@ -22,5 +22,13 @@
       <label class=hide><%=name%></label>
       <%= link_to game[1]["notes"], {}, {:selector_id => name_underscores + "_notes", :class => "set_notes red_text"} %>
     </div>
-  </td>
+  </td>  
+  <% if current_user %>
+    <td class=remove_row>    
+      <a class=delete_game href="#" name=<%=game[0]["id"]%> title="remove this game from your list?">
+        (x)
+      </a>    
+    </td> 
+  <% end %>
+  <div class=<%= "remove_#{game[0]['id']}" %>></div>  
 </tr>

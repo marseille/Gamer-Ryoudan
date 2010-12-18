@@ -37,6 +37,18 @@ $(function() {
     });
   });
   
+  $(".delete_game").live("click", function(event) {
+    event.preventDefault();    
+    if(event.button == "0") {                  
+      var params = {"game_id" : $(event.target).attr("name")}
+      Rails.call(Rails.methods["remove_game_from_list"], "html", "POST", params, function(html) {                        
+        $(".remove_"+params["game_id"]).addClass("remove_status");        
+        $(".remove_"+params["game_id"]).append("<label class=red_text>" + html + "</label>");
+        $(".remove_"+params["game_id"]).fadeIn(2000, function(){$(".remove_"+params["game_id"]).empty()});        
+      });
+    }
+  });
+    
   $(".show_hide_add").live("click", function(event) {
     event.preventDefault();    
     var name = $(event.target).attr("name")
@@ -85,7 +97,6 @@ $(function() {
   }
   $("input#search_field").quickselect({ajax:"/games/search_game/", minChars: 3, width:300, spinner_class:"blank"})
 })
-
 
 function check_save_attribute(event, field) {
   if(event.type == "keyup" && event.keyCode == 13) {
