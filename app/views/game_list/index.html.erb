@@ -1,4 +1,6 @@
 <%= javascript_include_tag "gamer_ryoudan.js" %>
+<%= javascript_include_tag "facebox.js" %>
+<%= stylesheet_link_tag "facebox.css" %>  
 <br />
 <h2> <%= @user["login"] + "'s list" %> </h2><br />
 <%= render :partial => "game_list/playing" %>

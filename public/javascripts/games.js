@@ -47,6 +47,37 @@ $(function() {
     }
   });
     
+  $(".edit_tag").live("click", function(event) {
+    event.preventDefault();
+    var name = $(event.target).attr("name");
+    var selector_id = $(event.target).attr("selector_id");
+    if(event.button == "0") {
+      var html = ['<h2>Edit '+name+'</h2><br />',
+                         '<label> Status:</label>',
+                         '<select id='+selector_id+'_status_select>',
+                            '<option>Campaigns</option>',
+                            '<option>Conquests</option>',
+                            '<option>Centrum Contentus</option>',
+                            '<option>Contrived Crusades</option>',   
+                         '</select><br /><br />',
+                         '<input class=update_status type=submit value=update selector_id='+selector_id+'></input>']
+      $.facebox(html.join(""));
+    }
+  });
+  
+  $(".update_status").live("click", function(event) {
+    event.preventDefault();
+    if(event.button == "0"){
+      var selector_id = $(event.target).attr("selector_id")
+      var new_status = $("#"+selector_id+"_status_select").val()           
+      var game = $("."+selector_id+"_row").attr("name")      
+      Rails.call(Rails.methods["save_attribute"], "json", "POST", {"game" : game, "new_value" : new_status, "field" : "status"}, function(json){
+        $(document).trigger('close.facebox')
+        location.href = "/game_list/"
+      });
+    }
+  });
+  
   $(".show_hide_add").live("click", function(event) {
     event.preventDefault();    
     var name = $(event.target).attr("name")

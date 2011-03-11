@@ -1,8 +1,8 @@
 <% name = game[0]["name"] %>
 <% name_underscores = game[0]["name"].gsub(/[^0-9A-Za-z]/, '_') %>
 <tr>
-  <td class="list_row game_row"> <b><%= name %></b>
-    <a href=# class=edit_tag title="To be implemented!">Edit</a>
+  <td class="list_row game_row <%= name_underscores%>_row" name="<%=name%>"> <b><%= name %></b>
+    <a href=# class=edit_tag title="To be implemented!" name="<%=name%>" selector_id=<%=name_underscores%> >Edit</a>
   </td>
   <td class="list_row platform_row"> <%= label_tag(:platform, game[0]["platform"], :class => "left_align") %> </td>      
   <td class="list_row difficulty_row"> 
