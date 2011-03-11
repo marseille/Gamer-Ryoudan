@@ -41,10 +41,8 @@ $(function() {
     event.preventDefault();    
     if(event.button == "0") {                  
       var params = {"game_id" : $(event.target).attr("name")}
-      Rails.call(Rails.methods["remove_game_from_list"], "html", "POST", params, function(html) {                        
-        $(".remove_"+params["game_id"]).addClass("remove_status");        
-        $(".remove_"+params["game_id"]).append("<label class=red_text>" + html + "</label>");
-        $(".remove_"+params["game_id"]).fadeIn(2000, function(){$(".remove_"+params["game_id"]).empty()});        
+      Rails.call(Rails.methods["remove_game_from_list"], "html", "POST", params, function(html) {                                        
+        $(event.target).parent().parent().fadeOut(1000);
       });
     }
   });
