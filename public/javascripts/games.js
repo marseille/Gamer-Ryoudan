@@ -106,19 +106,21 @@ function check_save_attribute(event, field) {
 
 function set_attribute(event, field) {
   event.preventDefault()  
-  var selector_id = $(event.target).attr("selector_id")
-  var div_id = selector_id + "_div"  
-  var previous = $(event.target).text()  
-  $("#"+div_id).data("previous", previous)  
-  $("#"+div_id).data("name", $("#"+div_id+" label")[0].textContent)
-  $("#"+div_id).empty()
-  if(field != "notes") {
-    $("#"+div_id).append("<input class=save_"+field + "_shortcut selector_id ="+selector_id+" id="+selector_id+"_input size=3></input>")
-    $("#"+div_id).append("<a href='#' class=save_"+field+"> <img selector_id="+selector_id+" border=0 src=/images/save_icon.png class=image_icon></a>")    
-    $("#"+div_id).append("<label > (previously: " + previous + ") </label>")        
-  } else {    
-    $("#"+div_id).append("<textarea class=save_"+field + "_shortcut selector_id ="+selector_id+" id="+selector_id+"_input></textarea>")          
-    $("#"+div_id).append("<a href='#' class=save_"+field+"> <img selector_id="+selector_id+" border=0 src=/images/save_icon.png class=notes_save_icon></a>")    
+  if(event.button == "0"){
+    var selector_id = $(event.target).attr("selector_id")
+    var div_id = selector_id + "_div"  
+    var previous = $(event.target).text()  
+    $("#"+div_id).data("previous", previous)      
+    $("#"+div_id).data("name", $("#"+div_id+" label")[0].textContent)
+    $("#"+div_id).empty()
+    if(field != "notes") {
+      $("#"+div_id).append("<input class=save_"+field + "_shortcut selector_id ="+selector_id+" id="+selector_id+"_input size=3></input>")
+      $("#"+div_id).append("<a href='#' class=save_"+field+"> <img selector_id="+selector_id+" border=0 src=/images/save_icon.png class=image_icon></a>")    
+      $("#"+div_id).append("<label > (previously: " + previous + ") </label>")        
+    } else {    
+      $("#"+div_id).append("<textarea class=save_"+field + "_shortcut selector_id ="+selector_id+" id="+selector_id+"_input></textarea>")          
+      $("#"+div_id).append("<a href='#' class=save_"+field+"> <img selector_id="+selector_id+" border=0 src=/images/save_icon.png class=notes_save_icon></a>")    
+    }
   }
 }
 
@@ -130,6 +132,7 @@ function save_attribute(event, field) {
     var previous = $("#"+div_id+"_div").data("previous")    
     $("#"+div_id + "_div").empty()    
     $("#"+div_id + "_div").append("<a href='#' selector_id='"+ div_id +"' class='set_"+field+" red_text'>" + previous + " </a>")      
+    $("#"+div_id + "_div").append("<label class='hide'>"+game+"</label>");
   } else {
     var new_value = $("#"+div_id+"_input").val()                
     Rails.call(Rails.methods["save_attribute"], "json", "POST", {"game":game, "new_value" : new_value, "field" : field}, function(json){
