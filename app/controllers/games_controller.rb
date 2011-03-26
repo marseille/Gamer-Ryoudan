@@ -6,6 +6,9 @@ class GamesController < ApplicationController
     render :file => "/games/new_game_generic.html.erb", :layout => "application"
   end
   
+  #search query for autocompleting search box
+  #this should be renamed...search game and find game
+  #sound too similar and that makes one think we only need one  
   def search_game    
     @games = Game.name_like(params["q"])[0..10]
     platform_result = Game.platform_like(params["q"])[0..10]

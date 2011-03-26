@@ -119,12 +119,15 @@ $(function() {
   $(".save_notes_shortcut").live("keyup", function(event) {
     check_save_attribute(event, "notes")
   });
-  if($(".search_page_spinner").length == 0) {    
-    $("input#search_tag").quickselect({ajax:"/games/search_game/", minChars: 3, width:300, spinner_class:".spinner"})  
-  } else {
-    $("input#search_tag").quickselect({ajax:"/games/search_game/", minChars: 3, width:300, spinner_class:".search_page_spinner"})  
+  
+  //I need to put some sort of notification on the site when an error occurs with the 
+  //ajax, otherwise you just see the spinner and think its taking a real long time.
+  if($(".search_page_spinner").length == 0) {        
+    $("input#search_tag").quickselect({ajax:"/games/search_game/", minChars: 3, width:300, spinner_class:".spinner", named_route: true})  
+  } else {    
+    $("input#search_tag").quickselect({ajax:"/games/search_game/", minChars: 3, width:300, spinner_class:".search_page_spinner", named_route: true})  
   }
-  $("input#search_field").quickselect({ajax:"/games/search_game/", minChars: 3, width:300, spinner_class:"blank"})
+  $("input#search_field").quickselect({ajax:"/games/search_game/", minChars: 3, width:300, spinner_class:"blank", named_route: true})
 })
 
 function check_save_attribute(event, field) {

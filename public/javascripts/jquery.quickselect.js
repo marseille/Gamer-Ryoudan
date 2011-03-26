@@ -117,7 +117,7 @@ var QuickSelect;
         var li = $("li."+options.selectedClass, $results_list).get(0);
         if(li){
           //Uncomment the below to select the current option when you hit enter and the field
-          //doesn't have focus
+          //doesn't have focus @H
           
           //return self.selectItem(li);
         } else {
@@ -312,6 +312,7 @@ var QuickSelect;
             hideResultsNow();
             // Select null element, IF options.exactMatch and there is no selection.
             // !! CLEARS THE FIELD IF YOU BLUR AFTER CHOOSING THE ITEM AND RESULTS ARE ALREADY CLOSED!
+            //@H
             if(options.exactMatch && $input_element.val() != $input_element.lastSelected){self.selectItem(null,true);}
           }, 150);
         }
@@ -422,12 +423,22 @@ var QuickSelect;
       callback(nice_list);
     },
     ajax  : function(q,callback){
-      var url = this.options.ajax + "?q=" + encodeURI(q);
+      // Added an option for rails named routes, just add "named_route" as an option
+      // it will allow you to do /controller/action/some_parameter instead of
+      // /controller/action/?someparameter=something
+      //@H
+      var url = this.options.ajax
+      if(this.options.named_route){        
+        url = url + encodeURI(q);        
+      } else {
+        url = url + "?q=" + encodeURI(q);
+      }
+      
       for(var i in this.options.ajaxParams){
         if(this.options.ajaxParams.hasOwnProperty(i)){
           url += "&" + i + "=" + encodeURI(this.options.ajaxParams[i]);
         }
-      }
+      }      
       $.getJSON(url, callback);
     }
   };
