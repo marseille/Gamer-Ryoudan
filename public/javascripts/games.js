@@ -201,7 +201,8 @@ function show_hide(div_to_show) {
 function find_game(field_id) {
   Gamer_Ryoudan.show_loader(".spinner")
   var game = $("#"+field_id).val()
-  Rails.call(Rails.methods["find_game"], "html", "GET", {search_tag : game, home_search : "true"}, function(json) {
+  var url = Rails.methods["find_game"] + "/" + game  + "/" + "home_search"
+  Rails.call(url, "html", "GET",{}, function(json) {
     $("#search-results").empty()
     $("#search-results").hide()        
     $("#search-results").append(json)    
