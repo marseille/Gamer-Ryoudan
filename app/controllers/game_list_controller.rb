@@ -3,7 +3,7 @@ class GameListController < ApplicationController
   
   def index            
     @user = User.find(:first, :conditions => ["lower(login) = ?", params["user"].downcase])    
-    games = @user.games
+    games = @user.games.sort {|game1, game2| game1["name"] <=> game2["name"]}    
     @currently_playing = []
     @hiatus = []
     @planned_games = []
@@ -20,6 +20,11 @@ class GameListController < ApplicationController
         when "Conquests" then @completed.push([game,game_info])        
       end
     end        
+    #p @currently_playing.first.first
+    #@currently_playing.sort! {|game1,game2| game1["name"] <=> game2["name"]}
+    #@hiatus.sort! {|game1,game2| game1 <=> game2}
+    #@planned_games.sort! {|game1,game2| game1 <=> game2}
+    #@completed.sort! {|game1,game2| game1 <=> game2}
     flash["notice"] = params["flash"] if params["flash"]
   end
   
