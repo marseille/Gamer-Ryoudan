@@ -4,11 +4,8 @@
 <% users_games = current_user.games %>
 <% @game_results.each do |game| %>  
   <% @game = game %>
-  <% added = false %>  
-  <% pp game %>
-  <% pp current_user.games %>
-  <% added =  !([game] & users_games).empty? if current_user%>      
-  <% pp added %>
+  <% added = false %>    
+  <% added =  !([game] & users_games).empty? if current_user%>        
   <%= render :partial => "games/game", :locals => {:added => added}%>  
   <% @no_spaces = @game.name.gsub(/[^0-9A-Za-z]/, '_') + "_"+@game.platform.gsub(/[^0-9A-Za-z]/,'_') %>
   <% css_class = (@game["name"].length > 45) ? "long_name_game_partial" : "add_game_partial" %>  
@@ -21,7 +18,8 @@
 <div class=clear>
 <%= "More results" if @game_results.count > 19%>
 <%= will_paginate @game_results, 
-                             :params => {:search_tag => @search_tag}, 
+                             :params => {:search_tag => @search_tag, :page => @page},
+                             :search_tag => @search_tag, 
                              :home_search=> @home_search,
                              :seperator => " ", 
                              :renderer => @renderer %>

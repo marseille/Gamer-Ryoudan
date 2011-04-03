@@ -21,8 +21,9 @@ class GamesController < ApplicationController
   def find_game                
     @game_information = GameInformation.new
     @game = Game.new    
-    @search_tag = params["search_tag"]    
-    @home_search = (params["home_search"]) ? true : false
+    @search_tag = params["search_tag"]        
+    @home_search ||= params["home_search"]
+    @page = (params["page"]) ? params["page"] : 1
     @games = (@search_tag) ? parse_and_find_games(@search_tag) : Game.find(:all)
     @result_count = @games.count    
     @start_interval = (params["page"]) ? params["page"].to_i : 1    
