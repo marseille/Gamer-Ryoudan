@@ -62,7 +62,7 @@ class GamesController < ApplicationController
       render :file => "games/index.html", :layout => "application"
     else        
       @renderer = "PaginationListLinkRenderer"
-      render :partial => "games/search_results" 
+      render :partial => "games/paginated_game_results" 
     end
   end
   

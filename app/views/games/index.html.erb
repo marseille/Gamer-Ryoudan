@@ -1,20 +1,7 @@
-<%= javascript_include_tag "gamer_ryoudan.js" %>
+<%= render :partial => "games/javascript_include" %>
 <h3>Search Results:</h3>
 <div class="clear results_label">
   <%= label_tag :search_count, "Found #{@result_count} games. Showing #{@start_interval} - #{@end_interval}", :class => "results_label" %>  
 </div>
-<%= render :partial => "games/search_results" %>
-<div class="clear">
-  <br><br>
-  <h3>Search again!</h3>
-  <br>
-  <% @load_page = true %>
-  <div class=push_right_small>
-    <%= render :partial => "shared/search"%>
-    <br>
-    <label class=list_search>
-      <%= link_to "Back to your list", :controller => "game_list" if current_user%>
-    </label>    
-    <br /> <br />
-  </div>
-</div>
+<%= render :partial => "games/paginated_game_results" %>
+<%= render :partial => "games/search_again" %>

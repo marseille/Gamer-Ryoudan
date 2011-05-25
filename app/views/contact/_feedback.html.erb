@@ -1,0 +1,11 @@
+<br /><br />
+<b>Feedback</b><br /><br />
+<% form_tag "contact/feedback" do %>
+  <%= label_tag "Appreciate any and all feedback! Thanks!" %><br /><br />
+  <%= label_tag "subject" %><br />
+  <%= text_field_tag :subject %><br /><br />
+  <%= label_tag "comments" %><br />
+  <%= text_area_tag :body, "", :class => "comments_box" %><br />
+  <%= submit_tag "send!" %>
+<% end %>
+<br /><br />

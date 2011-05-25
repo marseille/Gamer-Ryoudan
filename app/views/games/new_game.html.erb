@@ -1,20 +1,7 @@
-<%= javascript_include_tag "jquery.quickselect.js" %>
-<%= javascript_include_tag "games.js" %>
-<%= javascript_include_tag "gamer_ryoudan.js" %>
+<%= render :partial => "games/javascript_include" %>
 <%if current_user %>
-<div class="something">
-  <h3> Add a game to the database!! </h3>
-<%= render :partial => "add_game_db" %>
-</div>
-<div class=clear>  
-</div>
-<div class="clear">  
-  <br>
-  <h3> Search again!</h3>
-  <br /><br />
-  <% @load_page = true %>
-  <%= render :partial => "shared/search"%>
-</div>
+  <%= render :partial => "add_game_db" %>
+  <%= render :partial => "games/search_again" %>
 <% else %>
   <%= label_tag :should_be_logged_in, "You need to be logged in to add games", :class => "red" %>
   <% render :partial => "user_sessions/login" %>  

@@ -1,0 +1,6 @@
+<td class="list_row difficulty_row"> 
+  <div id=<%=name_underscores+"_difficulty_div" %>>                  
+    <label class=hide><%=name%></label>
+    <%= link_to(game[1]["difficulty"], {}, {:selector_id => name_underscores + "_difficulty", :class => "set_difficulty left_align red_text", :href=>"#"}) %>       
+  </div>
+</td>  

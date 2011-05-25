@@ -1,9 +1,6 @@
 <div class=change_avatar>
   <h2> change your avatar </h2>  
-  <div class=current_avatar>
-    <%= label_tag :current_avatar_label, "your current avatar:" %>    
-    <%= image_tag(current_user["avatar_path"], :alt => "error_loading_avatar") %>      
-  </div>
+  <%= render :partial => "users/current_avatar" %>
   <div class=avatar_form>
     <p class=instructions>
       Please limit your avatars to jpegs,pngs, and gifs. They will be resized automatically

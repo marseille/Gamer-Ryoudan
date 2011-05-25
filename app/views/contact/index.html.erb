@@ -1,6 +1,5 @@
-<% if flash[:notice] %>
-  <h3 class=email_label><%= flash[:notice] %></h3> 
-<% end %>
+<%= render :partial => "shared/notice" %>
+
 <h1> Contact </h1>
 <br />
 <div class=contact_desc>
@@ -20,14 +19,4 @@
 <li class=lioption>
   MSN:gamer-ryoudan@live.com
 </li>
-<br /><br />
-<b>Feedback</b><br /><br />
-<% form_tag "contact/feedback" do %>
-  <%= label_tag "Appreciate any and all feedback! Thanks!" %><br /><br />
-  <%= label_tag "subject" %><br />
-  <%= text_field_tag :subject %><br /><br />
-  <%= label_tag "comments" %><br />
-  <%= text_area_tag :body, "", :class => "comments_box" %><br />
-  <%= submit_tag "send!" %>
-<% end %>
-<br /><br />
+<%= render :partial => "contact/feedback" %>

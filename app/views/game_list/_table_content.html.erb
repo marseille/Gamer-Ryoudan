@@ -1,34 +1,9 @@
 <% name = game[0]["name"] %>
 <% name_underscores = game[0]["name"].gsub(/[^0-9A-Za-z]/, '_') %>
-<tr>
-  <td class="list_row game_row <%= name_underscores%>_row" name="<%=name%>"> <b><%= name %></b>
-    <a href=# class=edit_tag title="To be implemented!" name="<%=name%>" selector_id=<%=name_underscores%> >Edit</a>
-  </td>
-  <td class="list_row platform_row"> <%= label_tag(:platform, game[0]["platform"], :class => "left_align") %> </td>      
-  <td class="list_row difficulty_row"> 
-    <div id=<%=name_underscores+"_difficulty_div" %>>                  
-      <label class=hide><%=name%></label>
-      <%= link_to(game[1]["difficulty"], {}, {:selector_id => name_underscores + "_difficulty", :class => "set_difficulty left_align red_text", :href=>"#"}) %>       
-    </div>
-  </td>  
-  <td class="list_row hours_played_row">
-    <div id=<%= name_underscores + "_hours_played_div" %>>
-      <label class=hide><%=name%></label>
-      <%= link_to game[1]["hours_played"], {}, {:selector_id => name_underscores + "_hours_played", :class => "set_hours_played red_text"} %>
-    </div>
-  </td>
-  <td class="list_row notes_row">    
-    <div id= <%=name_underscores + "_notes_div" %>>
-      <label class=hide><%=name%></label>
-      <%= link_to game[1]["notes"], {}, {:selector_id => name_underscores + "_notes", :class => "set_notes red_text"} %>
-    </div>
-  </td>  
-  <% if current_user %>
-    <td class=remove_row>    
-      <a class=delete_game href="#" name=<%=game[0]["id"]%> title="remove this game from your list?">
-        (x)
-      </a>    
-    </td> 
-  <% end %>
-  <div class=<%= "remove_#{game[0]['id']}" %>></div>  
+<tr>    
+  <%= render :partial => "game_list/game_row", :locals => {:name_underscores => name_underscores, :name => name} %>
+  <%= render :partial => "game_list/platform_row", :locals => {:game => game} %>
+  <%= render :partial => "game_list/hours_played_row", :locals => {:name_underscores => name_underscores, :game => game} %>
+  <%= render :partial => "game_list/notes", :locals => {:name_underscores => name_underscores, :game => game} %>
+  <%= render :partial => "game_list/delete_game", :locals => {:game => game} %>
 </tr>

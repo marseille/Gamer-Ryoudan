@@ -1,0 +1,21 @@
+<div class="menu"> 
+  <div style="float:left">
+  <ul class="ul">
+    <% user = current_user %>
+    <% if user %>
+      <%= render :partial => "header/home" %>
+      <%= render :partial => "header/mylist", :locals => {:user=> user} %>
+      <%= render :partial => "header/profile", :locals => {:user=> user} %>
+      <%= render :partial => "header/contact" %>
+      <%= render :partial => "header/terms" %>
+      <%= render :partial => "header/logout" %>
+    <% else %>
+      <%= render :partial => "header/home" %>
+      <%= render :partial => "header/about" %>
+      <%= render :partial => "header/contact" %>
+      <%= render :partial => "header/recent_changes" %>
+      <%= render :partial => "header/terms" %>
+    <% end %>      
+  </ul>
+  </div>
+</div>

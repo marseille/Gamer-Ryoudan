@@ -18,6 +18,8 @@ var QuickSelect;
     $input_element.attr('autocomplete', 'off');
     self.options = options;
 
+    
+    
     // Save the state of the control
       // AllItems: hash of "index" -> [items], where index is the query that retrieves or filters the results.
       // clickedLI: just a state variable for IE scrollbars.
@@ -116,8 +118,8 @@ var QuickSelect;
       var selectCurrent = function(){
         var li = $("li."+options.selectedClass, $results_list).get(0);
         if(li){
-          //Uncomment the below to select the current option when you hit enter and the field
-          //doesn't have focus @H
+          //Uncomment the statement to select the text from quickselect but not start searching
+          //@H
           
           //return self.selectItem(li);
         } else {
@@ -265,7 +267,7 @@ var QuickSelect;
             }
             break;
           case 9:  // Tab - select the currently selected, let the onblur happen
-            // selectCurrent();
+             //selectCurrent();
             break;
           case 27: // Esc - deselect any active selection, hide the drop-down but stay in the field
             if(options.blurOnEsc){
@@ -313,8 +315,10 @@ var QuickSelect;
             // Select null element, IF options.exactMatch and there is no selection.
             // !! CLEARS THE FIELD IF YOU BLUR AFTER CHOOSING THE ITEM AND RESULTS ARE ALREADY CLOSED!
             //@H
-            if(options.exactMatch && $input_element.val() != $input_element.lastSelected){self.selectItem(null,true);}
-          }, 150);
+              if(options.exactMatch && $input_element.val() != $input_element.lastSelected){
+                self.selectItem(null,true);
+              }
+            }, 150);
         }
         return true;
       });
