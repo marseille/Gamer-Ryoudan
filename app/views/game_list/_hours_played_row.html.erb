@@ -1,6 +1,5 @@
 <td class="list_row hours_played_row">
-  <div id=<%= name_underscores + "_hours_played_div" %>>
-    <label class=hide><%=game[0]["name"]%></label>
-    <%= link_to game[1]["hours_played"], {}, {:selector_id => name_underscores + "_hours_played", :class => "set_hours_played red_text"} %>
+  <div id=<%= name_underscores + "_hours_played_div" %>>    
+    <%= link_to game[1]["hours_played"], {}, {:selector_id => name_underscores, :class => "set_hours_played red_text"} %>
   </div>
 </td>

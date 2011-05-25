@@ -1,3 +1,6 @@
-<td class="list_row game_row <%= name_underscores%>_row" name="<%=name%>"> 
-  <b><%= name %></b>    
+<td class="list_row game_row <%= name_underscores%>_row" game_id="<%=game[0]['id']%>"> 
+  <b><%= game[0]["name"] %></b>    
+  <% if current_user %>
+    <a href="#" class=edit_tag title="Edit <%=game[0]['name']%>?" game_id="<%=game[0]['id']%>" name="<%=game[0]['name']%>" selector_id=<%=name_underscores%> >Edit</a>
+  <% end %>
 </td>

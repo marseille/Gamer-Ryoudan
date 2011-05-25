@@ -14,7 +14,10 @@ class UsersController < ApplicationController
   
   def save_attribute     
     user = current_user        
-    game_info = GameInformation.find_by_user_id_and_game_id(user["id"], Game.find_by_name(params["game"]))                      
+    
+    #Make sure to use a game's id instead of it's name. Since there
+    #can be more than one game with the same name
+    game_info = GameInformation.find_by_user_id_and_game_id(user["id"], params["game"])                              
     game_info[params["field"]] = params["new_value"]
     game_info.save
     retval = game_info[params["field"]]    

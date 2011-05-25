@@ -1,8 +1,9 @@
 <% name = game[0]["name"] %>
 <% name_underscores = game[0]["name"].gsub(/[^0-9A-Za-z]/, '_') %>
 <tr>    
-  <%= render :partial => "game_list/game_row", :locals => {:name_underscores => name_underscores, :name => name} %>
+  <%= render :partial => "game_list/game_row", :locals => {:name_underscores => name_underscores, :game => game} %>
   <%= render :partial => "game_list/platform_row", :locals => {:game => game} %>
+  <%= render :partial => "game_list/difficulty_row", :locals => {:name_underscores => name_underscores, :game => game} %>
   <%= render :partial => "game_list/hours_played_row", :locals => {:name_underscores => name_underscores, :game => game} %>
   <%= render :partial => "game_list/notes", :locals => {:name_underscores => name_underscores, :game => game} %>
   <%= render :partial => "game_list/delete_game", :locals => {:game => game} %>

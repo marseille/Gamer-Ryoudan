@@ -1,6 +1,5 @@
 <td class="list_row notes_row">    
-  <div id= <%=name_underscores + "_notes_div" %>>
-    <label class=hide><%=game[0]["name"]%></label>
-    <%= link_to game[1]["notes"], {}, {:selector_id => name_underscores + "_notes", :class => "set_notes red_text"} %>
+  <div id= <%=name_underscores + "_notes_div" %>>    
+    <%= link_to game[1]["notes"], {}, {:selector_id => name_underscores, :class => "set_notes red_text"} %>
   </div>
 </td>  
