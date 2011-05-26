@@ -1,7 +1,16 @@
 class Emailer < ActionMailer::Base
+ 
+ def default_email_address
+   "gamer.ryoudan@gmail.com"
+ end
+ 
+ def do_not_reply
+    "do.not.reply.gamer.ryoudan@gmail.com"
+ end
+ 
  def error(url, exception, user, params)        
-    recipients ["gamer.ryoudan@gmail.com"]
-    from ["do.not.replygr@gmail.com"]
+    recipients [default_email_address]
+    from [do_not_reply]
     subject "ERROR!: Failed at #{url}"
     body %&    
     The Gamer Ryoudan website has crashed with the following information:
@@ -19,7 +28,7 @@ class Emailer < ActionMailer::Base
   
   def created_account(to_email, username, password)
     recipients [to_email]
-    from ["do.not.replygr@gmail.com"]
+    from [do_not_reply]
     subject "Your new account on the Gamer Ryoudan"
      body <<-eos  
 	  
@@ -43,8 +52,8 @@ class Emailer < ActionMailer::Base
   end
   
   def new_signup(to_email, username)
-  recipients ["gamer.ryoudan@gmail.com"]
-    from ["do.not.replygr@gmail.com"]
+  recipients [default_email_address]
+    from [do_not_reply]
     subject "#{username} has joined the Gamer Ryoudan!"
      body <<-eos  
   A person by the email, "#{to_email}", has registered an account
@@ -58,8 +67,8 @@ class Emailer < ActionMailer::Base
   end
   
   def game_request(game, username)
-    recipients ["gamer.ryoudan@gmail.com"]
-    from ["do.not.replygr@gmail.com"]
+    recipients [default_email_address]
+    from [do_not_reply]
     subject "Add game request to the gamer-ryoudan!"
     body <<-eos
     #{username} has requested that you add this nonexistent
@@ -79,8 +88,8 @@ class Emailer < ActionMailer::Base
   end
   
   def feedback(username, email, subject, body)
-    recipients ["gamer.ryoudan@gmail.com"]
-    from ["muradin007@gmail.com"]
+    recipients [default_email_address]
+    from [do_not_reply]
     subject "Gamer ryoudan feedback - #{subject}"
     body_str = %&
     #{username} with email address #{email} has sent in their feedback!
