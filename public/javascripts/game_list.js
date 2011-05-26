@@ -102,10 +102,12 @@ function set_attribute(event, field) {
     if(field != "notes") {
       $("#"+field_id + "_div").append("<input class=save_"+field + "_shortcut selector_id ="+selector_id+" id="+field_id+"_input size=3></input>")
       $("#"+field_id + "_div").append("<a href='#' class=save_"+field+"> <img selector_id="+selector_id+" border=0 src=/images/save_icon.png class=image_icon></a>")    
-      $("#"+field_id + "_div").append("<label > (previously: " + previous + ") </label>")        
+      $("#"+field_id + "_div").append("<label > (previously: " + previous + ") </label>")      
+      $("#"+field_id + "_input").focus()
     } else {    
-      $("#"+field_id + "_div").append("<textarea class=save_"+field + "_shortcut selector_id ="+selector_id+" id="+selector_id+"_input></textarea>")          
+      $("#"+field_id + "_div").append("<textarea class=save_"+field + "_shortcut selector_id ="+selector_id+" id="+field_id+"_input></textarea>")          
       $("#"+field_id + "_div").append("<a href='#' class=save_"+field+"> <img selector_id="+selector_id+" border=0 src=/images/save_icon.png class=notes_save_icon></a>")    
+      $("#"+field_id+"_input").focus()
     }
   }
 }
@@ -115,20 +117,20 @@ function save_attribute(event, field) {
   var selector_id = $(event.target).attr("selector_id")
   var field_div_id = $(event.target).attr("selector_id")+"_"+field+"_div" 
   var game = $("#"+field_div_id).data("game_id")  
-  if($("#"+field_div_id+"_input").val() == ""){    
-    var previous = $("#"+field_div_id+"_div").data("previous")    
-    $("#"+field_div_id + "_div").empty()    
-    $("#"+field_div_id + "_div").append("<a href='#' selector_id='"+ selector_id +"' class='set_"+field+" red_text' game_id="+game+">" + previous + " </a>")          
+  if($("#"+selector_id+"_"+field+"_input").val() == ""){    
+    var previous = $("#"+field_div_id).data("previous")    
+    $("#"+field_div_id).empty()        
+    $("#"+field_div_id).append("<a href='#' selector_id='"+ selector_id +"' class='set_"+field+" red_text' game_id="+game+">" + previous + " </a>")          
   } else {
-    var new_value = $("#"+selector_id+"_"+field+"_input").val()                
+    var new_value = $("#"+selector_id+"_"+field+"_input").val()                    
     Rails.call(Rails.methods["save_attribute"], "json", "POST", {"game":game, "new_value" : new_value, "field" : field}, function(json){
-      $("#"+field_div_id).empty()      
-      var new_value_html = get_new_value_html(field,field_div_id, json)      
+      $("#"+field_div_id).empty()            
+      var new_value_html = get_new_value_html(field,selector_id, json)      
       $("#"+field_div_id).append(new_value_html)
     });
   }
   
-  function get_new_value_html(field,div_id,json) {  
-    return "<a href='#' selector_id="+ div_id +" class=set_"+field+" left_align>"+json+"</a>"
+  function get_new_value_html(field,div_id,json) {      
+    return "<a selector_id="+ div_id +" href='#' class='set_"+field+" left_align'>"+json+"</a>"
   }
 }
