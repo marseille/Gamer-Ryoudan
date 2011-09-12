@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#This currently does not work. The dependencies are installed correctly,
+#but script/server and the site are broken.
+
 #Setup script for quickly getting up to speed with Gamer-Ryoudan 
 #functionality. Run this by using "bash setup.sh", but not before
 #making it executable.
@@ -52,8 +55,8 @@ rvm ruby-1.8.7
 cd ~/.rvm/src/ruby-1.8.7-p352/ext/openssl;rvm 1.8.7 extconf.rb;make;make install
 
 #Gem setup
-print_status rails-2.3.8
-rvm 1.8.7 gem install rails -v 2.3.8
+print_status rails-2.3.11
+rvm 1.8.7 gem install rails -v 2.3.11
 
 print_status mysql-2.8.1-gem
 rvm 1.8.7  gem install mysql -v 2.8.1
