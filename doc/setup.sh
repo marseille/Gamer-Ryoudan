@@ -23,6 +23,9 @@ sudo apt-get install curl
 print_status MySQL-Admin
 sudo apt-get install mysql-admin
 
+print_status mysql-server
+sudo apt-get install mysql-server
+
 print_status libmysqlclient16-dev
 sudo apt-get install libmysqlclient16-dev
 
@@ -54,6 +57,12 @@ echo "configuring ruby"
 rvm ruby-1.8.7
 cd ~/.rvm/src/ruby-1.8.7-p352/ext/openssl;rvm 1.8.7 extconf.rb;make;make install
 
+#Downgrade rubygems, I don't like doing this. This should be temporary.
+#There are copious amounts of deprecation messages and it's hard to sort
+#through the mess when trying to do something as simple as script/console or
+#script/server
+gem update --system 1.6.2
+
 #Gem setup
 print_status rails-2.3.11
 rvm 1.8.7 gem install rails -v 2.3.11
@@ -75,6 +84,10 @@ rvm 1.8.7  gem install aws-s3 -v 0.6.2
 
 print_status will_paginate-2.3.16
 rvm 1.8.7  gem install will_paginate -v 2.3.16
+
+mysql -uroot < mysql_setup
+
+rake db:migrate
 
 #*RVM - don't forget to add [[ -s "/home/mars/.rvm/scripts/rvm" ]] && source "/#home/mars/.rvm/scripts/rvm" to your .bashrc if you want rvm loaded into every #shell you bring up
 #     - You may have to (or want to) add "rvm ruby-1.8.7" to your .bashrc too.
