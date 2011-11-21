@@ -1,8 +1,10 @@
 require 'test_helper'
+require 'mocha'
 
-class AboutControllerTest < ActionController::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
-  end
+class AboutControllerTest <  ActionController::TestCase
+  
+	test 'index_loads_properly' do		
+		get :index
+		assert_response :success		
+	end
 end
