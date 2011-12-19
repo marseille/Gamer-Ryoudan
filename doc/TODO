@@ -1,0 +1,43 @@
+add Nintendo 64 platform for FIFA road to the world cup 98,
+
+add kengo for PS2
+
+add DS games to the thing.
+
+add 360 as a platform for Fifa soccer 10
+
+searching for "Super Smash Bros. Brawl [Nintendo Wii]" crashes javascript.
+
+Searching on front page does not bring search results to the right
+
+When adding a new game that hasn't been found from a search, red
+banners look weird. 
+
+Adding a new game doesn't work?
+
+-Add a "you are logged in as marseille" widget when logged in. 
+-(For when you're already logged in and visit your site directly)
+-Values on list aren't editable when not logged in, but they look like they 
+  can be
+-It doesn't tell you on the site that you're not logged in.
+
+-you really should be able to rank games. Difficult is less cool than a rating,
+Who really cares that you played it on hard? or very hard?
+
+-"Found 1 games. Showing 1-20" There were 20? no they weren't.
+
+-Why does "more results" show up if there aren't more results?
+
+-why does it take like 5 seconds to start the page and then afterwards its good?
+
+Need to fix example of "
+you need to specify a user if you're going to look at a list!
+ex:http://localhost:3000/game_list/user_name"
+
+Also, need to change the, you can track:
+
+Game and platform percent completion
+
+This isn't there, or you should implement it.
+
+Get rid of terms tab, (logged in and logged out), replace it with recent changes (when logged in), add log in tab for when not logged in.
