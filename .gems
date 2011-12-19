@@ -2,7 +2,7 @@ aws-s3
 rails -v 2.3.14
 authlogic
 mysql
-gem 'hoe', '~> 1.5.1'
+hoe -v 1.5.1
 ruby-github
 rmagick
 will_paginate
