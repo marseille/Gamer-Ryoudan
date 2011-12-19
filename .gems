@@ -1,7 +1,7 @@
-aws-s3
-rails -v 2.3.8
-authlogic
-mysql
-ruby-github
-rmagick
-will_paginate
+aws-s3 -v 0.6.2
+rails -v 2.3.14
+authlogic -v 2.1.6
+mysql -v 2.8.1
+ruby-github -v 0.0.3
+rmagick -v 2.13.1
+will_paginate -v 2.3.16
