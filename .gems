@@ -1,5 +1,5 @@
 aws-s3
-rails -v 2.3.8
+rails -v 2.3.14
 authlogic
 mysql
 ruby-github
