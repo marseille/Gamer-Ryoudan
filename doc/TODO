@@ -40,4 +40,7 @@ Game and platform percent completion
 
 This isn't there, or you should implement it.
 
+
+done
+----------------------------
 Get rid of terms tab, (logged in and logged out), replace it with recent changes (when logged in), add log in tab for when not logged in.

@@ -520,8 +520,9 @@ p {
 .red{background:#E90000;}
 .orange{background:#FF4100;}
 .pale_orange{background:#FF7900;}
-.light_orange{background:#FF6600;}
-.orange_yellow{background:#FF9000;}
+.light_orange{background:#FFAA00;}
+
+/*FF6600*/
 
 .white_link {
 	color: #FFFFFF;
