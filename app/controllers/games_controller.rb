@@ -29,7 +29,7 @@ class GamesController < ApplicationController
     @start_interval = (params["page"]) ? params["page"].to_i : 1    
     @start_interval = (@start_interval * 20) - 19
     @end_interval = (params["page"]) ? params["page"].to_i : 1
-    @end_interval = (@end_interval * 20)                
+    @end_interval = (@result_count < (@end_interval * 20)) ? @result_count : (@end_interval * 20)                				
     @game_results = @games.paginate({:page => params[:page], :per_page => 20})                
     (@games.empty?) ? render_for_new_game(@search_tag) : render_for_search_results(@home_search)    
   end

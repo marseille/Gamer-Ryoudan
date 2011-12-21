@@ -30,7 +30,7 @@ class GameListController < ApplicationController
   
   def validate
     if !params["user"] && !current_user
-      flash[:notice] = "<br /><label class=red_text>you need to specify a user if you're going to look at a list! <br /> ex:http://localhost:3000/game_list/user_name</label>" 
+      flash[:notice] = "<br /><label class=red_text>you need to specify a user if you're going to look at a list! <br /> ex:http://gamer-ryoudan.heroku.com/game_list/user_name</label>" 
       redirect_to "/"
     elsif !params["user"] && current_user
       redirect_to "/game_list/"+current_user["login"]

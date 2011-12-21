@@ -30,17 +30,18 @@ Who really cares that you played it on hard? or very hard?
 
 -why does it take like 5 seconds to start the page and then afterwards its good?
 
-Need to fix example of "
-you need to specify a user if you're going to look at a list!
-ex:http://localhost:3000/game_list/user_name"
-
 Also, need to change the, you can track:
+Game and platform percent completion.This isn't there, or you should implement it.
 
-Game and platform percent completion
-
-This isn't there, or you should implement it.
+- Searching for something that doesn't exist when you are not logged in doesn't bring "no results"
+   -It should say, no results; log in to make a game request
+			-But it says, you have to be logged in to add games, back to your list
 
 
 done
 ----------------------------
 Get rid of terms tab, (logged in and logged out), replace it with recent changes (when logged in), add log in tab for when not logged in.
+
+Need to fix example of "
+you need to specify a user if you're going to look at a list!
+ex:http://localhost:3000/game_list/user_name"
