@@ -8,8 +8,6 @@ add 360 as a platform for Fifa soccer 10
 
 searching for "Super Smash Bros. Brawl [Nintendo Wii]" crashes javascript.
 
-Searching on front page does not bring search results to the right
-
 When adding a new game that hasn't been found from a search, red
 banners look weird. 
 
@@ -23,10 +21,6 @@ Adding a new game doesn't work?
 
 -you really should be able to rank games. Difficult is less cool than a rating,
 Who really cares that you played it on hard? or very hard?
-
--"Found 1 games. Showing 1-20" There were 20? no they weren't.
-
--Why does "more results" show up if there aren't more results?
 
 -why does it take like 5 seconds to start the page and then afterwards its good?
 
@@ -45,3 +39,11 @@ Get rid of terms tab, (logged in and logged out), replace it with recent changes
 Need to fix example of "
 you need to specify a user if you're going to look at a list!
 ex:http://localhost:3000/game_list/user_name"
+
+-"Found 1 games. Showing 1-20" There were 20? no they weren't.
+
+-Why does "more results" show up if there aren't more results? (what..this doesn't show up anymore..)
+
+Searching on front page does not bring search results to the right (what..this doesn't show up anymore..)
+
+-When logged in and searching for game that doesn't exist, you get double "back to your list" on the bottom
