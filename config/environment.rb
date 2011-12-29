@@ -26,7 +26,9 @@ Rails::Initializer.run do |config|
    config.gem 'authlogic', :version => "2.1.6"
    config.gem 'mysql', :version => "2.8.1"   
    config.gem 'ruby-github'
-   #config.gem 'aws-s3'
+   config.gem 'mocha'
+			config.gem 'rdoc'
+			#config.gem 'aws-s3'
    #config.gem 'rmagick', :version => "2.13.1" #need some special libraries for this one
    config.gem 'will_paginate'
    
