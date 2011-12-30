@@ -43,16 +43,19 @@ gem install mysql -v 2.8.1
 gem install authlogic -v 2.1.6
 gem install rmagick -v 2.13.1
 gem install ruby-github -v 0.0.3
-
 gem install aws-s3 -v 0.6.2
 **If the aws-s3 install fails, try installing it again right after. worked for me.
 
 gem install will_paginate -v 2.3.16
+gem install mocha -v 0.10.0
+gem install rdoc -v 3.12
 
 database management
 --------------------------------------
 rake db:create
 rake db:migrate
+(create test db in mysql admin, "gamer_ryoudan_test")
+rake db:test:load
 
 
 *RVM - don't forget to add [[ -s "/home/mars/.rvm/scripts/rvm" ]] && source "/home/mars/.rvm/scripts/rvm" to your .bashrc if you want rvm loaded into every shell you bring up

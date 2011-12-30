@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'mocha'
 
 class AboutControllerTest <  ActionController::TestCase
   
