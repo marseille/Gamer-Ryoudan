@@ -5,7 +5,7 @@
   </thead>
   <tbody>
 				<% if @planned.length > 0 %>
-						<% @planned_games.each do |game|%>
+						<% @planned.each do |game|%>
 								<%= render :partial => "table_content", :locals => {:game => game} %>
 						<% end %>
 				<% end %>
