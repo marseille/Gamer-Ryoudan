@@ -3,11 +3,11 @@ $(function() {
   //I need to put some sort of notification on the site when an error occurs with the 
   //ajax, otherwise you just see the spinner and think its taking a real long time.
   if($(".search_page_spinner").length == 0) {        
-    $("input#search_tag").quickselect({ajax:"/games/search_game/", minChars: 3, width:300, spinner_class:".spinner", named_route: true})  
+    $("input#search_tag").quickselect({ajax:"/games/autocomplete_game_search/", minChars: 3, width:300, spinner_class:".spinner", named_route: true})  
   } else {    
-    $("input#search_tag").quickselect({ajax:"/games/search_game/", minChars: 3, width:300, spinner_class:".search_page_spinner", named_route: true})  
+    $("input#search_tag").quickselect({ajax:"/games/autocomplete_game_search/", minChars: 3, width:300, spinner_class:".search_page_spinner", named_route: true})  
   }
-  $("input#search_field").quickselect({ajax:"/games/search_game/", minChars: 3, width:300, spinner_class:"blank", named_route: true})
+  $("input#search_field").quickselect({ajax:"/games/autocomplete_game_search/", minChars: 3, width:300, spinner_class:"blank", named_route: true})
   
   //Activates the search once a quickselect result has been chosen
 //$("input#search_field").live("change", function(event) {
@@ -27,7 +27,8 @@ function get_new_value_html(field,div_id,json) {
 }
 
 function show_hide(div_to_show) {      
-  if($("#"+div_to_show+"_div").is(":visible")){    
+  console.log("hi")		
+		if($("#"+div_to_show+"_div").is(":visible")){    
     if($("#"+div_to_show+"_button")) {
       var text =  $("#"+div_to_show+"_button").data("link_text")
       $("#"+div_to_show+"_button").text(text)
@@ -38,6 +39,7 @@ function show_hide(div_to_show) {
       $("#"+div_to_show+"_button").data("link_text", $("#"+div_to_show+"_button").text())
       $("#"+div_to_show+"_button").text("cancel!")
     }
+				console.log($("#"+div_to_show+"_div"))				
     $("#"+div_to_show+"_div").fadeIn("slow")
   }
 }

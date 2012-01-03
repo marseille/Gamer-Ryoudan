@@ -430,6 +430,10 @@ var QuickSelect;
       // Added an option for rails named routes, just add "named_route" as an option
       // it will allow you to do /controller/action/some_parameter instead of
       // /controller/action/?someparameter=something
+						//
+						//Changed $.getJSON to $.ajax, cause getJSON has no failure callback.
+						//Srsly. why would you ever use something that has no way to tell you it failed? 
+						//
       //@H
       var url = this.options.ajax
       if(this.options.named_route){        
@@ -442,11 +446,16 @@ var QuickSelect;
         if(this.options.ajaxParams.hasOwnProperty(i)){
           url += "&" + i + "=" + encodeURI(this.options.ajaxParams[i]);
         }
-      }      
-      $.getJSON(url, callback);
+      }      						
+      //$.getJSON(url, callback); < --- uncomment this if you want lame-not-failure-telling-ajax
+						
+						$.ajax({url:url, 
+																		dataType: 'json', 
+																		success: callback, 
+																		error: Gamer_Ryoudan.hide_loader(".spinner")});						
     }
   };
-
+		
   $.fn.quickselect = function(options, data){
     if(options == 'refresh' && $(this).data('quickselect')) return $(this).data('quickselect').refresh();
     if(options == 'instance' && $(this).data('quickselect')) return $(this).data('quickselect');

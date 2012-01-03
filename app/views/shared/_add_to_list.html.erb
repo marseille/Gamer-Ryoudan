@@ -1,6 +1,6 @@
-<% if !@game["id"].nil? %>
-  <%= render :partial => "shared/add_to_list_game_exists", :locals => {:only_submit => only_submit}  %>
-<% else %>  
-  <% @game_information = GameInformation.new %>
+<% if @game["id"] %>  
+		<%= render :partial => "shared/add_to_list_game_exists", :locals => {:only_submit => only_submit}  %>
+<% else %>    
+		<% @game_information = GameInformation.new %>
   <%= render :partial => "shared/add_to_list_game_nonexistent", :locals => {:only_submit => only_submit} %>
 <% end %>    

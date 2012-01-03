@@ -3,7 +3,7 @@
   <%= render :partial => "add_game_db" %>
   <%= render :partial => "games/search_again" %>
 <% else %>
-  <%= label_tag :should_be_logged_in, "You need to be logged in to add games", :class => "red" %>
+  <h4><label class="red_text">That game wasn't found in our library, please login and add it! </label></h4>
   <% render :partial => "user_sessions/login" %>  
 <% end %>
 <br />

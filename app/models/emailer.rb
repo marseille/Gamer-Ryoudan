@@ -36,8 +36,7 @@ class Emailer < ActionMailer::Base
 	                             
 	  Your credentials are:
 	
-	  username:"#{username}"
-	  password:"#{password}"    
+	  username:"#{username}"	  
   
 	  You can log into the Gamer Ryoudan here:
 	  http://gamer-ryoudan.heroku.com

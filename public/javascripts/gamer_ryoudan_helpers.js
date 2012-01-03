@@ -15,13 +15,14 @@ var Gamer_Ryoudan = {
   
   show_loader : function(id) {
     $(id).empty()
-    $(id).append("<img src=/images/ajax-loader.gif></img>")
+    $(id).append("<img src=/images/ajax-loader.gif></img>")								
   },
   
-  hide_loader : function(id) {
-    $(id).empty()
-  },  
-  
+  hide_loader : function(id,message) {    
+				$(id).empty()
+				$(id).append(message)
+  },   						
+		
   show_hide : function(div_to_show) {      
     if($("#"+div_to_show+"_div").is(":visible")){    
       if($("#"+div_to_show+"_button")) {

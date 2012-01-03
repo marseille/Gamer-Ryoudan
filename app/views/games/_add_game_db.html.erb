@@ -1,10 +1,12 @@
-<div class="something">
-  <h3> Add a game to the database!! </h3>
+<div class="pad-top">
+		<% if !@home_search %>
+				<h3> Add a game to the Gamer-Ryoudan! </h3>
+		<% end %>
   <div id="add_game_db_div" class="leftFloat">      
     <b> New game </b><br>
     
     <%= label_tag(:name)%><br>
-    <%= text_field_tag(:name,"", :size => 29) %> <br><br>
+    <%= text_field_tag(:name,@game["name"], :size => 29) %> <br><br>
     
     <%= label_tag(:platform) %><br>
     <%= text_field_tag(:platform,"", :size => 29) %> <br><br>            
@@ -13,13 +15,13 @@
     <%= check_box_tag( :add_to_list, 1, false, {:onclick => "show_hide('add_this_game_to_list')"}) %>          
     <br><br><br>
     
-    <%= submit_tag("Improvify DB!", :div_id => "add_game_db_div", :add_list_div => "add_this_game_to_list_div", :class => "submit", :id => "add_game_db_submit") %>    
+    <%= submit_tag("Add!", :div_id => "add_game_db_div", :add_list_div => "add_this_game_to_list_div", :class => "submit", :id => "add_game_db_submit") %>    
     <div class="saved_db">
       <label class="red_text"></label>
     </div>
   </div>      
 
-  <div id="add_this_game_to_list_div" class=add_nonexistent_game>      
-    <%= render :partial => "shared/add_to_list", :locals => {:only_submit => false, :game_name => @game["name"]} if  @game%>                    
+  <div id="add_this_game_to_list_div" class=add_nonexistent_game>          								
+				<%= render :partial => "shared/add_to_list", :locals => {:only_submit => false, :game_name => @game["name"]}%>                    
   </div>    
 </div>
