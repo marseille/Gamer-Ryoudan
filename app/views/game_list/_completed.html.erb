@@ -4,11 +4,11 @@
     <%= render :partial => "table_headers" %>  
   </thead>
   <tbody>
-				<% if @completed.length > 0 %>
-						<% @completed.each do |game|%>      
-								<%= render :partial => "table_content", :locals => {:game => game} %>
-						<% end %>
-				<% end %>
+  <% if @completed.length > 0 %>
+    <% @completed.each do |game|%>      
+      <%= render :partial => "table_content", :locals => {:game => game} %>
+    <% end %>
+  <% end %>
   </tbody>
 </table>
 <br />

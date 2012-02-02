@@ -5,10 +5,10 @@
   </thead>
   <tbody>
     <% if @currently_playing.length > 0 %>
-						<% @currently_playing.each do |game|%>
-								<%= render :partial => "table_content", :locals => {:game => game}%>
-						<% end %>
-				<% end %>
+      <% @currently_playing.each do |game|%>
+        <%= render :partial => "table_content", :locals => {:game => game}%>
+      <% end %>
+    <% end %>
   </tbody>
 </table>
 <br />

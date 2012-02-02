@@ -4,11 +4,11 @@
     <%= render :partial => "table_headers" %>
   </thead>
   <tbody>
-				<% if @hiatus.length > 0 %>
-						<% @hiatus.each do |game|%>
-								<%= render :partial => "table_content", :locals => {:game => game} %>
-						<% end %>
-				<% end %>
+    <% if @hiatus.length > 0 %>
+      <% @hiatus.each do |game|%>
+          <%= render :partial => "table_content", :locals => {:game => game} %>
+      <% end %>
+    <% end %>
   </tbody>
 </table>
 <br />
