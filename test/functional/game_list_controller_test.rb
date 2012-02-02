@@ -4,7 +4,7 @@ require "authlogic/test_case"
 class GameListControllerTest < ActionController::TestCase
   
   setup :activate_authlogic	
-		
+
   test 'Redirect to main page with message if user is not specified' do
     get :index				
     assert_response 302				

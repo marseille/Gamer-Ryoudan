@@ -1,6 +1,6 @@
 class GamesController < ApplicationController  
   before_filter :require_user, :only => [:add_game, :new_game]  
-  require 'will_paginate'  
+  require 'will_paginate'      
 
   def add_game    
     flash[:notice] = ""
@@ -10,11 +10,12 @@ class GamesController < ApplicationController
       return
     end    												
 
-    if params["add_to_list"]      
-      game_name = game["name"]
+    if params["add_to_list"]          
       user = current_user
       params["game_information"]["user_id"] = user["id"]
-      params["game_information"]["game_id"] = game["id"]      
+      #need to organize a queue of games that need to be added to
+      #list but are not added to the database yet
+      #params["game_information"]["game_id"] = game["id"]      
       Emailer.deliver_game_request(params, current_user["login"])
       render :json => "Your request has been submitted! Thank you for making the Gamer Ryoudan better.".to_json if !params["home_search"]       
       render :file => "/games/new_game_generic.html.erb", :layout => "application" if params["home_search"]
@@ -26,12 +27,11 @@ class GamesController < ApplicationController
   end
 
   #search query for autocompleting search box		
-  def autocomplete_game_search    				
+  def autocomplete_game_search    				        
     @games = Game.name_like(params["q"])[0..10]
-    platform_result = Game.platform_like(params["q"])[0..10]
-    if !platform_result.empty? && ((@games & platform_result).empty?)
-      @games.push(platform_result)
-    end    
+    platform_result = Game.platform_like(params["q"])[0..10]    
+    @games = @games.push(platform_result).flatten
+    @games = @games.to_enum.uniq_by {|game| game["id"]}                
     render :json => @games.flatten.collect {|game| [game["name"] + " ["+game["platform"]+"]", game["platform"]]}
   end		
   
