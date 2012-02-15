@@ -1,7 +1,8 @@
 aws-s3 -v 0.6.2
-rails -v 2.3.14
 authlogic -v 2.1.6
+hoe -v 1.5.1
 mysql -v 2.8.1
+rails -v 2.3.14
 rest-client -v 1.6.7
 ruby-github -v 0.0.3
 rmagick -v 2.13.1
