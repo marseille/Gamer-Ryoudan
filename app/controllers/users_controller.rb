@@ -111,20 +111,17 @@ class UsersController < ApplicationController
     @user["avatar"] = "https://s3.amazonaws.com/gamer-ryoudan-avatars/Avatars/default.png"
     password = params["user"]["password"]    
     email_domain = params["user"]["email"].split("@").last
-    email_invalid_json = RestClient.get(disposable_email_check_url + email_domain)
-    email_invalid = JSON.parse(email_invalid_json)
-    if email_invalid["domain_status"].eql?("block")
-      flash[:notice] = "Come on. Use a real email.."
-      render :action => :new 
-    end
-    
-    if @user.save
+    domain_check_json = RestClient.get(disposable_email_check_url + email_domain)
+    domain_check = JSON.parse(domain_check_json)    
+    email_invalid = domain_check["domain_status"].eql?("block")    
+    flash["error"] = "Come on. Use a real email.." if email_invalid
+        
+    if @user.save && flash["error"].nil?
       flash[:notice] = "Account registered!"
       Emailer.deliver_created_account(@user["email"], @user["login"], password)
       Emailer.deliver_new_signup(@user["email"], @user["login"])      
       redirect_to "/home"      
-    else
-      flash[:notice] = "an error occurred in saving"
+    else      
       render :action => :new
     end
   end
