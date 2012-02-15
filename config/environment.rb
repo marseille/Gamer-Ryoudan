@@ -27,8 +27,8 @@ Rails::Initializer.run do |config|
    config.gem 'mysql', :version => "2.8.1"   
    config.gem 'ruby-github'
    config.gem 'mocha'
-			config.gem 'rdoc'
-			#config.gem 'aws-s3'
+   config.gem 'rdoc'
+   #config.gem 'aws-s3'
    #config.gem 'rmagick', :version => "2.13.1" #need some special libraries for this one
    config.gem 'rest-client', :version => "1.6.7"
    config.gem 'will_paginate'
