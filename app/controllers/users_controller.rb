@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   protect_from_forgery :only => []
   require 'RMagick'
   require 'aws/s3'
+  require 'rest-client'
   
   def save_attribute     
     user = current_user        
@@ -109,12 +110,21 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])    
     @user["avatar"] = "https://s3.amazonaws.com/gamer-ryoudan-avatars/Avatars/default.png"
     password = params["user"]["password"]    
+    email_domain = params["user"]["email"].split("@").last
+    email_invalid_json = RestClient.get(disposable_email_check_url + email_domain)
+    email_invalid = JSON.parse(email_invalid_json)
+    if email_invalid["domain_status"].eql?("block")
+      flash[:notice] = "Come on. Use a real email.."
+      render :action => :new 
+    end
+    
     if @user.save
       flash[:notice] = "Account registered!"
       Emailer.deliver_created_account(@user["email"], @user["login"], password)
       Emailer.deliver_new_signup(@user["email"], @user["login"])      
       redirect_to "/home"      
     else
+      flash[:notice] = "an error occurred in saving"
       render :action => :new
     end
   end
@@ -134,4 +144,9 @@ class UsersController < ApplicationController
     end      
     render :action => :edit    
   end
+  
+  private
+    def disposable_email_check_url
+      "http://check.block-disposable-email.com/api/json/#{ENV["DEA_API_KEY"]}/"      
+    end
 end

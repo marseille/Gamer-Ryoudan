@@ -30,6 +30,7 @@ Rails::Initializer.run do |config|
 			config.gem 'rdoc'
 			#config.gem 'aws-s3'
    #config.gem 'rmagick', :version => "2.13.1" #need some special libraries for this one
+   config.gem 'rest-client', :version => "1.6.7"
    config.gem 'will_paginate'
    
   # Only load the plugins named here, in the order given. By default, all plugins 
