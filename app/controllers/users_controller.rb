@@ -103,11 +103,12 @@ class UsersController < ApplicationController
   end
   
   def new    
+    flash["error"] = params["error"] if params["error"]
     @user = User.new
   end
   
   def create
-    flash = {}
+    #flash = {}
     @user = User.new(params[:user])    
     @user["avatar"] = "https://s3.amazonaws.com/gamer-ryoudan-avatars/Avatars/default.png"
     password = params["user"]["password"]    
@@ -125,7 +126,7 @@ class UsersController < ApplicationController
       Emailer.deliver_new_signup(email, @user["login"])      
       redirect_to "/home"      
     else      
-      render :action => :new
+      render :action => :new, :params => {"error" => flash["error"]}
     end
   end
   
