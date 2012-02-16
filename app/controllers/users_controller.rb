@@ -107,19 +107,13 @@ class UsersController < ApplicationController
     @user = User.new
   end
   
-  def create
-    #flash = {}
+  def create    
     @user = User.new(params[:user])    
     @user["avatar"] = "https://s3.amazonaws.com/gamer-ryoudan-avatars/Avatars/default.png"
     password = params["user"]["password"]    
     email = params["user"]["email"]    
-    disposable = (email.include?("@")) ? disposable_email?(email) : "something"
-    if disposable == "something"
-      flash["error"] = "api error"
-    elsif disposable == true
-      flash["error"] = "Come on. No disposable emails.."
-    end
-    #flash["error"] = "Come on. No disposable emails.." if disposable 
+    disposable = (email.include?("@")) ? disposable_email?(email) : false
+    flash["error"] = "Come on. No disposable emails.." if disposable 
     if flash["error"].nil?  && @user.save
       flash[:notice] = "Account registered!"
       Emailer.deliver_created_account(email, @user["login"], password)
