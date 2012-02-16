@@ -107,19 +107,17 @@ class UsersController < ApplicationController
   end
   
   def create
+    flash = {}
     @user = User.new(params[:user])    
     @user["avatar"] = "https://s3.amazonaws.com/gamer-ryoudan-avatars/Avatars/default.png"
     password = params["user"]["password"]    
-    email_domain = params["user"]["email"].split("@").last
-    domain_check_json = RestClient.get(disposable_email_check_url + email_domain)
-    domain_check = JSON.parse(domain_check_json)    
-    email_invalid = domain_check["domain_status"].eql?("block")    
-    flash["error"] = "Come on. Use a real email.." if email_invalid
-        
-    if @user.save && flash["error"].nil?
+    email = params["user"]["email"]
+    disposable = (email.include?("@")) ? disposable_email?(email) : false
+    flash["error"] = "Come on. No disposable emails.." if disposable
+    if flash["error"].nil?  && @user.save
       flash[:notice] = "Account registered!"
-      Emailer.deliver_created_account(@user["email"], @user["login"], password)
-      Emailer.deliver_new_signup(@user["email"], @user["login"])      
+      Emailer.deliver_created_account(email, @user["login"], password)
+      Emailer.deliver_new_signup(email, @user["login"])      
       redirect_to "/home"      
     else      
       render :action => :new
@@ -144,6 +142,13 @@ class UsersController < ApplicationController
   
   private
     def disposable_email_check_url
-      "http://check.block-disposable-email.com/api/json/#{ENV["DEA_API_KEY"]}/"      
+      "http://check.block-disposable-email.com/api/json/#{ENV["DEA_API_KEY"]}/"            
+    end
+    
+    def disposable_email?(email)
+      email_domain = email.split("@").last
+      domain_check_json = RestClient.get(disposable_email_check_url + email_domain)
+      domain_check = JSON.parse(domain_check_json)    
+      email_invalid = domain_check["domain_status"].eql?("block")          
     end
 end

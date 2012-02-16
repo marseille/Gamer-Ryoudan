@@ -24,9 +24,15 @@ class ApplicationController < ActionController::Base
       Rails.logger.error(exception)
   end  
   
-  def recent_changes                
-    commits = GitHub::API.new({"use_ssl" => true}).commits("marseille","gamer-ryoudan")
-    latest_commits = commits[0..9]    
+  def recent_changes                    
+    latest_commits = []
+    begin
+      commits = GitHub::API.new({"use_ssl" => true}).commits("marseille","gamer-ryoudan")        
+      latest_commits = commits[0..9]        
+    rescue Exception => e
+      #problem with github?
+    end
+    latest_commits
   end
   
   def current_user_session
