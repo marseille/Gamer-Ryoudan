@@ -9,7 +9,7 @@ class GameListController < ApplicationController
     @hiatus = game_list[1]
     @planned = game_list[2]
     @completed = game_list[3]													
-    flash["user"] = user				
+    flash["login"] = user["login"]
     flash["notice"] = params["flash"] if params["flash"]
   end
   				
