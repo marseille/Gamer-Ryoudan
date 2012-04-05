@@ -33,7 +33,7 @@ module Searchlogic
       # is a safe method.
       def alias_scope(name, options = nil)
         alias_scopes[name.to_sym] = options
-        (class << self; self end).instance_eval do
+        (class << self; self; end).instance_eval do
           define_method name do |*args|
             case options
             when Symbol
@@ -45,23 +45,24 @@ module Searchlogic
         end
       end
       alias_method :scope_procedure, :alias_scope
-      
-      def alias_scopes # :nodoc:
-        read_inheritable_attribute(:alias_scopes) || write_inheritable_attribute(:alias_scopes, {})
-      end
-      
-      def alias_scope?(name) # :nodoc:
-        return false if name.blank?
-        alias_scopes.key?(name.to_sym)
-      end
-      
+
       def condition?(name) # :nodoc:
         super || alias_scope?(name)
       end
-      
+
       def named_scope_options(name) # :nodoc:
         super || alias_scopes[name.to_sym]
       end
+
+      private
+        def alias_scopes # :nodoc:
+          read_inheritable_attribute(:alias_scopes) || write_inheritable_attribute(:alias_scopes, {})
+        end
+
+        def alias_scope?(name) # :nodoc:
+          return false if name.blank?
+          alias_scopes.key?(name.to_sym)
+        end
     end
   end
 end

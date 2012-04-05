@@ -1,9 +1,13 @@
-require File.expand_path(File.dirname(__FILE__) + "/../../spec_helper")
+require 'spec_helper'
 
-describe Searchlogic::NamedScopes::Conditions do
+describe Searchlogic::NamedScopes::ColumnConditions do
   it "should be dynamically created and then cached" do
-    User.should_not respond_to(:age_less_than)
+    User.scopes.key?(:age_less_than).should == false
     User.age_less_than(5)
+    User.scopes.key?(:age_less_than).should == true
+  end
+  
+  it "should respond to the scope" do
     User.should respond_to(:age_less_than)
   end
   
@@ -14,9 +18,9 @@ describe Searchlogic::NamedScopes::Conditions do
   context "comparison conditions" do
     it "should have equals" do
       (5..7).each { |age| User.create(:age => age) }
+      nil_user = User.create
       User.age_equals(6).all.should == User.find_all_by_age(6)
-      User.age_equals(5..6).all.should == User.find_all_by_age(5..6)
-      User.age_equals([5, 7]).all.should == User.find_all_by_age([5, 7])
+      User.age_equals(nil).all.should == User.find_all_by_age(nil)
     end
     
     it "should have does not equal" do
@@ -124,6 +128,12 @@ describe Searchlogic::NamedScopes::Conditions do
     it "should have equals any" do
       %w(bjohnson thunt dgainor).each { |username| User.create(:username => username) }
       User.username_equals_any("bjohnson", "thunt").all.should == User.find_all_by_username(["bjohnson", "thunt"])
+    end
+    
+    # PostgreSQL does not allow null in "in" statements
+    it "should have equals any and handle nils" do
+      %w(bjohnson thunt dgainor).each { |username| User.create(:username => username) }
+      User.username_equals_any("bjohnson", "thunt", nil).proxy_options.should == {:conditions=>["users.username IN (?) OR users.username IS ?", ["bjohnson", "thunt"], nil]}
     end
     
     it "should have equals all" do

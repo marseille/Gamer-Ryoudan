@@ -4,17 +4,10 @@ module Searchlogic
       def self.included(klass)
         klass.class_eval do
           yaml_as "tag:ruby.yaml.org,2002:class"
-          extend ClassMethods
           include InstanceMethods
         end
       end
-      
-      module ClassMethods
-        def yaml_new(klass, tag, val)
-          raise "ass"
-        end
-      end
-      
+
       module InstanceMethods
         def to_yaml( opts = {} )
           YAML::quick_emit( self, opts ) do |out|
@@ -25,7 +18,7 @@ module Searchlogic
             end
           end
         end
-        
+
         def yaml_initialize(taguri, attributes = {})
           self.klass = attributes["class_name"].constantize
           self.current_scope = attributes["current_scope"]

@@ -1,9 +1,10 @@
 require "searchlogic/core_ext/proc"
 require "searchlogic/core_ext/object"
-require "searchlogic/active_record/association_proxy"
 require "searchlogic/active_record/consistency"
 require "searchlogic/active_record/named_scope_tools"
-require "searchlogic/named_scopes/conditions"
+require "searchlogic/active_record/scope"
+require "searchlogic/named_scopes/base"
+require "searchlogic/named_scopes/column_conditions"
 require "searchlogic/named_scopes/ordering"
 require "searchlogic/named_scopes/association_conditions"
 require "searchlogic/named_scopes/association_ordering"
@@ -24,19 +25,15 @@ Proc.send(:include, Searchlogic::CoreExt::Proc)
 Object.send(:include, Searchlogic::CoreExt::Object)
 
 module ActiveRecord # :nodoc: all
-  module Associations
-    class AssociationProxy
-      include Searchlogic::ActiveRecord::AssociationProxy
-    end
-  end
-
   class Base
     class << self; include Searchlogic::ActiveRecord::Consistency; end
   end
 end
 
+ActiveRecord::Base.extend(Searchlogic::ActiveRecord::Scope)
 ActiveRecord::Base.extend(Searchlogic::ActiveRecord::NamedScopeTools)
-ActiveRecord::Base.extend(Searchlogic::NamedScopes::Conditions)
+ActiveRecord::Base.extend(Searchlogic::NamedScopes::Base)
+ActiveRecord::Base.extend(Searchlogic::NamedScopes::ColumnConditions)
 ActiveRecord::Base.extend(Searchlogic::NamedScopes::AssociationConditions)
 ActiveRecord::Base.extend(Searchlogic::NamedScopes::AssociationOrdering)
 ActiveRecord::Base.extend(Searchlogic::NamedScopes::Ordering)

@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + "/../../spec_helper")
+require 'spec_helper'
 
 describe Searchlogic::NamedScopes::AliasScope do
   before(:each) do
@@ -18,6 +18,6 @@ describe Searchlogic::NamedScopes::AliasScope do
   end
   
   it "should inherit alias scopes from superclasses" do
-    Class.new(User).alias_scope?("username_has").should be_true
+    Class.new(User).condition?("username_has").should be_true
   end
 end
