@@ -1,7 +1,6 @@
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
-require 'pp'
-require 'ruby-github'
+require 'github_api'
 
 class ApplicationController < ActionController::Base
   protect_from_forgery :except => [:add_game_to_list]  
@@ -25,14 +24,13 @@ class ApplicationController < ActionController::Base
   end  
   
   def recent_changes                    
-    latest_commits = []
     begin
-      commits = GitHub::API.new({"use_ssl" => true}).commits("marseille","gamer-ryoudan")        
-      latest_commits = commits[0..9]        
+      repo = Github::Repos.new(:user => 'marseille', :repo => 'gamer-ryoudan')
+      commits = repo.commits.all[0..9]
     rescue Exception => e
       #problem with github?
     end
-    latest_commits
+    commits
   end
   
   def current_user_session

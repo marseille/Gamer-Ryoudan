@@ -5,7 +5,7 @@ For a complete list of changes and more info on the gamer-ryoudan project, check
 <br /><br />
 
 <% latest_commits = recent_changes %>
-<% latest_commits.each do |commit| %>
-  <h3><%=commit["committed_date"] %> </h3>
-  <p class=commit_message><%=commit["message"] %></p>
+<% latest_commits.each do |commit_obj| %>
+  <h3><%=commit_obj["commit"]["author"]["date"]%> </h3>
+  <p class=commit_message><%=commit_obj["commit"]["message"] %></p>
 <% end %>
