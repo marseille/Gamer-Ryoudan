@@ -6,6 +6,6 @@ mysql -v 2.8.1
 rails -v 2.3.15
 rdoc -v 3.12
 rest-client -v 1.6.7
-github_api -v 0.11.3
+ruby-github -v 0.0.3
 rmagick -v 2.13.1
 will_paginate -v 2.3.16

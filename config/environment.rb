@@ -25,7 +25,7 @@ Rails::Initializer.run do |config|
   # You have to specify the :lib option for libraries, where the Gem name (sqlite3-ruby) differs from the file itself (sqlite3)  
    config.gem 'authlogic', :version => "2.1.6"
    config.gem 'mysql', :version => "2.8.1"   
-   config.gem 'github_api'
+   config.gem 'ruby-github'
    config.gem 'mocha'
    config.gem 'rdoc'
    #config.gem 'aws-s3'
