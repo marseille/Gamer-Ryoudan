@@ -1,6 +1,6 @@
 <%= javascript_include_tag "game_search_ajax.js" %>
-<% form_tag(:controller => "games", :action => "find_game") do %>                        
-  <%= text_field_tag :search_tag,{}, {:class => "search_field", :id => "search_field"} %>    
+<%= form_tag(:controller => "games", :action => "find_game") do %>                        
+  <%= text_field_tag :search_tag,"", {:class => "search_field", :id => "search_field"} %>    
   <%= label_tag :search_label, "Search!", :class => "search_label" %>                   
   <input type="image" src="/images/images.png" border=0 class="search_button", alt="search button">        
   </input>      

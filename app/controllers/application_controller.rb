@@ -1,12 +1,11 @@
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 require 'pp'
-require 'ruby-github'
+require 'github_api'
 
 class ApplicationController < ActionController::Base
   protect_from_forgery :except => [:add_game_to_list]  
   around_filter :handle_error  
-  filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user, :recent_changes
 
   protected
@@ -18,21 +17,21 @@ class ApplicationController < ActionController::Base
   def handle_error
     yield      
     rescue => exception                        
-      user = current_user
+      user = current_user      
       user = {"login" => "anonymous", "email" => "anonymous"} if !user           
-      Emailer.deliver_error(request.request_uri,exception, user,params.collect{|param| param.to_a})      
+      Emailer.error(request.path,exception, user,params.collect{|param| param.to_a}).deliver      
       Rails.logger.error(exception)
+      raise exception
   end  
   
   def recent_changes                    
-    latest_commits = []
     begin
-      commits = GitHub::API.new({"use_ssl" => true}).commits("marseille","gamer-ryoudan")        
-      latest_commits = commits[0..9]        
+      repo = Github::Repos.new(:user => 'marseille', :repo => 'gamer-ryoudan')
+      commits = repo.commits.all[0..9]
     rescue Exception => e
       #problem with github?
     end
-    latest_commits
+    commits
   end
   
   def current_user_session

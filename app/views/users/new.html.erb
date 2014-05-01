@@ -1,7 +1,9 @@
 <h3>Gamer Ryoudan Registration</h3><div class=clear></div>
 <h4><%= flash["error"] if flash["error"] %></h4>
-<% form_for @user, :url => account_path do |f| %>
-  <%= f.error_messages %>
+<%= form_for @user do |f| %>
+  <% @user.errors.full_messages.each do |error| %>
+      <%= error %>
+  <% end %>
   <%= render :partial => "form", :object => f %>
   <br />
   <%= f.submit "Register" %>

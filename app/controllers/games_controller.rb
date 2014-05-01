@@ -16,11 +16,11 @@ class GamesController < ApplicationController
       #need to organize a queue of games that need to be added to
       #list but are not added to the database yet
       #params["game_information"]["game_id"] = game["id"]      
-      Emailer.deliver_game_request(params, current_user["login"])
+      Emailer.game_request(params, current_user["login"])
       render :json => "Your request has been submitted! Thank you for making the Gamer Ryoudan better.".to_json if !params["home_search"]       
       render :file => "/games/new_game_generic.html.erb", :layout => "application" if params["home_search"]
     else
-      Emailer.deliver_game_request(params, current_user["login"])      
+      Emailer.game_request(params, current_user["login"])      
       render :json => "Your request has been submitted! Thank you for making the Gamer Ryoudan better.".to_json if !params["home_search"]                  
       render :file => "/games/new_game_generic.html.erb", :layout => "application" if params["home_search"]
     end

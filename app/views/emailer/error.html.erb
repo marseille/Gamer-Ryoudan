@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+   <p> 
+   The Gamer Ryoudan website has crashed with the following information:
+      message:#{exception.message}
+      url:"#{url}"
+      args: "#{params.collect {|param| param.to_a}}"
+      user:"#{user['login']}"
+      users email:"#{user['email']}"
+      stacktrace:#{exception.application_backtrace.join("\n")}
+   </p>        
+  </body>
+</html>

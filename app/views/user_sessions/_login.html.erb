@@ -2,8 +2,10 @@
   <label class="login_label"> Member Login</label>
   <br /><br />
   <% @user_session = UserSession.new if @user_session.nil? %>
-  <% form_for @user_session, :url => "/user_sessions/create" do |f| %>
-    <%= f.error_messages %>
+  <%= form_for @user_session, :url => "/user_sessions/create" do |f| %>
+    <% @user_session.errors.full_messages.each do |error| %>
+      <%= error %>
+    <% end %>
     <br />
     <%= f.label :login %><br />
     <%= f.text_field :login %><br />

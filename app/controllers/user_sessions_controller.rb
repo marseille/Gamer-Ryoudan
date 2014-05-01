@@ -4,14 +4,14 @@ class UserSessionsController < ApplicationController
   
   def new
     @user_session = UserSession.new    
+    @errors = @user_session.errors
   end
   
   def create
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
       flash[:notice] = "Login successful!"
-      redirect_to "/home"
-      #redirect_back_or_default session.cgi.env_table["PATH_INFO"]
+      redirect_to "/home"      
     else
       render :action => :new
     end

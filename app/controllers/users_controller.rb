@@ -103,21 +103,21 @@ class UsersController < ApplicationController
   end
   
   def new    
-    flash["error"] = params["error"] if params["error"]
+    flash["error"] = permitted_params(params)["error"] if params["error"]
     @user = User.new
   end
   
   def create    
-    @user = User.new(params[:user])    
-    @user["avatar"] = "https://s3.amazonaws.com/gamer-ryoudan-avatars/Avatars/default.png"
-    password = params["user"]["password"]    
-    email = params["user"]["email"]    
+    @user = User.new(permitted_params(params))    
+    @user["avatar_path"] = "https://s3.amazonaws.com/gamer-ryoudan-avatars/Avatars/default.png"
+    password = permitted_params(params)["password"]    
+    email = permitted_params(params)["email"]    
     disposable = (email.include?("@")) ? disposable_email?(email) : false
     flash["error"] = "Come on. No disposable emails.." if disposable 
     if flash["error"].nil?  && @user.save
       flash[:notice] = "Account registered!"
-      Emailer.deliver_created_account(email, @user["login"], password)
-      Emailer.deliver_new_signup(email, @user["login"])      
+      Emailer.created_account(email, @user["login"]).deliver
+      #Emailer.deliver_new_signup(email, @user["login"])      
       redirect_to "/home"      
     else      
       render :action => :new, :params => {"error" => flash["error"]}
@@ -141,6 +141,11 @@ class UsersController < ApplicationController
   end
   
   private
+  
+    def permitted_params(params)
+      params.require(:user).permit(:login, :password, :password_confirmation, :email)
+    end
+  
     def disposable_email_check_url
       "http://check.block-disposable-email.com/api/json/#{ENV["DEA_API_KEY"]}/"            
     end
