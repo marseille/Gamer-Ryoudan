@@ -1,0 +1,11 @@
+<div class="right pad_up">        
+  <h4>Latest changes</h4>
+  <% latest_commits = recent_changes %>
+  <% if !latest_commits.empty? %>
+    <%(0..2).each do |commit| %>
+      <h3><%=latest_commits[commit]["committed_date"] %></h3>
+      <p><%=latest_commits[commit]["message"]%></p>
+      <br />
+    <% end %>  
+  <% end %>
+</div>
