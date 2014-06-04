@@ -40,7 +40,6 @@ gem 'spring',        group: :development
 gem 'bcrypt'
 gem 'scrypt'
 gem 'authlogic', ">= 2.1.6"
-gem 'rd_searchlogic'
 gem 'pg'
 gem 'mysql'
 gem 'github_api'
