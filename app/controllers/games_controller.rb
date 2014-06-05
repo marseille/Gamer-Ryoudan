@@ -4,7 +4,7 @@ class GamesController < ApplicationController
 
   def add_game    
     flash[:notice] = ""
-    game = Game.new(params["game"])    
+    game = Game.new(game_params)    
     if Game.find_by_name_and_platform(params["game"]["name"],params["game"]["platform"])
       render :json => "That game already exists".to_json
       return
@@ -107,5 +107,10 @@ class GamesController < ApplicationController
         @renderer = "PaginationListLinkRenderer"
         render :partial => "games/paginated_game_results" 
       end
-    end		
+    end	
+    
+private
+  def game_params
+    params.require(:game).permit(:name, :platform)
+  end
 end

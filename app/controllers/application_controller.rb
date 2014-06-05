@@ -1,11 +1,9 @@
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
-require 'pp'
 require 'github_api'
 
 class ApplicationController < ActionController::Base
-  protect_from_forgery :except => [:add_game_to_list]  
-  around_filter :handle_error  
+ around_filter :handle_error  
   helper_method :current_user_session, :current_user, :recent_changes
 
   protected
@@ -57,13 +55,13 @@ class ApplicationController < ActionController::Base
     if current_user
       store_location
       flash[:notice] = "You must be logged out to access this page"
-      redirect_to account_url
+      redirect_to request.base_url
       return false
     end
   end
   
   def store_location
-    session[:return_to] = request.request_uri
+    session[:return_to] = request.original_url
   end
   
   def redirect_back_or_default(default)

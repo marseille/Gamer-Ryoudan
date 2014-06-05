@@ -4,11 +4,13 @@ var Rails = {
     if(method_type == "POST"){
       params = JSON.stringify(params)
     }
+    
     $.ajax({
       "url": url,
       "dataType": data_type,
       "type": method_type,
       "data": params,
+      "beforeSend": function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
       "success": function(data) { success_callback(data) },
       "error": function (event, XMLHttpRequest, ajaxOptions, thrownError)  {
         

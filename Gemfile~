@@ -38,9 +38,14 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'bcrypt'
+gem 'scrypt'
 gem 'authlogic', ">= 2.1.6"
 gem 'pg'
-gem "ruby-github"
-gem "mocha"
-gem "rdoc"
-gem "rest-client", ">= 1.6.7"
+gem 'mysql'
+gem 'github_api'
+gem 'mocha'
+gem 'rdoc'
+gem 'rest-client', ">= 1.6.7"
+gem 'will_paginate'
+gem 'rmagick'
+gem 'aws-s3'

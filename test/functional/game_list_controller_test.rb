@@ -8,17 +8,17 @@ class GameListControllerTest < ActionController::TestCase
   test 'Redirect to main page with message if user is not specified' do
     get :index				
     assert_response 302				
-    assert flash["display_message"]				
-    assert_equal @response.instance_variable_get("@redirected_to"), "/"
+    assert flash["display_message"]				    
+    assert_redirected_to "/" 
   end
-		
+
   test "Redirect to the user's gamelist if user is logged in, with url similar to ~.com/game_list/" do
     u = User.create({"login" => "login1", "password"=>"123456", "password_confirmation"=>"123456", "email" => "1@1.aol.com"})				
     get :index								
     assert_response 302								
-    assert_equal @response.instance_variable_get("@redirected_to"), "/game_list/login1"								
+    assert_redirected_to "/game_list/login1"
   end
-		
+
   test "index should identify the user's games and organize them" do				
     u = User.create({"login" => "login1", "password"=>"123456", "password_confirmation"=>"123456", "email" => "1@1.aol.com"})								
     g1 = Game.create({"name"=>"g1", "platform" => "p1"})
@@ -46,6 +46,6 @@ class GameListControllerTest < ActionController::TestCase
     assert_equal [[g2,ginfo2]], assigns["hiatus"]
     assert_equal [[g3,ginfo3]], assigns["planned"]
     assert_equal [[g4, ginfo4]], assigns["completed"]
-    assert_equal u, flash["user"]				
+    assert_equal u.login, flash["login"]				
   end								
 end

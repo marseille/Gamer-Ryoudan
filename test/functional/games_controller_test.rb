@@ -11,9 +11,10 @@ class GamesControllerTest < ActionController::TestCase
     post :add_game, {"game" => {"name"=>"g1", "platform"=>"p1"}}
     assert_not_nil assigns["current_user"]    
     assert_equal @response.body, "Your request has been submitted! Thank you for making the Gamer Ryoudan better.".to_json        
+    
     assert_equal num_deliveries+1, ActionMailer::Base.deliveries.size		
   end
-  
+
   test "add_game should make an addition request and note an addition to the user's game list" do
     u = User.create({"login" => "login1", "password"=>"123456", "password_confirmation"=>"123456", "email" => "1@1.aol.com"})				    
     num_deliveries = ActionMailer::Base.deliveries.size		

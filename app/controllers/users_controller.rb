@@ -8,7 +8,6 @@ class UsersController < ApplicationController
                                                           :save_avatar,
                                                           :add_game_to_list,
                                                           :remove_game_from_list]
-  protect_from_forgery :only => []
   require 'RMagick'
   require 'aws/s3'
   require 'rest-client'

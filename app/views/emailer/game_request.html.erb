@@ -1,15 +1,15 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
    <p> 
-    <%= @username has requested that you add this nonexistent
+    <%= @username %> has requested that you add this nonexistent
     game to the library of awesomeness: 
     
-    name:<%= #{game['game']['name']} %>
-    platform:<%=#{game['game']['platform']} %> 
+    name - <%= @game['game']['name'] %>
+    platform - <%= @game['game']['platform'] %> 
           
     THAT IS ALL
     

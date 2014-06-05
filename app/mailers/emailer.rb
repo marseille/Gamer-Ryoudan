@@ -6,28 +6,28 @@ class Emailer < ActionMailer::Base
     @exception = exception
     @user = user
     @params = params
-    mail(:subject => "error - Failed at #{url}")
+    mail(:subject => "error - Failed at #{url}").deliver!
   end
   
   def created_account(to_email, username)
     @username = username
-    mail(:to => to_email,:subject => "Your new account on the Gamer Ryoudan")
+    mail(:to => to_email,:subject => "Your new account on the Gamer Ryoudan").deliver!
   end
   
   def new_signup(to_email, username)
     @username = username
-    mail(:to => to_email, :subject => "#{username} has joined the Gamer Ryoudan!")
+    mail(:to => to_email, :subject => "#{username} has joined the Gamer Ryoudan!").deliver!
   end
   
   def game_request(game, username)
     @game = game
     @username = username
-    mail(:subject => "Add game request to the Gamer-Ryoudan!")
+    mail(:subject => "Add game request to the Gamer-Ryoudan!").deliver!
   end
   
   def feedback(username, email, subject, body)
     @email = email
     @feedback = body
-    mail(:subject => "#{username} has Gamer-ryoudan feedback - #{subject}")
+    mail(:subject => "#{username} has Gamer-ryoudan feedback - #{subject}").deliver!
   end
 end
