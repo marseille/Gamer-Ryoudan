@@ -16,5 +16,16 @@ GamerRyoudan::Application.configure do
   # Show full error reports and disable caching
   config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false   
+  
+  ActionMailer::Base.smtp_settings = {
+      :address              => 'smtp.gmail.com',
+      :port                 => 587,
+      :domain               => 'gmail.com',
+      :user_name            => 'do.not.reply.gamer.ryoudan@gmail.com',
+      :password             => ENV["EMAIL_PASS"],
+      :authentication       => 'login',
+      :enable_starttls_auto => true
+  }
 end

@@ -7,7 +7,7 @@ class ContactController < ApplicationController
   def feedback
     user = current_user
     user = {"login" => "anonymous", "email" => "anonymous"} if !user    
-    Emailer.feedback(user["login"], user["email"], params["subject"], params["body"]).deliver    
+    Emailer.feedback(user["login"], user["email"], params["subject"], params["body"])
     flash[:notice] = "Email sent!"
     render :file => "/contact/index.html.erb", :layout => "application"
   end

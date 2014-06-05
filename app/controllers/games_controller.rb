@@ -4,7 +4,7 @@ class GamesController < ApplicationController
 
   def add_game    
     flash[:notice] = ""
-    game = Game.new(game_params)    
+    
     if Game.find_by_name_and_platform(params["game"]["name"],params["game"]["platform"])
       render :json => "That game already exists".to_json
       return
@@ -111,6 +111,6 @@ class GamesController < ApplicationController
     
 private
   def game_params
-    params.require(:game).permit(:name, :platform)
+    params.require(:game).permit(:name, :platform, :game_information)
   end
 end

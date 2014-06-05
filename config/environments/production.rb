@@ -17,6 +17,7 @@ GamerRyoudan::Application.configure do
 
   # Full error reports are disabled and caching is turned on
   config.action_controller.consider_all_requests_local = false
+  config.action_mailer.perform_deliveries = true
   config.action_controller.perform_caching             = true
   config.log_level = :debug
   config.action_mailer.raise_delivery_errors = true
@@ -29,7 +30,7 @@ GamerRyoudan::Application.configure do
 
   #changed password to ENV["EMAIL_PASS"], hiding password from
   #viewers
-  config.action_mailer.smtp_settings = {
+  ActionMailer::Base.smtp_settings = {
       :address              => 'smtp.gmail.com',
       :port                 => 587,
       :domain               => 'gmail.com',
@@ -37,4 +38,4 @@ GamerRyoudan::Application.configure do
       :password             => ENV["EMAIL_PASS"],
       :authentication       => 'login',
       :enable_starttls_auto => true
-    }
+  }
