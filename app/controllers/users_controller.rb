@@ -58,14 +58,15 @@ class UsersController < ApplicationController
   def add_game_to_list                
     game = Game.find_by_name_and_platform(params["game"]["name"],params["game"]["platform"])            
     user = current_user
-    params["game_information"]["user_id"] = user["id"]
-    params["game_information"]["game_id"] = game["id"]
-    params["game_information"] = default_parameters(params["game_information"])    
+    game_params = game_info_params
+    game_params["user_id"] = user["id"]
+    game_params["game_id"] = game["id"]
+    #params["game_information"] = default_parameters(params["game_information"])    
     GameInformation.transaction do       
       begin        
         info_found = GameInformation.find_by_user_id_and_game_id(user["id"], game["id"])
         if !info_found          
-          GameInformation.create(params["game_information"])      
+          GameInformation.create(game_params)      
           GameInformationMap.create(:user_id => user["id"], :game_id => game["id"])
           flash["notice"] = "Added!"
         else           
@@ -110,7 +111,7 @@ class UsersController < ApplicationController
     @user = User.new(permitted_params(params))    
     @user["avatar_path"] = "https://s3.amazonaws.com/gamer-ryoudan-avatars/Avatars/default.png"
     password = permitted_params(params)["password"]    
-    email = permitted_params(params)["email"]    
+    email = permitted_params(params)[game_info_params"email"]    
     disposable = (email.include?("@")) ? disposable_email?(email) : false
     flash["error"] = "Come on. No disposable emails.." if disposable 
     if flash["error"].nil?  && @user.save
@@ -155,4 +156,8 @@ class UsersController < ApplicationController
       domain_check = JSON.parse(domain_check_json)    
       email_invalid = domain_check["domain_status"].eql?("block")          
     end
+    
+  def game_info_params
+    params.require(:game_information).permit(:hours_played, :difficulty, :score, :status)
+  end
 end

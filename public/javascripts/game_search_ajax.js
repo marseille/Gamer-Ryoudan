@@ -27,7 +27,6 @@ function get_new_value_html(field,div_id,json) {
 }
 
 function show_hide(div_to_show) {      
-  console.log("hi")		
 		if($("#"+div_to_show+"_div").is(":visible")){    
     if($("#"+div_to_show+"_button")) {
       var text =  $("#"+div_to_show+"_button").data("link_text")
@@ -39,7 +38,6 @@ function show_hide(div_to_show) {
       $("#"+div_to_show+"_button").data("link_text", $("#"+div_to_show+"_button").text())
       $("#"+div_to_show+"_button").text("cancel!")
     }
-				console.log($("#"+div_to_show+"_div"))				
     $("#"+div_to_show+"_div").fadeIn("slow")
   }
 }

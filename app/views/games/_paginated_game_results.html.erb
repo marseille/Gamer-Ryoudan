@@ -1,4 +1,5 @@
 <% if @renderer == "PaginationListLinkRenderer" %>
+
   <h3> Search results: </h3>
 <% end %>
 <%= render :partial => "games/game_results" %>
@@ -6,9 +7,7 @@
 <div class=clear>
 <%= "More results" if @game_results.count > 19%>
 <%= will_paginate @game_results, 
-                             :params => {:search_tag => @search_tag, :page => @page},
-                             :search_tag => @search_tag, 
-                             :home_search=> @home_search,
-                             :seperator => " ", 
-                             :renderer => @renderer %>
+                             :params => {:search_tag => @search_tag, 
+                                                  :page => @page,
+                                                  :home_search => @home_search} %>
 </div>

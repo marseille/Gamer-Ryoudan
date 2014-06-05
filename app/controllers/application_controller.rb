@@ -3,7 +3,7 @@
 require 'github_api'
 
 class ApplicationController < ActionController::Base
- #around_filter :handle_error  
+ around_filter :handle_error  
   helper_method :current_user_session, :current_user, :recent_changes
 
   protected

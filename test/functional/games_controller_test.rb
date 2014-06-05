@@ -34,7 +34,6 @@ class GamesControllerTest < ActionController::TestCase
     assert_equal @response.body, "That game already exists".to_json
   end
   
-=begin
   test "autocomplete_game_search should return results from a game-name search query made AJAX style" do
     games = []
     games.push(Game.create({"name" => "g", "platform" => "p"}))
@@ -43,9 +42,9 @@ class GamesControllerTest < ActionController::TestCase
     games.push(Game.create({"name" => "g3", "platform" => "p3"}))
     get :autocomplete_game_search, {"q" => "g"}
     results =  (games.flatten.collect {|game| [game["name"] + " ["+game["platform"]+"]", game["platform"]]}).to_json    
-    assert_equal @response.body, results
+    assert_equal results, @response.body
   end
-  
+
   test "autocomplete_game_search should return results from a platform-name search query made AJAX style" do
     games = []
     games.push(Game.create({"name" => "g", "platform" => "p"}))
@@ -67,7 +66,6 @@ class GamesControllerTest < ActionController::TestCase
     results = [["great game p1 [p1]", "p1"], 
                     ["great gamenumber2 p1 [p2]", "p2"],
                     ["g1 [p1]", "p1"]]
-    assert_equal @response.body, results.to_json
+    assert_equal results.to_json, @response.body
   end
-=end
 end

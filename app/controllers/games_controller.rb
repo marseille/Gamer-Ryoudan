@@ -1,6 +1,7 @@
 class GamesController < ApplicationController  
   before_filter :require_user, :only => [:add_game, :new_game]  
-  require 'will_paginate'      
+  require 'will_paginate'
+  require 'will_paginate/array'
 
   def add_game    
     flash[:notice] = ""
@@ -28,11 +29,12 @@ class GamesController < ApplicationController
 
   #search query for autocompleting search box		
   def autocomplete_game_search    				        
-    @games = Game.name_like(params["q"])[0..10]
-    platform_result = Game.platform_like(params["q"])[0..10]    
-    @games = @games.push(platform_result).flatten
-    @games = @games.to_enum.uniq_by {|game| game["id"]}                
-    render :json => @games.flatten.collect {|game| [game["name"] + " ["+game["platform"]+"]", game["platform"]]}
+    #@games = Game.name_like(params["q"])[0..10]
+    #platform_result = Game.platform_like(params["q"])[0..10]    
+    @games = Game.search({"name_cont" => params["q"]}).result[0..10]
+    platform_games = Game.search({"platform_cont" => params["q"]}).result[0..10]
+    @games = @games | platform_games
+    render :json => @games.collect {|game| [game["name"] + " ["+game["platform"]+"]", game["platform"]]}
   end		
   
   #Finds a game from the text inputted in the search box. Relays the search results
@@ -77,7 +79,8 @@ class GamesController < ApplicationController
         platform = search_tag.split("[")[1].gsub(/["\[\]"]/,"")          
         games = [Game.find_by_name_and_platform(name.strip,platform)]
       else 
-        games = Game.name_or_platform_like(search_tag)
+        #games = Game.name_or_platform_like(search_tag)
+        games = Game.search({"name_cont" => search_tag}).result
       end    
       games
     end		
